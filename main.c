@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief The main file of the application
+ */
+
 #include "hardware.h"
 #include "drive.h"
 
