@@ -1,6 +1,7 @@
 #ifndef _TIMER__
 #define _TIMER__
 
+#include <time.h>
 
 //resets timer
 void timer_reset();
