@@ -32,14 +32,30 @@ int isCurrentFloorDemanded(int CurrentFloor){
 
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
-int setDirection();
+int setDirection() {
+    for (i=0; i<10, i++) {
+        array[i][1]
+        if(array[i][1]==inside) //bestilt fra insiden
+        {
+            if(array[i][0]>currentFloor){
+                direction = up;
+                return direction;
+            }
+            if (array[i][0]<currentFloor){
+                direction = down;
+                return direction;
+            }
+        }
+        //hva mer skal gjøres her;
+    }
+}
 
 //er heisen krevd over gjeldene etasje
-int ordered_above(int CurrentFloor);
+int orderedAbove(int CurrentFloor);
 
 //er heisen krev under gjeldende etasje
-int ordered_below(int CurrentFloor);
+int orderedBelow(int CurrentFloor);
 
 //sjekker om det er ordre i køen
-int have_orders();
+int haveOrders();
 
