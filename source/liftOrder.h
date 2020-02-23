@@ -3,13 +3,15 @@
 * @brief A library containing the LiftOrder module
 */
 
-
 #ifndef LIFTORDER_H__
 #define LIFTORDER_H__
 
 #include "hardware.h"
 
-//functions
+/**
+ * @brief
+ */
+static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 /**
 * @brief
