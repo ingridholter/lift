@@ -15,7 +15,7 @@
 /**
 * @brief Initializes lift.
 */
-bool driveToDefinedState();
+int driveToDefinedState();
 
 
 
