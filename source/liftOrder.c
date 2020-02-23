@@ -34,7 +34,10 @@ void removeOrders(int CurrentFloor){
     }
 }
 
-void removeAllOrders();
+void removeAllOrders() {
+    for (int i = 0; i < 10; i++)
+        liftOrders[i] = 0;
+}
 
 void getLiftOrders(); //returnere array?
 
