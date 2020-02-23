@@ -7,8 +7,9 @@ static int liftOrders[liftOrderSize] = {0};
 
 
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
+// Begge funksjonene checkOrderButtons og setLiftOrders?
 void setLiftOrders(){
-    checkButtons();
+    int hardware_read_order (int floor, HardwareOrder order_type)
 }
 
 void removeOrders(int CurrentFloor){
