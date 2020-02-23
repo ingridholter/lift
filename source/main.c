@@ -16,7 +16,7 @@ void main {
         int stopSignal = hardware_read_stop_signal();
         int obstruction = hardware_read_obstruction_signal();
         
-        checkOrderButtons(); //eller setLiftOrders()?
+        setLiftOrders(); // Checks order buttons
         
         stateMachine();
         
