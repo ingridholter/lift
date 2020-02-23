@@ -1,8 +1,10 @@
+#include "drive.h"
 
 //Drive variables
+// I h-filen?
 int prevFloor = -1;
 int currentFLoor = 5;
-int currentDir;
+HardwareMovement currentDir;
 //må ha en neste tilstand varibabel
 
 /*
