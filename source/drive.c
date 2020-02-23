@@ -52,7 +52,7 @@ stateMachine() {
         case levelClosed:
             
             /*
-             Bestemme ny retning -> kjøpre heis, endre state til moving
+             Bestemme ny retning -> kjøre heis, endre state til moving
              Sjekke stoppknapp -> åpne dør, endre state til level Open
             */
             break;
