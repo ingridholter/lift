@@ -20,12 +20,12 @@ bool driveToDefinedState() {
     int error = hardware_init();
     if (error != 0) {
         printf("Unable to initialize hardware\n");
-        return FALSE;
+        return false;
     }
     
     while (currentFloor > 3) {
     //Checks if lift is at floor
-        for (floor = 0; floor < 4; floor++) {
+        for (int floor = 0; floor < 4; floor++) {
             if (hardware_read_floor_sensor(floor) == 1)
                 currentFloor = floor;
         }
@@ -36,7 +36,7 @@ bool driveToDefinedState() {
     //Changes floor light to given floor
     hardware_command_floor_indicator_on (currentFloor)
     
-    return TRUE;
+    return true; 
 }
 
 //Implementer denne
