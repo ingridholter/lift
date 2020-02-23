@@ -7,9 +7,9 @@
 #include "drive.h"
 
 
-void main {
+int main() {
     
-    bool initialized = driveToDefinedState();
+    int initialized = driveToDefinedState();
     
     while (initialized) {
         //Poller hardware
@@ -21,4 +21,5 @@ void main {
         stateMachine();
         
     }
+    return 0;
 }
