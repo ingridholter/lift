@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief The main file of the application
+ * @brief The main function of the application
  */
 
 //#include "hardware.h"
