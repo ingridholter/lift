@@ -32,9 +32,11 @@ void setLiftOrders(){
 }
 
 void removeOrders(int currentFloor){
+    //Removes handled orders from liftOrders array.
     liftOrders[currentFloor] = 0;
     liftOrders[currentFloor+4] = 0;
     liftOrders[currentFloor+6] = 0;
+    //Turns off lights for handled orders.
     hardware_command_order_light (currentFloor, HARDWARE_ORDER_INSIDE, 0)
     hardware_command_order_light (currentFloor, HARDWARE_ORDER_UP, 0)
     hardware_command_order_light (currentFloor, HARDWARE_ORDER_DOWN, 0)
@@ -44,8 +46,6 @@ void removeAllOrders() {
     for (int i = 0; i < 10; i++)
         liftOrders[i] = 0;
 }
-
-void getLiftOrders(); //returnere array?
 
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
