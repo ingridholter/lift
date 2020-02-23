@@ -7,7 +7,7 @@ static int liftOrders[liftOrderSize] = {0};
 
 
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
-// Begge funksjonene checkOrderButtons og setLiftOrders?
+// Eventuelt ikke sjekke 1, NED og 4, OPP
 void setLiftOrders(){
     for (int floor = 0; floor < 4; floor++) {
         
