@@ -10,6 +10,14 @@
 //#include "hardware.h" Finnes i liftOrder
 #include "liftOrder.h"
 
+typedef enum{
+  levelOpen
+  levelClosed
+  moving
+  stationaryBetweenFloors 
+}liftStates;
+
+
 
 // må bestemme returverdier
 /**
