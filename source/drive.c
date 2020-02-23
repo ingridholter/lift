@@ -30,7 +30,7 @@ bool driveToDefinedState() {
     
     hardware_command_movement (HARDWARE_MOVEMENT_STOP)
     //Changes floor light to given floor
-    void hardware_command_floor_indicator_on (currentFloor)
+    hardware_command_floor_indicator_on (currentFloor)
     
     return TRUE;
 }
