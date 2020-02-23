@@ -54,6 +54,7 @@ stateMachine() {
             
             /*
              Bestemme ny retning -> kjøre heis, endre state til moving
+             husk å ta høyde for at den kan bestilles der den er
              Sjekke stoppknapp -> åpne dør, endre state til level Open
             */
             break;
