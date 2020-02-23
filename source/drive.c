@@ -39,8 +39,17 @@ int driveToDefinedState() {
     return 1;
 }
 
+
 //Implementer denne
 manageDoor();
-//og denne:
-stateMachine();
+
+stateMachine() {
+    switch (liftState) {
+            case levelOpen
+            
+            levelClosed
+            moving
+            stationaryBetweenFloors
+    }
+}
 
