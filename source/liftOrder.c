@@ -9,29 +9,35 @@ static int liftOrders[liftOrderSize] = {0};
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
 // Eventuelt ikke sjekke 1, NED og 4, OPP
 void setLiftOrders(){
+    if (hardware_read_stop_signal ())
+        return;
+    
     for (int floor = 0; floor < 4; floor++) {
         
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
-            liftOrder[floor] = 1;
+            liftOrders[floor] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1)
         }
             
         if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
-            liftOrder[floor+4] = 1;
+            liftOrders[floor+4] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1)
         }
         
         if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
-            liftOrder[floor+6] = 1;
+            liftOrders[floor+6] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1)
         }
     }
 }
 
-void removeOrders(int CurrentFloor){
-    for (i in liftOrders[][]){
-        
-    }
+void removeOrders(int currentFloor){
+    liftOrders[currentFloor] = 0;
+    liftOrders[currentFloor+4] = 0;
+    liftOrders[currentFloor+6] = 0;
+    hardware_command_order_light (currentFloor, HARDWARE_ORDER_INSIDE, 0)
+    hardware_command_order_light (currentFloor, HARDWARE_ORDER_UP, 0)
+    hardware_command_order_light (currentFloor, HARDWARE_ORDER_DOWN, 0)
 }
 
 void removeAllOrders() {
