@@ -44,7 +44,8 @@ void removeOrders(int currentFloor){
 
 void removeAllOrders() {
     for (int i = 0; i < 10; i++)
-        liftOrders[i] = 0;
+        removeOrders(i);
+        // liftOrders[i] = 0;
 }
 
 
@@ -52,9 +53,9 @@ void removeAllOrders() {
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
     if (liftOrders[currentFloor])
         return 1;
-    
-    currentDir
-    liftOrders[currentFloor+4]
+    if (currentDir = HARDWARE_MOVEMENT_UP && liftOrders[currentFloor+4])
+        
+
 }
 Stopper heisen dersom
 -nåværende etasje er ønsket
