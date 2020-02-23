@@ -38,6 +38,12 @@ bool driveToDefinedState() {
     return TRUE;
 }
 
+//Implementer denne
+manageDoor();
+//og denne:
+stateMachine();
+
+//fjern denne:
 int setDirection() {
     for (i=0; i<10, i++)
     {
