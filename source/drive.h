@@ -17,6 +17,12 @@ typedef enum{
   stationaryBetweenFloors 
 }liftState;
 
+//Drive variables
+int prevFloor = -1;
+int currentFLoor = 5;
+HardwareMovement currentDir;
+//må ha en neste tilstand varibabel
+
 
 
 // må bestemme returverdier
