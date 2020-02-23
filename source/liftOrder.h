@@ -29,16 +29,18 @@ void removeAllOrders();
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 /**
-* @brief
+* @brief Stops the lift when it arrives at a floor where it is demanded
+*in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
 */
 int isCurrentFloorDemanded(int CurrentFloor);
 
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
 /**
-* @brief
+* @brief Decides where the lift should go next and sets the motor direction.
 */
 int setDirection();
+
 
 //er heisen krevd over gjeldene etasje
 /**
