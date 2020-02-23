@@ -9,7 +9,23 @@ static int liftOrders[liftOrderSize] = {0};
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
 // Begge funksjonene checkOrderButtons og setLiftOrders?
 void setLiftOrders(){
-    int hardware_read_order (int floor, HardwareOrder order_type)
+    for (int floor = 0; floor < 4; floor++) {
+        
+        if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
+            liftOrder[floor] = 1;
+            hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1)
+        }
+            
+        if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
+            liftOrder[floor+4] = 1;
+            hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1)
+        }
+        
+        if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
+            liftOrder[floor+6] = 1;
+            hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1)
+        }
+    }
 }
 
 void removeOrders(int CurrentFloor){
