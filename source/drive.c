@@ -21,7 +21,7 @@ bool driveToDefinedState() {
     
     while (currentFloor > 3) {
     //Checks if lift is at floor
-        for (floor = 0; i < 4; i++) {
+        for (floor = 0; floor < 4; floor++) {
             if (hardware_read_floor_sensor(floor) == 1)
                 currentFloor = floor;
         }
