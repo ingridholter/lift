@@ -3,7 +3,7 @@
  * @brief The main file of the application
  */
 
-#include "hardware.h"
+// #include "hardware.h"
 #include "drive.h"
 
 
@@ -16,7 +16,7 @@ void main {
         int stopSignal = hardware_read_stop_signal();
         int obstruction = hardware_read_obstruction_signal();
         
-        checkOrderButtons();
+        checkOrderButtons(); //eller setLiftOrders()?
         
         stateMachine();
         
