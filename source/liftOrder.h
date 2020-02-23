@@ -41,7 +41,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir);
 /**
 * @brief Decides where the lift should go next and sets the motor direction.
 */
-int setDirection();
+int setDirection(int currentFloor, HardwareMovement currentDir);
 
 
 //er heisen krevd over gjeldene etasje
