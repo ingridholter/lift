@@ -49,9 +49,13 @@ void removeAllOrders() {
 
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
-int isCurrentFloorDemanded(int CurrentFloor){
+int isCurrentFloorDemanded(int currentFloor, int currentDir){
     
 }
+Stopper heisen dersom
+-nåværende etasje er ønsket
+-nåværende etasje er bestilt i nåværende retning,
+sjekker om nåværende retning tilsvarer UP eller DOWN.
 
 
 //setter heisens retning 1:ned og 0:opp
