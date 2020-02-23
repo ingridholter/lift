@@ -74,36 +74,36 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
     else {
         switch (currentDir) {
             case HARDWARE_MOVEMENT_UP:
-                //Lift continues up if ordered above currentFloor on heispanel
+                //Lift continues up if ordered above currentFloor on Heispanel
                 for (int i = currentFloor; i < 4; i++) {
                     if (liftOrder[i]) {
                         return HARDWARE_MOVEMENT_UP;
                     }
                 }
-                //Lift changes direction if ordered below currentFloor on heispanel
+                //Lift changes direction if ordered below currentFloor on Heispanel
                 for (int i = 0; i < currentFloor; i++) {
                     if (liftOrders[i]) {
                         return HARDWARE_MOVEMENT_DOWN;
                     }
                 }
-                //If not ordered on heispanel, lift continues up
+                //If not ordered on Heispanel, lift continues up
                 return HARDWARE_MOVEMENT_UP;
                 break;
                 
             case HARDWARE_MOVEMENT_DOWN:
-                //Lift continues down if ordered below currentFloor on heispanel
+                //Lift continues down if ordered below currentFloor on Heispanel
                 for (int i = 0; i < currentFloor+1; i++) {
                     if (liftOrder[i]) {
                         return HARDWARE_MOVEMENT_DOWN;
                     }
                 }
-                //Lift changes direction if ordered above currentFloor on heispanel
+                //Lift changes direction if ordered above currentFloor on Heispanel
                 for (int i = currentFloor; i < 4; i++) {
                     if (liftOrder[i]) {
                         return HARDWARE_MOVEMENT_UP;
                     }
                 }
-                //If not ordered on heispanel, lift continues down
+                //If not ordered on Heispanel, lift continues down
                 return HARDWARE_MOVEMENT_DOWN;
                 break;
                 
