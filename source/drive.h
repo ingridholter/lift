@@ -12,13 +12,10 @@
 
 
 // må bestemme returverdier
-
 /**
-* @brief State Machine, decides the elevator state.
-*
+* @brief Initializes lift.
 */
-stateMachine();
-
+bool driveToDefinedState();
 /**
 * @brief Stops the lift when it arrives at a floor where it is demanded in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
 */
@@ -35,3 +32,8 @@ setDirection();
 */
 manageDoor();
 
+/**
+ * @brief State Machine, decides the elevator state.
+ *
+ */
+stateMachine();
