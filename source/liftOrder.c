@@ -124,6 +124,11 @@ int orderedBelow(int CurrentFloor) {
 
 //sjekker om det er ordre i køen
 int haveOrders() {
-    
+    for (int i = 0; i < 10; i++) {
+        if (liftOrders[i] == 1){
+            return 1;
+        }
+    }
+    return 0;
 }
 
