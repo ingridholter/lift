@@ -6,8 +6,6 @@
 #include "hardware.h"
 #include "drive.h"
 
-//Global variables
-int currentFLoor = 5;
 
 void main {
     
