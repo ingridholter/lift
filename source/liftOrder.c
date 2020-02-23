@@ -1,8 +1,6 @@
 #include "liftOrder.h"
 
 
-
-
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
 // Eventuelt ikke sjekke 1, NED og 4, OPP
 void setLiftOrders(){
@@ -60,7 +58,42 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
 
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
-int setDirection() {
+int setDirection(int currentFloor, HardwareMovement currentDir) {
+    
+    for (int i = 0; i < 4; i++) {
+        if (liftOrders[i])
+    }
+    
+    switch (currentFloor) {
+        case 0:
+            
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        default: // code to be executed if n doesn't match any cases
+    }
+}
+    /*
+     
+     Bestemmer om heisen skal opp, ned eller stoppe.
+     Går gjennom arrayet, for å sjekke hva som er neste etasje å dra til.
+
+     Fortsetter i samme retning dersom det er bestillinger eller ønsker i den retningen.
+     Retning lagret i lokal variabel.
+
+     Dersom heis er på vei opp betjenes bestillinger i retning opp og alle ønsker.
+     Heis på vei opp: Fortsetter opp dersom heis bestilt oppover eller noen skal av over
+
+     Dersom heis er på vei ned betjenes bestillinger i retning ned og alle ønsker.
+
+     Dersom heisen ikke er ønsket i nåværende retning, snu om det finnes andre bestillinger.
+
+     Ellers stå stille.
+
     for (i=0; i<10, i++) {
         array[i][1]
         if(array[i][1]==inside) //bestilt fra insiden
@@ -78,12 +111,19 @@ int setDirection() {
     }
 }
 
+*/
 //er heisen krevd over gjeldene etasje
-int orderedAbove(int CurrentFloor);
+int orderedAbove(int CurrentFloor) {
+    
+}
 
 //er heisen krev under gjeldende etasje
-int orderedBelow(int CurrentFloor);
+int orderedBelow(int CurrentFloor) {
+    
+}
 
 //sjekker om det er ordre i køen
-int haveOrders();
+int haveOrders() {
+    
+}
 
