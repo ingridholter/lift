@@ -15,7 +15,7 @@ typedef enum{
   levelClosed
   moving
   stationaryBetweenFloors 
-}liftStates;
+}liftState;
 
 
 
