@@ -9,54 +9,58 @@
 #include "hardware.h"
 
 /**
- * @brief
+ * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
 static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 /**
-* @brief
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
 */
 void setLiftOrders();
 
 /**
-* @brief
+* @brief removes handled orders from liftOrders array. Turnes of lights accordingly
+* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
 */
 void removeOrders(int currentFloor);
 
 /**
-* @brief
+* @brief removes all orders in liftOrder array. Turnes off all order lights
 */
 void removeAllOrders();
 
-
-//returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 /**
 * @brief Stops the lift when it arrives at a floor where it is demanded
 *in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
+* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
+* @param[in] currentDir The direction of the lift. Must be of enum type HardwareMovement 
+* @return 1 if the lift should stop at currentFloor, 0 otherwise
 */
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir);
 
-//setter heisens retning 1:ned og 0:opp
-//går gjennom array og sjekker
+
 /**
 * @brief Decides where the lift should go next and sets the motor direction.
+* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
+* @param[in] currentDir The direction of the lift. Must be of enum type HardwareMovement.
+* @return HardwareMovement enum type.
 */
-int setDirection(int currentFloor, HardwareMovement currentDir);
+HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir);
 
-
-//er heisen krevd over gjeldene etasje
-/**
-* @brief
-*/
-int orderedAbove(int CurrentFloor);
-
-//er heisen krev under gjeldende etasje
-/**
-* @brief
-*/
-int orderedBelow(int CurrentFloor);
 
 /**
-* @brief
+* @brief  Checks if lift is ordered above currentFloor
+* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
+*/
+int orderedAbove(int currentFloor);
+
+/**
+* @brief Checks if lift is ordered below currentFloor.
+* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
+*/
+int orderedBelow(int currentFloor);
+
+/**
+* @brief checks if there is any orders in the liftOrders array.
 */
 int haveOrders();
