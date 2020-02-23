@@ -45,6 +45,7 @@ stateMachine() {
             /*
              slette ordre
              åpne dørene, med timer -> endre state til levelClosed
+             resette dørtimer dersom current Floor bestilles
              sjekke stoppknapp -> resette timer, holde dører åpne
              */
             break;
