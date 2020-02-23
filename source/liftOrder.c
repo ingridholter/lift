@@ -49,11 +49,12 @@ void removeAllOrders() {
 
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
-int isCurrentFloorDemanded(int currentFloor, int currentDir){
+int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
     if (liftOrders[currentFloor])
         return 1;
     
-    liftOrders[currentFloor
+    currentDir
+    liftOrders[currentFloor+4]
 }
 Stopper heisen dersom
 -nåværende etasje er ønsket
