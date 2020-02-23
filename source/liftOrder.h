@@ -46,12 +46,15 @@ int setDirection();
 /**
 * @brief
 */
-int ordered_above(int CurrentFloor);
+int orderedAbove(int CurrentFloor);
 
 //er heisen krev under gjeldende etasje
 /**
 * @brief
 */
-int ordered_below(int CurrentFloor);
+int orderedBelow(int CurrentFloor);
 
-
+/**
+* @brief
+*/
+int haveOrders();
