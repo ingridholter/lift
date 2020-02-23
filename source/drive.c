@@ -43,28 +43,42 @@ stateMachine() {
         case levelOpen:
             
             /*
-             
+             slette ordre
+             åpne dørene, med timer -> endre state til levelClosed
+             sjekke stoppknapp -> resette timer, holde dører åpne
              */
             break;
             
         case levelClosed:
             
             /*
-            
+             Bestemme ny retning -> kjøpre heis, endre state til moving
+             Sjekke stoppknapp -> åpne dør, endre state til level Open
             */
             break;
             
         case moving:
+            isCurrentFloorDemanded(currentFloor, currentDir);
             
             /*
-            
+             Endre etasjelys
+             Sjekke om currentFLoor er ønsket -> stopp, endre state til levelOpen
+             Sjekke stoppknapp -> stopp, endre state til stationaryBetweenFloors:
+             
+             Oppdatere:
+             int prevFloor = -1;
+             int currentFLoor = 5;
+             HardwareMovement currentDir;
             */
             break;
             
         case stationaryBetweenFloors:
             
             /*
-            
+             Slette ordre og lys
+             Ordne stoppknapplys
+             Sjekke stoppknapp
+             setDirection når stoppknapp slippes
             */
             break;
             
