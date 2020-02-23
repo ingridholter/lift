@@ -81,7 +81,7 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
                     }
                 }
                 //Lift changes direction if ordered below currentFloor on Heispanel
-                for (int i = 0; i < currentFloor; i++) {
+                for (int i = 0; i < currentFloor+1; i++) {
                     if (liftOrders[i]) {
                         return HARDWARE_MOVEMENT_DOWN;
                     }
