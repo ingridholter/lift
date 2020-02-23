@@ -65,10 +65,10 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
     int above = orderedAbove(currentFloor);
     int below = orderedBelow(currentFloor);
     
-    if (above && != below) {
+    if (above && !below) {
         return HARDWARE_MOVEMENT_UP;
     }
-    else if (!= above && below) {
+    else if (!above && below) {
         return HARDWARE_MOVEMENT_DOWN;
     }
     else {
