@@ -16,15 +16,7 @@
 * @brief Initializes lift.
 */
 bool driveToDefinedState();
-/**
-* @brief Stops the lift when it arrives at a floor where it is demanded in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
-*/
-isCurrentFloorDemanded();
 
-/**
-* @brief Decides where the lift should go next and sets the motor direction.
-*/
-setDirection();
 
 
 /**
