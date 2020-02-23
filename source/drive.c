@@ -3,6 +3,7 @@
 int prevFloor = -1;
 int currentFLoor = 5;
 int direction;
+//må ha en neste tilstand varibabel
 
 /*
 
@@ -43,27 +44,3 @@ manageDoor();
 //og denne:
 stateMachine();
 
-//fjern denne:
-int setDirection() {
-    for (i=0; i<10, i++)
-    {
-        array[i][1]
-        if(array[i][1]==inside) //bestilt fra insiden
-        {
-            if(array[i][0]>currentFloor){
-                direction = up;
-                return direction;
-            }
-            if (array[i][0]<currentFloor){
-                direction = down;
-                return direction;
-            }
-        }
-        //hva mer skal gjøres her;
-    }
-    
-}
-
-
-
-//må ha en neste tilstand varibabel
