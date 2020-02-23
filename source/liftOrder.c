@@ -1,10 +1,9 @@
 #include "liftOrder.h"
 
 
-const int liftOrder_size = 10;
+const int liftOrderSize = 10;
 
-//2??
-static int liftOrders[2][liftOrder_size] = {0};
+static int liftOrders[liftOrderSize] = {0};
 
 
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
@@ -27,7 +26,6 @@ void getLiftOrders(); //returnere array?
 int isCurrentFloorDemanded(int CurrentFloor){
     
 }
-
 
 
 //setter heisens retning 1:ned og 0:opp
