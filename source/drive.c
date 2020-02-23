@@ -1,4 +1,4 @@
-printf("velg retning")
+/*printf("velg retning")
 
 int array[] {0};
 
@@ -10,6 +10,7 @@ for (i=0; i<4;i++){
         int currentFloor = hardware_floor_sensor(i);
         return currentFloor;
 } //skal vi gjøre med prevFloor
+*/
 
 //Initializing
 bool driveToDefinedState() {
