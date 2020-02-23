@@ -1,11 +1,6 @@
 #include "drive.h"
 
-//Drive variables
-// I h-filen?
-int prevFloor = -1;
-int currentFLoor = 5;
-HardwareMovement currentDir;
-//må ha en neste tilstand varibabel
+
 
 /*
 
@@ -45,11 +40,36 @@ manageDoor();
 
 stateMachine() {
     switch (liftState) {
-            case levelOpen
+        case levelOpen:
             
-            levelClosed
-            moving
-            stationaryBetweenFloors
+            /*
+             
+             */
+            break;
+            
+        case levelClosed:
+            
+            /*
+            
+            */
+            break;
+            
+        case moving:
+            
+            /*
+            
+            */
+            break;
+            
+        case stationaryBetweenFloors:
+            
+            /*
+            
+            */
+            break;
+            
+        default:
+            break;
     }
 }
 
