@@ -6,13 +6,8 @@
 #include "hardware.h"
 #include "drive.h"
 
-//Initialiserer
-bool driveToDefinedState() {
-    int hardware_init ();
-    // If “ikke i etasje” {kjør ned til etasje}
-    //  if “etasje” {sett etasje+lys, åpne for bestillinger}
-    return TRUE;
-}
+//Global variables
+int currentFLoor = 5;
 
 void main {
     
