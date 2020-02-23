@@ -1,9 +1,11 @@
-/*printf("velg retning")
 
-int array[] {0};
-
-
+//Drive variables
 int prevFloor = -1;
+int currentFLoor = 5;
+int direction;
+
+/*
+
 for (i=0; i<4;i++){
     if(hardware_floor_sensor(i)==1)
         int prevFloor = currentFloor;
@@ -36,10 +38,7 @@ bool driveToDefinedState() {
     return TRUE;
 }
 
-int setDirection()
-{
-    int currentFloor; //finnes
-    int direction;
+int setDirection() {
     for (i=0; i<10, i++)
     {
         array[i][1]
