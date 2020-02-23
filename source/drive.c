@@ -2,7 +2,7 @@
 //Drive variables
 int prevFloor = -1;
 int currentFLoor = 5;
-int direction;
+int currentDir;
 //må ha en neste tilstand varibabel
 
 /*
