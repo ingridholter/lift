@@ -1,9 +1,6 @@
 #include "liftOrder.h"
 
 
-const int liftOrderSize = 10;
-
-static int liftOrders[liftOrderSize] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
