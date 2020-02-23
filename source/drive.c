@@ -29,15 +29,13 @@ int driveToDefinedState() {
         for (int floor = 0; floor < 4; floor++) {
             if (hardware_read_floor_sensor(floor) == 1){
                 currentFloor = floor;
-		}
+            }
         }
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
-    
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     //Changes floor light to given floor
     hardware_command_floor_indicator_on(currentFloor);
-    
     return 1;
 }
 
