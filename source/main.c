@@ -1,15 +1,16 @@
 /**
  * @file
- * @brief The main file of the application
+ * @brief The main function of the application
  */
 
-// #include "hardware.h"
+//#include "hardware.h"
 #include "drive.h"
+#include <stdio.h> 
 
 
-void main {
+int main() {
     
-    bool initialized = driveToDefinedState();
+    int initialized = driveToDefinedState();
     
     while (initialized) {
         //Poller hardware
@@ -21,4 +22,5 @@ void main {
         stateMachine();
         
     }
+    return 0;
 }
