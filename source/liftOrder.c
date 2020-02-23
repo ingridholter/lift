@@ -3,7 +3,7 @@
 
 const int liftOrderSize = 10;
 
-static int liftOrders[liftOrderSize] = {0};
+static int liftOrders[liftOrderSize] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
@@ -16,17 +16,17 @@ void setLiftOrders(){
         
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
             liftOrders[floor] = 1;
-            hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1)
+            hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
             
         if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
             liftOrders[floor+4] = 1;
-            hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1)
+            hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
         
         if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
             liftOrders[floor+6] = 1;
-            hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1)
+            hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
         }
     }
 }
@@ -37,9 +37,9 @@ void removeOrders(int currentFloor){
     liftOrders[currentFloor+4] = 0;
     liftOrders[currentFloor+6] = 0;
     //Turns off lights for handled orders.
-    hardware_command_order_light (currentFloor, HARDWARE_ORDER_INSIDE, 0)
-    hardware_command_order_light (currentFloor, HARDWARE_ORDER_UP, 0)
-    hardware_command_order_light (currentFloor, HARDWARE_ORDER_DOWN, 0)
+    hardware_command_order_light (currentFloor, HARDWARE_ORDER_INSIDE, 0);
+    hardware_command_order_light (currentFloor, HARDWARE_ORDER_UP, 0);
+    hardware_command_order_light (currentFloor, HARDWARE_ORDER_DOWN, 0);
 }
 
 void removeAllOrders() {
@@ -50,7 +50,10 @@ void removeAllOrders() {
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 int isCurrentFloorDemanded(int currentFloor, int currentDir){
+    if (liftOrders[currentFloor])
+        return 1;
     
+    liftOrders[currentFloor
 }
 Stopper heisen dersom
 -nåværende etasje er ønsket
