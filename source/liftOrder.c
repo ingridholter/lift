@@ -58,7 +58,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
 
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
-int setDirection(int currentFloor, HardwareMovement currentDir) {
+HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
     
     for (int i = 0; i < 4; i++) {
         if (liftOrders[i])
@@ -118,8 +118,38 @@ int orderedAbove(int CurrentFloor) {
 }
 
 //er heisen krev under gjeldende etasje
-int orderedBelow(int CurrentFloor) {
-    
+int orderedBelow(int currentFloor) {
+    switch (currentFloor) {
+        case 0:
+            return 0;
+            break;
+            
+        case 1:
+            if (liftOrders[0] == 1 || liftOrders[4] == 1) {
+                    return 1;
+                }
+            break;
+            
+        case 2:
+            for (int i = 0; i < 8; i++) {
+                if ((i != 2 || i%3 != 0) && liftOrders[i] == 1) {
+                    return 1;
+                }
+            }
+            break;
+            
+        case 3:
+            for (int i = 0; i < 10; i++) {
+                if (liftOrders[i] == 1){
+                    return 1;
+                }
+            }
+            break;
+            
+        default:
+            break;
+    }
+    return 0;
 }
 
 //sjekker om det er ordre i køen
