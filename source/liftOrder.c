@@ -55,63 +55,49 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
 }
 
 
-
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
 HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
-    
-    for (int i = 0; i < 4; i++) {
-        if (liftOrders[i])
+    if (!= haveOrders()) {
+        return HARDWARE_MOVEMENT_STOP;
     }
     
-    switch (currentFloor) {
-        case 0:
-            
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        default: // code to be executed if n doesn't match any cases
+    int above = orderedAbove(currentFloor);
+    int below = orderedBelow(currentFloor);
+    
+    if (above && != below) {
+        return HARDWARE_MOVEMENT_UP;
     }
-}
-    /*
-     
-     Bestemmer om heisen skal opp, ned eller stoppe.
-     Går gjennom arrayet, for å sjekke hva som er neste etasje å dra til.
-
-     Fortsetter i samme retning dersom det er bestillinger eller ønsker i den retningen.
-     Retning lagret i lokal variabel.
-
-     Dersom heis er på vei opp betjenes bestillinger i retning opp og alle ønsker.
-     Heis på vei opp: Fortsetter opp dersom heis bestilt oppover eller noen skal av over
-
-     Dersom heis er på vei ned betjenes bestillinger i retning ned og alle ønsker.
-
-     Dersom heisen ikke er ønsket i nåværende retning, snu om det finnes andre bestillinger.
-
-     Ellers stå stille.
-
-    for (i=0; i<10, i++) {
-        array[i][1]
-        if(array[i][1]==inside) //bestilt fra insiden
-        {
-            if(array[i][0]>currentFloor){
-                direction = up;
-                return direction;
-            }
-            if (array[i][0]<currentFloor){
-                direction = down;
-                return direction;
-            }
+    else if (!= above && below) {
+        return HARDWARE_MOVEMENT_DOWN;
+    }
+    else {
+        switch (currentDir) {
+            case HARDWARE_MOVEMENT_UP:
+                for (int i = currentFloor; i < 4; i++) {
+                    if (liftOrder[i]) {
+                        return HARDWARE_MOVEMENT_UP;
+                    }
+                }
+                return HARDWARE_MOVEMENT_DOWN
+                break;
+                
+            case HARDWARE_MOVEMENT_DOWN:
+                    for (int i = 0; i < currentFloor+1; i++) {
+                        if (liftOrder[i]) {
+                            return HARDWARE_MOVEMENT_DOWN;
+                        }
+                    }
+                    return HARDWARE_MOVEMENT_UP
+                break;
+                
+            default:
+                break;
         }
-        //hva mer skal gjøres her;
     }
+    return HARDWARE_MOVEMENT_STOP;
 }
 
-*/
 //er heisen krevd over gjeldene etasje
 int orderedAbove(int currentFloor) {
     switch (currentFloor) {
