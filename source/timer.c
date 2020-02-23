@@ -1,7 +1,10 @@
+/**
+* @brief Implementation of the timer module
+*/
+
 #include "timer.h"
 
 
-//the time delay given in seconds
 const int TIME_LIMIT = 3;
 
 
