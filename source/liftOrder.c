@@ -113,8 +113,38 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
 
 */
 //er heisen krevd over gjeldene etasje
-int orderedAbove(int CurrentFloor) {
-    
+int orderedAbove(int currentFloor) {
+    switch (currentFloor) {
+        case 0:
+            for (int i = 0; i < 10; i++) {
+                if (liftOrders[i] == 1){
+                    return 1;
+                }
+            }
+            break;
+            
+        case 1:
+            for (int i = 2; i < 10; i++) {
+                if ((i != 4 || i != 5 || i != 7) && liftOrders[i] == 1) {
+                    return 1;
+                }
+            }
+            break;
+            
+        case 2:
+            if (liftOrders[3] == 1 || liftOrders[9] == 1) {
+                    return 1;
+                }
+            break;
+            
+        case 3:
+            return 0;
+            break;
+            
+        default:
+            break;
+    }
+    return 0;
 }
 
 //er heisen krev under gjeldende etasje
