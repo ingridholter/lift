@@ -47,9 +47,9 @@ void removeAllOrders() {
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
     if (liftOrders[currentFloor])
         return 1;
-    if (currentDir = HARDWARE_MOVEMENT_UP && liftOrders[currentFloor+4])
+    if ((currentDir == HARDWARE_MOVEMENT_UP) && liftOrders[currentFloor+4])
         return 1;
-    if (currentDir = HARDWARE_MOVEMENT_DOWN && liftOrders[currentFloor+6])
+    if ((currentDir == HARDWARE_MOVEMENT_DOWN) && liftOrders[currentFloor+6])
         return 1;
     return 0;
 }
