@@ -46,7 +46,8 @@ stateMachine() {
              slette ordre
              åpne dørene, med timer -> endre state til levelClosed
              resette dørtimer dersom current Floor bestilles
-             sjekke stoppknapp -> resette timer, holde dører åpne
+             sjekke stoppknapp -> resette timer, holde dører åpne, ordne stoppknapplys
+             Husk obstruction
              */
             break;
             
@@ -56,6 +57,9 @@ stateMachine() {
              Bestemme ny retning -> kjøre heis, endre state til moving
              husk å ta høyde for at den kan bestilles der den er
              Sjekke stoppknapp -> åpne dør, endre state til level Open
+             
+             Oppdatere:
+              HardwareMovement currentDir;
             */
             break;
             
