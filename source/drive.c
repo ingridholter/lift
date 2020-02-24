@@ -99,12 +99,13 @@ void stateMachine() {
             break;
             
         case moving:
-            
-            if (atFloor() >= 0) {
+            int between = 1;
+            if (atFloor() >= 0 && atFloor != currFloor) {
                 currFloor = atFloor();
+                between = 0;
             }
             
-            if (isCurrentFloorDemanded(currFloor, currentDir)) {
+            if (isCurrentFloorDemanded(currFloor, currentDir) && !between) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 timerReset();
