@@ -52,7 +52,7 @@ void stateMachine() {
                 removeOrders(currentFloor);
             }
             */
-            if (obstruction) {
+            if (hardware_read_obstruction_signal()) {
                 timerReset();
                 break;
             }
