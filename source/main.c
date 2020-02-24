@@ -13,11 +13,13 @@ int main() {
     int initialized = driveToDefinedState();
     
     while (initialized) {
+        /*
         //Poller hardware
-        //int stopSignal = hardware_read_stop_signal();
-        //int obstruction = hardware_read_obstruction_signal();
+        int stopSignal = hardware_read_stop_signal();
+        int obstruction = hardware_read_obstruction_signal();
         
-        //setLiftOrders(); // Checks order buttons
+        setLiftOrders(); // Checks order buttons
+        */
         
         stateMachine();
         
