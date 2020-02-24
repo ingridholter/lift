@@ -31,108 +31,78 @@ int atFloor() {
 }
 
 void stateMachine() {
-    if (!hardware_read_stop_signal()) {
-        setLiftOrders(); // Checks order buttons
-    }
-    
+    setLiftOrders(); // Checks order buttons
+
     switch (currentState) {
         case levelOpen:
+            //stop signal
             if (hardware_read_stop_signal()) {
-                hardware_command_stop_light(1);
-                removeAllOrders();
+                hardware_command_stop_light(1); //turn on stop light
+                removeAllOrders(); //remove orders
                 break;
             }
-            
+            //remove Orders
             removeOrders(currFloor);
-            /* Fungerer dette uansett?
-            if (isCurrentFloorDemanded(currentFloor, currentDir) {
-                timerReset();
-                removeOrders(currentFloor);
-            }
-            */
+            //obstruction
             if (hardware_read_obstruction_signal()) {
                 timerReset();
                 break;
             }
-            
+            //-> levelClosed
             if (timerExpired() && !hardware_read_stop_signal()) {
                 hardware_command_door_open(0);
                 hardware_command_stop_light(0);
                 currentState = levelClosed;
             }
-            
-            /*
-           √  slette ordre
-           √  med timer -> endre state til levelClosed
-           √  resette dørtimer dersom current Floor bestilles
-           √  sjekke stoppknapp -> resette timer, holde dører åpne, ordne stoppknapplys
-           √  Husk obstruction
-             */
             break;
             
+            
         case levelClosed:
+            //stop signal -> levelOpen
             if (hardware_read_stop_signal()) {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
             }
+            //direction
             currentDir = setDirection(currFloor, currentDir);
             hardware_command_movement(currentDir);
-            
+            //-> moving
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
                 between = 1;
                 currentState = moving;
-                break;
             }
-            /*
-            if (!haveOrders()) {
-                currentDir = HARDWARE_MOVEMENT_STOP;
-            }
-             */
-            /*
-           √  Bestemme ny retning -> kjøre heis, endre state til moving
-             husk å ta høyde for at den kan bestilles der den er
-           √  Sjekke stoppknapp -> åpne dør, endre state til level Open
-             
-             Oppdatere:
-           √   HardwareMovement currentDir;
-            */
+            // husk å ta høyde for at den kan bestilles der den er
             break;
             
-        case moving:
             
+        case moving:
+            //current floor
             if (atFloor() >= 0 && atFloor() != currFloor) {
                 currFloor = atFloor();
-                
                 between = 0;
             }
-            
-            if (isCurrentFloorDemanded(currFloor, currentDir) && !between) {
-                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                hardware_command_door_open(1);
-                timerReset();
-                currentState = levelOpen;
-            }
+            //-> stop signal
             else if (hardware_read_stop_signal()) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
+                break;
             }
-            
-            /*
-           √  Endre etasjelys
-           √  Sjekke om currentFLoor er ønsket -> stopp, åpne dører, endre state til levelOpen
-           √  Sjekke stoppknapp -> stopp, endre state til stationaryBetweenFloors:
-             
-             Oppdatere:
-           √  int prevFloor = -1;
-           √  int currentFLoor = 5;
-            */
+            //-> levelOpen
+            if (isCurrentFloorDemanded(currFloor, currentDir) && !between) {
+                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                timerReset();
+                hardware_command_door_open(1);
+                currentState = levelOpen;
+            }
             break;
             
+            
         case stationaryBetweenFloors:
+            //stop light, remove orders
             hardware_command_stop_light(1);
             removeAllOrders();
-            
+            //not stop signal -> moving
             if (!hardware_read_stop_signal()) {
                 hardware_command_stop_light(0);
                 currentDir = setDirection(currFloor, currentDir);
@@ -143,17 +113,9 @@ void stateMachine() {
                     currentState = moving;
                 }
             }
-            /*
-           √  Slette ordre og lys
-           √  Ordne stoppknapplys
-           √  Sjekke stoppknapp
-           √  setDirection når stoppknapp slippes
-            */
             break;
             
         default:
             break;
     }
 }
-
-
