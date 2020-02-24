@@ -61,15 +61,15 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
         return 1;
     }
     //Demanded in current direction, down
-    else if (liftOrders[currentFloor*3-1] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
+    if (liftOrders[currentFloor*3-1] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
     //Demanded only in opposite direction
-    else if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currentFloor)) {
+    if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currentFloor)) {
         return 1;
     }
     //Demanded only in opposite direction
-    else if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currentFloor)) {
+    if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currentFloor)) {
         return 1;
     }
     return 0;
