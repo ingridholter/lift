@@ -8,6 +8,7 @@ void setLiftOrders(){
     //does not take orders when stop signal
     if (hardware_read_stop_signal ())
         return;
+    
     //iterates through all the buttons
     for (int floor = 0; floor < 4; floor++) {
         //checks Heispanel
