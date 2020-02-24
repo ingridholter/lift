@@ -15,6 +15,7 @@ int driveToDefinedState() {
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    currentDir = HARDWARE_MOVEMENT_DOWN;
     currentState = levelClosed;
     return 1;
 }
