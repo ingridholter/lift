@@ -96,9 +96,6 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
 
 //er heisen krev over gjeldende etasje
 int orderedAbove(int currentFloor) {
-    if (currentFloor == 3) {
-        return 0;
-    }
     for (int i = currentFloor*3 + 2; i < 10; i++) {
         if (liftOrders[i]) {
             return 1;
