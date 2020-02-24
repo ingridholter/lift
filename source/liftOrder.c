@@ -48,6 +48,10 @@ void removeAllOrders() {
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
+    //Makes sure lift stays in valid area
+    if ((currDir == HARDWARE_MOVEMENT_DOWN && currentFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currentFloor == 3)) {
+        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    }
     //Demanded by Heispanel
     if (liftOrders[currentFloor]) {
         return 1;
@@ -60,6 +64,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     else if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
+    /*
     //Demanded only in opposite direction
     if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAboveUp(currentFloor)) {
         // && liftOrders[currentFloor+6]) {
@@ -83,6 +88,8 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
             return 1;
         }
     }
+    */
+    
     return 0;
 }
 
