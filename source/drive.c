@@ -48,7 +48,7 @@ void stateMachine() {
                 removeAllOrders(); //remove orders
                 break;
             }
-            if else (!stopSignal) {
+            else {
                 hardware_command_stop_light(0);
                 removeOrders(currFloor);
             }
