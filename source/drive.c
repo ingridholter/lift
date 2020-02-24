@@ -44,7 +44,7 @@ void stateMachine() {
         case levelOpen:
             //stop signal
             if (stopSignal) {
-                hardware_command_stop_light(1); //turn on stop light
+                
                 removeAllOrders(); //remove orders
                 break;
             }
@@ -69,7 +69,8 @@ void stateMachine() {
             
         case levelClosed:
             //stop signal -> levelOpen
-            if (hardware_read_stop_signal()) {
+            if (stopSignal) {
+                hardware_command_stop_light(1); //turn on stop light
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
