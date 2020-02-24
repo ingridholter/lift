@@ -22,7 +22,7 @@ typedef enum{
 int prevFloor = -1;
 int currentFLoor = 5;
 HardwareMovement currentDir;
-liftState currentState = stationaryBetweenFloors;
+liftState currentState;
 //må ha en neste tilstand varibabel
 
 
@@ -39,4 +39,4 @@ int driveToDefinedState();
  * @brief State Machine, decides the elevator state.
  *
  */
-stateMachine();
+void stateMachine();
