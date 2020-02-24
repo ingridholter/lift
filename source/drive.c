@@ -33,7 +33,7 @@ int atFloor() {
 
 void stateMachine() {
     setLiftOrders(); // Checks order buttons
-    
+    stopSignal = hardware_read_stop_signal();
     /*
     //Makes sure lift stays in valid area
     if ((currentDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currentDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
@@ -43,24 +43,27 @@ void stateMachine() {
     switch (currentState) {
         case levelOpen:
             //stop signal
-            if (hardware_read_stop_signal()) {
+            if (stopSignal) {
                 hardware_command_stop_light(1); //turn on stop light
                 removeAllOrders(); //remove orders
-                break;
             }
             //remove Orders
-            removeOrders(currFloor);
+            else {
+                removeOrders(currFloor);
+                hardware_command_stop_light(0);
+            }
             //obstruction
             if (hardware_read_obstruction_signal()) {
                 timerReset();
                 break;
             }
             //-> levelClosed
-            if (timerExpired() && !hardware_read_stop_signal()) {
+            if (timerExpired() && !stopSignal) {
                 hardware_command_door_open(0);
                 hardware_command_stop_light(0);
                 currentState = levelClosed;
             }
+            
             break;
             
             
