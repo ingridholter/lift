@@ -15,7 +15,7 @@ int main() {
     while (initialized) {
         //Poller hardware
         //int stopSignal = hardware_read_stop_signal();
-        int obstruction = hardware_read_obstruction_signal();
+        //int obstruction = hardware_read_obstruction_signal();
         
         setLiftOrders(); // Checks order buttons
         
