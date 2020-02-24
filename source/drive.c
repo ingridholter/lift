@@ -95,7 +95,7 @@ void stateMachine() {
             //Updating currentFloor
             for (int floor = 0; floor < 4; floor++) {
                 if (hardware_read_floor_sensor(floor) == 1){
-                    preFloor = currFloor;
+                    //preFloor = currFloor;
                     currFloor = floor;
                 }
             }
