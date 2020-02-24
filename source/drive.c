@@ -74,12 +74,13 @@ void stateMachine() {
             //direction
             else {
                 newDir = setDirection(currFloor, currentDir);
-                hardware_command_movement(newDir);
+                
             }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
                 between = 1;
                 currentDir = newDir;
+                hardware_command_movement(currentDir);
                 currentState = moving;
             }
             // husk å ta høyde for at den kan bestilles der den er
