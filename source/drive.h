@@ -7,7 +7,7 @@
 #ifndef _DRIVE__
 #define _DRIVE__
 
-//#include "hardware.h" Finnes i liftOrder
+#include "hardware.h" //Finnes i liftOrder
 #include "liftOrder.h"
 #include "timer.h"
 
