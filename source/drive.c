@@ -76,9 +76,11 @@ void stateMachine() {
                 currentState = moving;
                 break;
             }
+            /*
             if (!haveOrders()) {
                 currentDir = HARDWARE_MOVEMENT_STOP;
             }
+             */
             /*
            √  Bestemme ny retning -> kjøre heis, endre state til moving
              husk å ta høyde for at den kan bestilles der den er
