@@ -7,7 +7,7 @@ int driveToDefinedState() {
         printf("Unable to initialize hardware\n");
         return 0;
     }
-    
+    currFloor = 5;
     while (currFloor > 3) {
     //Checks if lift is at floor
         for (int floor = 0; floor < 4; floor++) {
@@ -15,6 +15,7 @@ int driveToDefinedState() {
                 currFloor = floor;
             }
         }
+        //Drives down until it is at floor
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
