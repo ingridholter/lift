@@ -130,6 +130,7 @@ void stateMachine() {
             removeAllOrders();
             
             if (!hardware_read_stop_signal()) {
+                hardware_command_stop_light(0);
                 currentDir = setDirection(currFloor, currentDir);
                 hardware_command_movement(currentDir);
                            
