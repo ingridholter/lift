@@ -81,9 +81,9 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_STOP;
     }
     
-    int above = orderedAboveUp(currentFloor) || orderedAboveDown(currentFloor);
+    int above = (orderedAboveUp(currentFloor) || orderedAboveDown(currentFloor));
     
-    int below = orderedBelowUp(currentFloor) || orderedBelowUp(currentFloor);
+    int below = (orderedBelowUp(currentFloor) || orderedBelowUp(currentFloor));
     
     if (above && !below) {
         return HARDWARE_MOVEMENT_UP;
