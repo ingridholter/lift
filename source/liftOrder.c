@@ -55,6 +55,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     }
     */
+    //Changes direction when in end floors
     if (currentFloor == 0) {
         currDir = HARDWARE_MOVEMENT_UP;
     }
