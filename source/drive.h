@@ -22,6 +22,7 @@ typedef enum{
 int prevFloor = -1;
 int currentFLoor = 5;
 HardwareMovement currentDir;
+liftState currentState = stationaryBetweenFloors;
 //må ha en neste tilstand varibabel
 
 
