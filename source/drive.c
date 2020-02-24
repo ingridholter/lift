@@ -7,20 +7,14 @@ int driveToDefinedState() {
         printf("Unable to initialize hardware\n");
         return 0;
     }
-    currFloor = 5;
-    while (currFloor > 3) {
-    //Checks if lift is at floor
-        for (int floor = 0; floor < 4; floor++) {
-            if (hardware_read_floor_sensor(floor) == 1){
-                currFloor = floor;
-            }
-        }
+    currFloor = -1;
+    while (currFloor < 0) {
+        //Checks if lift is at floor
+        currFloor = atFloor()
         //Drives down until it is at floor
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //Changes floor light to given floor
-    hardware_command_floor_indicator_on(currFloor);
     currentState = levelClosed;
     return 1;
 }
