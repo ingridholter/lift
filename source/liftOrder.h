@@ -7,7 +7,8 @@
 #define LIFTORDER_H__
 
 #include "hardware.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
