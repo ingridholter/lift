@@ -3,8 +3,8 @@
 * @brief A library containing the LiftOrder module
 */
 
-#ifndef LIFTORDER_H//__
-#define LIFTORDER_H//__
+#ifndef LIFTORDER_H__
+#define LIFTORDER_H__
 
 #include "hardware.h"
 
