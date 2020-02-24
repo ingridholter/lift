@@ -35,7 +35,7 @@ int driveToDefinedState() {
 }
 
 
-stateMachine() {
+void stateMachine() {
     switch (currentState) {
         case levelOpen:
             if (stopSignal) {
