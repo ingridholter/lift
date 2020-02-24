@@ -88,6 +88,7 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
     else {
         switch (currDir) {
             case HARDWARE_MOVEMENT_UP:
+                printf("case 1");
                 //Lift continues up if ordered above currentFloor on Heispanel
                 for (int i = currentFloor; i < 4; i++) {
                     if (liftOrders[i]) {
@@ -108,6 +109,7 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
                 break;
                 
             case HARDWARE_MOVEMENT_DOWN:
+                printf("case 2");
                 //Lift continues down if ordered below currentFloor on Heispanel
                 for (int i = 0; i < currentFloor+1; i++) {
                     if (liftOrders[i]) {
