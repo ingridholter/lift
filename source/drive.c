@@ -39,7 +39,7 @@ int driveToDefinedState() {
 manageDoor();
 
 stateMachine() {
-    switch (liftState) {
+    switch (currentState) {
         case levelOpen:
             
             
@@ -68,17 +68,33 @@ stateMachine() {
             break;
             
         case moving:
-            isCurrentFloorDemanded(currentFloor, currentDir);
+            //Updating currentFloor
+            for (int floor = 0; floor < 4; floor++) {
+                if (hardware_read_floor_sensor(floor) == 1){
+                    prevFloor = currentFloor;
+                    currentFloor = floor;
+                }
+            }
+            //Changes floor light to current floor
+            hardware_command_floor_indicator_on (currentFloor);
+            
+            if (isCurrentFloorDemanded(currentFloor, currentDir)) {
+                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                currentState = levelOpen;
+            }
+            else if (stopSignal) {
+                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                currentState = stationaryBetweenFloors;
+            }
             
             /*
-             Endre etasjelys
-             Sjekke om currentFLoor er ønsket -> stopp, endre state til levelOpen
-             Sjekke stoppknapp -> stopp, endre state til stationaryBetweenFloors:
+           √  Endre etasjelys
+           √  Sjekke om currentFLoor er ønsket -> stopp, endre state til levelOpen
+           √  Sjekke stoppknapp -> stopp, endre state til stationaryBetweenFloors:
              
              Oppdatere:
-             int prevFloor = -1;
-             int currentFLoor = 5;
-             HardwareMovement currentDir;
+           √  int prevFloor = -1;
+           √  int currentFLoor = 5;
             */
             break;
             
