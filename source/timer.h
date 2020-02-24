@@ -11,15 +11,15 @@
 /**
 * @brief Sets a new timestamp
 */
-void timer_reset();
+void timerReset();
 
-//Checks if more than TIME_LIMIT seconds since last ?timestamp?
+//Checks if more than timeLimit seconds since last ?timestamp?
 
 /**
-* @brief Checks if more than TIME_LIMIT seconds have passed since last time timer was reset
+* @brief Checks if more than timeLimit seconds have passed since last time timer was reset
 * @return 1 if the time limit has passed, 0 otherwise.
 */
-int timer_expired();
+int timerExpired();
 
 
 #endif
