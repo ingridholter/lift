@@ -71,8 +71,10 @@ void stateMachine() {
                 break;
             }
             //direction
-            newDir = setDirection(currFloor, currentDir);
-            hardware_command_movement(newDir);
+            else {
+                newDir = setDirection(currFloor, currentDir);
+                hardware_command_movement(newDir);
+            }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
                 //between = 1;
