@@ -1,4 +1,4 @@
-SOURCES := main.c hardware.c io.c liftOrder.c timer.c drive.c
+SOURCES := main.c liftOrder.c timer.c drive.c
 
 SOURCE_DIR := source
 BUILD_DIR := build
