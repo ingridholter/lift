@@ -54,7 +54,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currentFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currentFloor == 3)) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     }
-    */
+    
     //Changes direction when in end floors
     if (currentFloor == 0) {
         currDir = HARDWARE_MOVEMENT_UP;
@@ -62,7 +62,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     else if (currentFloor == 3) {
         currDir = HARDWARE_MOVEMENT_DOWN;
     }
-    
+    */
     //Demanded by Heispanel
     if (liftOrders[currentFloor]) {
         return 1;
@@ -75,12 +75,11 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     else if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
-    /*
+    
     //Demanded only in opposite direction
     if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAboveUp(currentFloor)) {
-        // && liftOrders[currentFloor+6]) {
         for (int i = 0; i < 4; i++) {
-            if (orderedAboveDown(i)) {
+            if (liftOrders[i+6]) {
                 nextFloor = i;
             }
         }
@@ -88,18 +87,17 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
             return 1;
         }
     }
+    //Demanded only in opposite direction
     if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelowDown(currentFloor)) {
-        //&& liftOrders[currentFloor+4]) {
-        for (int i = 3; i > -1; i--) {
-            if (orderedBelowUp(i)) {
+        for (int i = 3; i > 0; i--) {
+            if (liftOrders[i+3]) {
                 nextFloor = i;
             }
         }
-        if (currentFloor == nextFloor) {
-            return 1;
+        if(currentFloor == nextFloor) {
+                return 1;
         }
     }
-    */
     
     return 0;
 }
