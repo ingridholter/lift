@@ -8,7 +8,7 @@
 
 #include "hardware.h"
 #include <stdlib.h>
-//#include <stdio.h>
+#include <stdio.h>
 
 
 /**
