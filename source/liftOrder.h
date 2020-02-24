@@ -13,7 +13,8 @@
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
-static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static int liftOrders[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 /**
 * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
