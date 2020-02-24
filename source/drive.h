@@ -36,11 +36,6 @@ int driveToDefinedState();
 
 
 /**
-* @brief Finner ut hva denne skal gjøre senere
-*/
-manageDoor();
-
-/**
  * @brief State Machine, decides the elevator state.
  *
  */
