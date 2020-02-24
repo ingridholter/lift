@@ -1,24 +1,13 @@
 #include "drive.h"
 
 
-
-/*
-
-for (i=0; i<4;i++){
-    if(hardware_floor_sensor(i)==1)
-        int prevFloor = currentFloor;
-        int currentFloor = hardware_floor_sensor(i);
-        return currentFloor;
-} //skal vi gjøre med prevFloor
-*/
-
 int driveToDefinedState() {
     int error = hardware_init();
     if (error != 0) {
         printf("Unable to initialize hardware\n");
         return 0;
     }
-    
+    removeAllOrders();
     while (currentFloor > 3) {
     //Checks if lift is at floor
         for (int floor = 0; floor < 4; floor++) {
