@@ -24,7 +24,7 @@ int currentFLoor = 5;
 HardwareMovement currentDir;
 liftState currentState;
 //må ha en neste tilstand varibabel
-
+static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 // må bestemme returverdier
