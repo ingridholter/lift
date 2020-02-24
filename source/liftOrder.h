@@ -16,7 +16,7 @@
  */
 //static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 //static int liftOrders[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
+static int liftOrders[10] = {0};
 /**
 * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
 */
