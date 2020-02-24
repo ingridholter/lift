@@ -10,6 +10,8 @@
 
 #include "liftOrder.h"
 #include "timer.h"
+#include <stdio.h>
+
 /*
 #include "hardware.h" //Finnes i liftOrder
 #include <stdio.h>
