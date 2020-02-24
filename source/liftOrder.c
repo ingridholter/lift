@@ -1,6 +1,5 @@
 #include "liftOrder.h"
 
-static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 //legge til i liftOrders hvilke knapper som er trykket? checkButtons
 // Eventuelt ikke sjekke 1, NED og 4, OPP
