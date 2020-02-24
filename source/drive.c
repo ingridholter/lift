@@ -20,6 +20,7 @@ int driveToDefinedState() {
     return 1;
 }
 
+
 int atFloor() {
     for (int floor = 0; floor < 4; floor++) {
         if (hardware_read_floor_sensor(floor) == 1){
@@ -31,16 +32,11 @@ int atFloor() {
     return -1;
 }
 
+
 void stateMachine() {
     setLiftOrders(); // Checks order buttons
-    stopSignal = hardware_read_stop_signal();
-    hardware_command_stop_light(stopSignal);
-    /*
-    //Makes sure lift stays in valid area
-    if ((currentDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currentDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
-        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    }
-    */
+    
+    
     switch (currentState) {
         case levelOpen:
             //stop signal
