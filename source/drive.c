@@ -38,7 +38,7 @@ int driveToDefinedState() {
 void stateMachine() {
     switch (currentState) {
         case levelOpen:
-            if (stopSignal) {
+            if (hardware_read_stop_signal()) {
                 hardware_command_stop_light(1);
                 removeAllOrders();
                 break;
@@ -57,7 +57,7 @@ void stateMachine() {
                 break;
             }
             
-            if (timerExpired() && !stopSignal) {
+            if (timerExpired() && !hardware_read_stop_signal()) {
                 hardware_command_door_open(0);
                 hardware_command_stop_light(0);
                 currentState = levelClosed;
@@ -73,7 +73,7 @@ void stateMachine() {
             break;
             
         case levelClosed:
-            if (stopSignal) {
+            if (hardware_read_stop_signal()) {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
@@ -110,7 +110,7 @@ void stateMachine() {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
             }
-            else if (stopSignal) {
+            else if (hardware_read_stop_signal()) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
             }
@@ -130,7 +130,7 @@ void stateMachine() {
             hardware_command_stop_light(1);
             removeAllOrders();
             
-            if (!stopSignal) {
+            if (!hardware_read_stop_signal()) {
                 currentDir = setDirection(currentFloor, currentDir);
                 hardware_command_movement(currentDir);
                            
