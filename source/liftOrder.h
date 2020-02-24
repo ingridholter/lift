@@ -59,6 +59,7 @@ int orderedAboveUp(int currentFloor);
 * @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
 */
 int orderedAboveDown(int currentFloor);
+int orderedAboveInside(int currentFloor);
 /**
 * @brief  Checks if lift is ordered above currentFloor
 * @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
@@ -71,6 +72,7 @@ int orderedAboveDown(int currentFloor);
 */
 int orderedBelowUp(int currentFloor);
 int orderedBelowDown(int currentFloor);
+int orderedBelowInside(int currentFloor);
 //int orderedBelow(int currentFloor);
 
 /**
