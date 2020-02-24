@@ -46,6 +46,7 @@ void stateMachine() {
             if (stopSignal) {
                 hardware_command_stop_light(1); //turn on stop light
                 removeAllOrders(); //remove orders
+                break;
             }
             //remove Orders
             else {
