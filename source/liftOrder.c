@@ -138,7 +138,7 @@ int orderedAboveUp(int currentFloor) {
     if (currentFloor == 2 || currentFloor == 3) {
         return 0;
     }
-    for (int i = currentFloor + 4; i < 6; i++) {
+    for (int i = currentFloor + 4; i < 7; i++) {
         if (liftOrders[i] == 1) {
             return 1;
         }
