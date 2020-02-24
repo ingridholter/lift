@@ -150,7 +150,7 @@ int orderedAboveDown(int currentFloor) {
     return 0;
 }
 
-int orderedAboveInside(int currentFloor) (
+int orderedAboveInside(int currentFloor) {
     if (currentFloor == 3) {
             return 0;
         }
@@ -160,7 +160,6 @@ int orderedAboveInside(int currentFloor) (
         }
     }
     return 0;
-    }
 }
                                         
 /*
