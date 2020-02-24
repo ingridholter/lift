@@ -49,23 +49,24 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     if (liftOrders[currentFloor]) {
         return 1;
     }
+    /*
     if (currentFloor == 3) {
         currDir = HARDWARE_MOVEMENT_DOWN;
     }
     else if (currentFloor == 0) {
         currDir = HARDWARE_MOVEMENT_UP;
     }
+    */
     if (liftOrders[currentFloor+4] && (currDir == HARDWARE_MOVEMENT_UP)) {
         return 1;
     }
-   
     if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
     if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAboveUp(currentFloor) && liftOrders[currentFloor+6]) {
         return 1;
     }
-    if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedAboveDown(currentFloor) && liftOrders[currentFloor+4]) {
+    if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelowDown(currentFloor) && liftOrders[currentFloor+4]) {
         return 1;
     }
     return 0;
