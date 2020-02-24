@@ -10,7 +10,7 @@ int driveToDefinedState() {
     currFloor = -1;
     while (currFloor < 0) {
         //Checks if lift is at floor
-        currFloor = atFloor()
+        currFloor = atFloor();
         //Drives down until it is at floor
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
@@ -100,7 +100,7 @@ void stateMachine() {
             
         case moving:
             int between = 1;
-            if (atFloor() >= 0 && atFloor != currFloor) {
+            if (atFloor() >= 0 && atFloor() != currFloor) {
                 currFloor = atFloor();
                 between = 0;
             }
