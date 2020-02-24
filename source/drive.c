@@ -74,6 +74,10 @@ void stateMachine() {
             
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
                 currentState = moving;
+                break;
+            }
+            if (!haveOrders()) {
+                currentDir = HARDWARE_MOVEMENT_STOP;
             }
             /*
            √  Bestemme ny retning -> kjøre heis, endre state til moving
