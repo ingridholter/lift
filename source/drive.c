@@ -80,6 +80,7 @@ void stateMachine() {
             hardware_command_movement(currentDir);
             
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
+                between = 1;
                 currentState = moving;
                 break;
             }
@@ -99,9 +100,10 @@ void stateMachine() {
             break;
             
         case moving:
-            int between = 1;
+            
             if (atFloor() >= 0 && atFloor() != currFloor) {
                 currFloor = atFloor();
+                
                 between = 0;
             }
             
@@ -137,6 +139,7 @@ void stateMachine() {
                 hardware_command_movement(currentDir);
                            
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
+                    between = 1;
                     currentState = moving;
                 }
             }
