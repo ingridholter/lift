@@ -45,12 +45,12 @@ void removeAllOrders() {
 
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
-int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
+int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     if (liftOrders[currentFloor])
         return 1;
-    if ((currentDir == HARDWARE_MOVEMENT_UP) && liftOrders[currentFloor+4])
+    if ((currDir == HARDWARE_MOVEMENT_UP) && liftOrders[currentFloor+4])
         return 1;
-    if ((currentDir == HARDWARE_MOVEMENT_DOWN) && liftOrders[currentFloor+6])
+    if ((currDir == HARDWARE_MOVEMENT_DOWN) && liftOrders[currentFloor+6])
         return 1;
     return 0;
 }
@@ -59,7 +59,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
 //husk å ta høyde for at den kan bestilles der den er - :(
-HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
+HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
     if (!haveOrders()) {
         return HARDWARE_MOVEMENT_STOP;
     }
@@ -74,7 +74,7 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
         return HARDWARE_MOVEMENT_DOWN;
     }
     else {
-        switch (currentDir) {
+        switch (currDir) {
             case HARDWARE_MOVEMENT_UP:
                 //Lift continues up if ordered above currentFloor on Heispanel
                 for (int i = currentFloor; i < 4; i++) {
