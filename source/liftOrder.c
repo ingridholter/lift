@@ -125,6 +125,10 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
     return HARDWARE_MOVEMENT_STOP;
 }
 
+int orderedAboveUp(int currentFloor) {
+    
+}
+
 //er heisen krevd over gjeldene etasje
 int orderedAbove(int currentFloor) {
     switch (currentFloor) {
