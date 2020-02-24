@@ -12,7 +12,6 @@
 int main() {
     
     int initialized = driveToDefinedState();
-    setLiftOrders();
     
     while (initialized) {
         /*
