@@ -214,7 +214,7 @@ int orderedBelowDown(int currentFloor) {
     if (currentFloor == 0 || currentFloor == 1) {
            return 0;
        }
-    for (int i = 7; i < 6 + currentFloor; i++) {
+    for (int i = 7; i < currentFloor + 6; i++) {
         if (liftOrders[i] == 1) {
             return 1;
         }
