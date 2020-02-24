@@ -135,10 +135,10 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
 }
 
 int orderedAboveUp(int currentFloor) {
-    if (currentFloor == 3) {
+    if (currentFloor == 2 || currentFloor == 3) {
         return 0;
     }
-    for (int i = currentFloor + 4; i < 7; i++) {
+    for (int i = currentFloor + 4; i < 6; i++) {
         if (liftOrders[i] == 1) {
             return 1;
         }
@@ -197,7 +197,7 @@ int orderedBelowUp(int currentFloor) {
     if (currentFloor == 0) {
         return 0;
     }
-    for (int i = 4; i < 7 - currentFloor; i++) {
+    for (int i = 4; i < 4 + currentFloor; i++) {
         if (liftOrders[i] == 1) {
             return 1;
         }
@@ -206,10 +206,10 @@ int orderedBelowUp(int currentFloor) {
 }
 
 int orderedBelowDown(int currentFloor) {
-    if (currentFloor == 0) {
+    if (currentFloor == 0 || currentFloor == 1) {
            return 0;
        }
-       for (int i = 7; i < 10 - currentFloor; i++) {
+       for (int i = 7; i < 6 + currentFloor; i++) {
            if (liftOrders[i] == 1) {
                return 1;
            }
