@@ -5,21 +5,22 @@ static int liftOrders[10] = {0};
 
 // Eventuelt ikke sjekke 1, NED og 4, OPP
 void setLiftOrders(){
+    //does not take orders when stop signal
     if (hardware_read_stop_signal ())
         return;
-    
+    //iterates through all the buttons
     for (int floor = 0; floor < 4; floor++) {
-        
+        //checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
             liftOrders[floor] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
-            
+        //checks orders up
         if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
             liftOrders[floor+4] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
-        
+        //checks orders down
         if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
             liftOrders[floor+6] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
