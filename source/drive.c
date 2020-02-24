@@ -82,7 +82,10 @@ stateMachine() {
             }
             currentDir = setDirection(currentFloor, currentDir);
             hardware_command_movement(currentDir);
-            currentState = moving;
+            
+            if (currentDir != HARDWARE_MOVEMENT_STOP) {
+                currentState = moving;
+            }
             /*
            √  Bestemme ny retning -> kjøre heis, endre state til moving
              husk å ta høyde for at den kan bestilles der den er
