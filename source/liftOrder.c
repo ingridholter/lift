@@ -84,6 +84,10 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_DOWN;
     }
     else {
+        return currDir;
+    }
+    /*
+    else {
         switch (currDir) {
             case HARDWARE_MOVEMENT_UP:
                 printf("case 1");
@@ -124,7 +128,8 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
             default:
                 break;
         }
-    }
+     }
+     */
     return HARDWARE_MOVEMENT_STOP;
 }
 
