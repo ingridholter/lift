@@ -7,7 +7,6 @@
 #include "drive.h"
 #include <stdio.h>
 
-static int liftOrders[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int main() {
     
