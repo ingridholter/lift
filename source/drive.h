@@ -26,7 +26,7 @@ typedef enum{
 }liftState;
 
 //Drive variables
-int preFloor = -1;
+int preFloor;
 int currFloor = 5;
 HardwareMovement currentDir;
 liftState currentState;
