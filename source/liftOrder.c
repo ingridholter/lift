@@ -48,7 +48,7 @@ void removeAllOrders() {
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
-    
+    nextFloor = -1;
     /*
     
     
