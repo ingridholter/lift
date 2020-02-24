@@ -78,11 +78,9 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
     int below = (orderedBelowUp(currentFloor) || orderedBelowUp(currentFloor) || orderedBelowInside(currentFloor));
     
     if (above && !below) {
-        printf("kun ordre over -> opp");
         return HARDWARE_MOVEMENT_UP;
     }
     else if (!above && below) {
-        printf("kun ordre under -> ned");
         return HARDWARE_MOVEMENT_DOWN;
     }
     else {
@@ -92,19 +90,16 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
                 //Lift continues up if ordered above currentFloor on Heispanel
                 for (int i = currentFloor; i < 4; i++) {
                     if (liftOrders[i]) {
-                        printf("Heispanel i currentDir -> opp");
                         return HARDWARE_MOVEMENT_UP;
                     }
                 }
                 //Lift changes direction if ordered below currentFloor on Heispanel
                 for (int i = 0; i < currentFloor+1; i++) {
                     if (liftOrders[i]) {
-                        printf("Heispanel kun i feil retning -> ned");
                         return HARDWARE_MOVEMENT_DOWN;
                     }
                 }
                 //If not ordered on Heispanel, lift continues up
-                printf("Ingen heispanel -> opp");
                 return HARDWARE_MOVEMENT_UP;
                 break;
                 
@@ -113,19 +108,16 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
                 //Lift continues down if ordered below currentFloor on Heispanel
                 for (int i = 0; i < currentFloor+1; i++) {
                     if (liftOrders[i]) {
-                        printf("Heispanel i currentDir -> ned");
                         return HARDWARE_MOVEMENT_DOWN;
                     }
                 }
                 //Lift changes direction if ordered above currentFloor on Heispanel
                 for (int i = currentFloor; i < 4; i++) {
                     if (liftOrders[i]) {
-                        printf("Heispanel kun i feil retning -> opp");
                         return HARDWARE_MOVEMENT_UP;
                     }
                 }
                 //If not ordered on Heispanel, lift continues down
-                printf("Ingen heispanel -> ned");
                 return HARDWARE_MOVEMENT_DOWN;
                 break;
                 
@@ -133,7 +125,6 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
                 break;
         }
     }
-    printf("ingen passende case");
     return HARDWARE_MOVEMENT_STOP;
 }
 
