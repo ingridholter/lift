@@ -49,10 +49,10 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     if (liftOrders[currentFloor]) {
         return 1;
     }
-    if ((currDir == HARDWARE_MOVEMENT_UP) && liftOrders[currentFloor+4]) {
+    if (liftOrders[currentFloor+4] && (currDir == HARDWARE_MOVEMENT_UP)) {
         return 1;
     }
-    if ((currDir == HARDWARE_MOVEMENT_DOWN) && liftOrders[currentFloor+6]) {
+    if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
     return 0;
