@@ -70,7 +70,6 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
 //husk å ta høyde for at den kan bestilles der den er - :(
 HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
     if (!haveOrders()) {
-        printf("ingen ordre -> stop");
         return HARDWARE_MOVEMENT_STOP;
     }
     
