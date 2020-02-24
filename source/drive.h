@@ -10,6 +10,8 @@
 #include "hardware.h" //Finnes i liftOrder
 #include "liftOrder.h"
 #include "timer.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef enum{
   levelOpen,
