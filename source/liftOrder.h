@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int nextFloor;
+
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
@@ -53,27 +53,13 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir);
 * @brief  Checks if lift is ordered above currentFloor
 * @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
 */
-int orderedAboveUp(int currentFloor);
-/**
-* @brief  Checks if lift is ordered above currentFloor
-* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
-*/
-int orderedAboveDown(int currentFloor);
-int orderedAboveInside(int currentFloor);
-/**
-* @brief  Checks if lift is ordered above currentFloor
-* @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
-*/
-//int orderedAbove(int currentFloor);
+int orderedAbove(int currentFloor);
 
 /**
 * @brief Checks if lift is ordered below currentFloor.
 * @param[in] currentFloor The floor the lift is currently on. Must be an integer in range 0-3.
 */
-int orderedBelowUp(int currentFloor);
-int orderedBelowDown(int currentFloor);
-int orderedBelowInside(int currentFloor);
-//int orderedBelow(int currentFloor);
+int orderedBelow(int currentFloor);
 
 /**
 * @brief checks if there is any orders in the liftOrders array.
