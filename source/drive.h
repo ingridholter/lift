@@ -12,9 +12,9 @@
 #include "timer.h"
 
 typedef enum{
-  levelOpen
-  levelClosed
-  moving
+  levelOpen,
+  levelClosed,
+  moving,
   stationaryBetweenFloors 
 }liftState;
 
