@@ -1,4 +1,5 @@
 #include "drive.h"
+#include "timer.h"
 
 
 
@@ -41,6 +42,10 @@ manageDoor();
 stateMachine() {
     switch (liftState) {
         case levelOpen:
+            
+            
+            
+            
             
             /*
              slette ordre
