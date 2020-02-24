@@ -41,29 +41,55 @@ manageDoor();
 stateMachine() {
     switch (currentState) {
         case levelOpen:
+            if (stopSignal) {
+                hardware_command_stop_light(1);
+                removeAllOrders();
+                break;
+            }
             
+            timerReset();
+            removeOrders(currentFloor);
+            /* Fungerer dette uansett?
+            if (isCurrentFloorDemanded(currentFloor, currentDir) {
+                timerReset();
+                removeOrders(currentFloor);
+            }
+            */
+            if (obstruction) {
+                timerReset();
+                break;
+            }
             
-            
-            
+            if (timerExpired() && !stopSignal) {
+                hardware_command_door_open(0);
+                currentState = levelClosed;
+            }
             
             /*
-             slette ordre
-             åpne dørene, med timer -> endre state til levelClosed
-             resette dørtimer dersom current Floor bestilles
-             sjekke stoppknapp -> resette timer, holde dører åpne, ordne stoppknapplys
-             Husk obstruction
+           √  slette ordre
+           √  med timer -> endre state til levelClosed
+           √  resette dørtimer dersom current Floor bestilles
+           √  sjekke stoppknapp -> resette timer, holde dører åpne, ordne stoppknapplys
+           √  Husk obstruction
              */
             break;
             
         case levelClosed:
-            
+            if (stopSignal) {
+                hardware_command_door_open(1);
+                currentState = levelOpen;
+                break;
+            }
+            currentDir = setDirection(currentFloor, currentDir);
+            hardware_command_movement(currentDir);
+            currentState = moving;
             /*
-             Bestemme ny retning -> kjøre heis, endre state til moving
+           √  Bestemme ny retning -> kjøre heis, endre state til moving
              husk å ta høyde for at den kan bestilles der den er
-             Sjekke stoppknapp -> åpne dør, endre state til level Open
+           √  Sjekke stoppknapp -> åpne dør, endre state til level Open
              
              Oppdatere:
-              HardwareMovement currentDir;
+           √   HardwareMovement currentDir;
             */
             break;
             
@@ -80,6 +106,7 @@ stateMachine() {
             
             if (isCurrentFloorDemanded(currentFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                hardware_command_door_open(1);
                 currentState = levelOpen;
             }
             else if (stopSignal) {
@@ -89,7 +116,7 @@ stateMachine() {
             
             /*
            √  Endre etasjelys
-           √  Sjekke om currentFLoor er ønsket -> stopp, endre state til levelOpen
+           √  Sjekke om currentFLoor er ønsket -> stopp, åpne dører, endre state til levelOpen
            √  Sjekke stoppknapp -> stopp, endre state til stationaryBetweenFloors:
              
              Oppdatere:
