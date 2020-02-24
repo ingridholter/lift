@@ -73,9 +73,9 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_STOP;
     }
     
-    int above = (orderedAboveUp(currentFloor) || orderedAboveDown(currentFloor));
+    int above = (orderedAboveUp(currentFloor) || orderedAboveDown(currentFloor) || orderedAboveInside(currentFloor));
     
-    int below = (orderedBelowUp(currentFloor) || orderedBelowUp(currentFloor));
+    int below = (orderedBelowUp(currentFloor) || orderedBelowUp(currentFloor) || orderedBelowInside(currentFloor));
     
     if (above && !below) {
         return HARDWARE_MOVEMENT_UP;
@@ -149,6 +149,20 @@ int orderedAboveDown(int currentFloor) {
     }
     return 0;
 }
+
+int orderedAboveInside(int currentFloor) (
+    if (currentFloor == 3) {
+            return 0;
+        }
+    for (int i = currentFloor + 1; i < 4; i++) {
+        if (liftOrders[i] == 1) {
+            return 1;
+        }
+    }
+    return 0;
+    }
+}
+                                        
 /*
 //er heisen krevd over gjeldene etasje
 int orderedAbove(int currentFloor) {
@@ -201,14 +215,25 @@ int orderedBelowDown(int currentFloor) {
     if (currentFloor == 0 || currentFloor == 1) {
            return 0;
        }
-       for (int i = 7; i < 6 + currentFloor; i++) {
-           if (liftOrders[i] == 1) {
-               return 1;
-           }
-       }
+    for (int i = 7; i < 6 + currentFloor; i++) {
+        if (liftOrders[i] == 1) {
+            return 1;
+        }
+    }
     return 0;
 }
 
+int orderedBelowInside(int currentFloor) {
+    if (currentFloor == 0) {
+           return 0;
+       }
+    for (int i = 0; i < currentFloor; i++) {
+        if (liftOrders[i] == 1) {
+            return 1;
+        }
+    }
+    return 0;
+}
 /*
 //er heisen krev under gjeldende etasje
 int orderedBelow(int currentFloor) {
