@@ -74,7 +74,6 @@ void stateMachine() {
             //direction
             else {
                 newDir = setDirection(currFloor, currentDir);
-                
             }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
@@ -83,22 +82,15 @@ void stateMachine() {
                 hardware_command_movement(currentDir);
                 currentState = moving;
             }
-            // husk å ta høyde for at den kan bestilles der den er
             break;
             
             
         case moving:
             //current floor
-            if (atFloor() >= 0) {
-                currFloor = atFloor();
-                between = 0;
-            }
-            /*
             if (atFloor() >= 0 && atFloor() != currFloor) {
                 currFloor = atFloor();
                 between = 0;
             }
-            */
             
             //-> stop signal
             if (hardware_read_stop_signal()) {
