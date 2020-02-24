@@ -58,12 +58,11 @@ void stateMachine() {
                 break;
             }
             //-> levelClosed
-            if (timerExpired() && !stopSignal) {
+            if (timerExpired()) {
                 hardware_command_door_open(0);
                 hardware_command_stop_light(0);
                 currentState = levelClosed;
             }
-            
             break;
             
             
