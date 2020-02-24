@@ -2,7 +2,7 @@
 
 static int liftOrders[10] = {0};
 
-//legge til i liftOrders hvilke knapper som er trykket? checkButtons
+
 // Eventuelt ikke sjekke 1, NED og 4, OPP
 void setLiftOrders(){
     if (hardware_read_stop_signal ())
