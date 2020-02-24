@@ -57,19 +57,19 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
         return 1;
     }
     //Demanded in current direction, up
-    if (liftOrders[currentFloor*3+1] && (currDir == HARDWARE_MOVEMENT_UP)) {
+    else if (liftOrders[currentFloor*3+1] && (currDir == HARDWARE_MOVEMENT_UP)) {
         return 1;
     }
     //Demanded in current direction, down
-    if (liftOrders[currentFloor*3-1] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
+    else if (liftOrders[currentFloor*3-1] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
     //Demanded only in opposite direction
-    if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currentFloor)) {
+    else if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currentFloor)) {
         return 1;
     }
     //Demanded only in opposite direction
-    if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currentFloor)) {
+    else if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currentFloor)) {
         return 1;
     }
     return 0;
@@ -95,7 +95,10 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
 
 //er heisen krev over gjeldende etasje
 int orderedAbove(int currentFloor) {
-    for (int i = currentFloor*3+2; i < 10; i++) {
+    if (currentFloor = 3) {
+        return 0;
+    }
+    for (int i = currentFloor*3 + 2; i < 10; i++) {
         if (liftOrders[i]) {
             return 1;
         }
@@ -105,7 +108,7 @@ int orderedAbove(int currentFloor) {
 
 //er heisen krev under gjeldende etasje
 int orderedBelow(int currentFloor) {
-    for (int i = currentFloor*3-2; i > -1; i--) {
+    for (int i = currentFloor*3 - 2; i > -1; i--) {
         if (liftOrders[i]) {
             return 1;
         }
