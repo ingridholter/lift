@@ -5,16 +5,16 @@
 #include "timer.h"
 
 
-const int TIME_LIMIT = 3;
+const int timeLimit = 3;
 
 
-static clock_t clock_var;
+static clock_t clockVar;
 
-void timer_reset(){
-	clock_var = clock();
+void timerReset(){
+	clockVar = clock();
 }
 
-int timer_expired(){
-	clock_t clock_now = clock();
-	return ((clock_now -clock_var) >= TIME_LIMIT * CLOCKS_PER_SEC);
+int timerExpired(){
+	clock_t clockNow = clock();
+	return ((clockNow -clockVar) >= timeLimit * CLOCKS_PER_SEC);
 }
