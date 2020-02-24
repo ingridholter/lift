@@ -33,6 +33,11 @@ int atFloor() {
 
 void stateMachine() {
     setLiftOrders(); // Checks order buttons
+    
+    //Makes sure lift stays in valid area
+    if ((currDir == HARDWARE_MOVEMENT_DOWN && currentFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currentFloor == 3)) {
+        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    }
         
     switch (currentState) {
         case levelOpen:
