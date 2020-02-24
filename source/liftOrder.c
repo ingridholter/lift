@@ -48,15 +48,19 @@ void removeAllOrders() {
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
+    //Demanded by Heispanel
     if (liftOrders[currentFloor]) {
         return 1;
     }
+    //Demanded in current direction, up
     if (liftOrders[currentFloor+4] && (currDir == HARDWARE_MOVEMENT_UP)) {
         return 1;
     }
+    //Demanded in current direction, down
     if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
+    //Demanded only in opposite direction
     if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAboveUp(currentFloor) && liftOrders[currentFloor+6]) {
         return 1;
     }
