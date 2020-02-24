@@ -20,6 +20,7 @@ int driveToDefinedState() {
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     //Changes floor light to given floor
     hardware_command_floor_indicator_on(currentFloor);
+    currentState = levelClosed;
     return 1;
 }
 
