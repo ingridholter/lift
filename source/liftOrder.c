@@ -57,6 +57,7 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currentDir){
 
 //setter heisens retning 1:ned og 0:opp
 //går gjennom array og sjekker
+//husk å ta høyde for at den kan bestilles der den er - :(
 HardwareMovement setDirection(int currentFloor, HardwareMovement currentDir) {
     if (!haveOrders()) {
         return HARDWARE_MOVEMENT_STOP;
