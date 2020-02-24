@@ -8,18 +8,18 @@ int driveToDefinedState() {
         return 0;
     }
     
-    while (currentFloor > 3) {
+    while (currFloor > 3) {
     //Checks if lift is at floor
         for (int floor = 0; floor < 4; floor++) {
             if (hardware_read_floor_sensor(floor) == 1){
-                currentFloor = floor;
+                currFloor = floor;
             }
         }
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     //Changes floor light to given floor
-    hardware_command_floor_indicator_on(currentFloor);
+    hardware_command_floor_indicator_on(currFloor);
     currentState = levelClosed;
     return 1;
 }
@@ -35,7 +35,7 @@ void stateMachine() {
             }
             setLiftOrders(); // Checks order buttons
             timerReset();
-            removeOrders(currentFloor);
+            removeOrders(currFloor);
             /* Fungerer dette uansett?
             if (isCurrentFloorDemanded(currentFloor, currentDir) {
                 timerReset();
@@ -69,7 +69,7 @@ void stateMachine() {
                 break;
             }
             setLiftOrders(); // Checks order buttons
-            currentDir = setDirection(currentFloor, currentDir);
+            currentDir = setDirection(currFloor, currentDir);
             hardware_command_movement(currentDir);
             
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
@@ -89,15 +89,15 @@ void stateMachine() {
             //Updating currentFloor
             for (int floor = 0; floor < 4; floor++) {
                 if (hardware_read_floor_sensor(floor) == 1){
-                    prevFloor = currentFloor;
-                    currentFloor = floor;
+                    preFloor = currFloor;
+                    currFloor = floor;
                 }
             }
             setLiftOrders(); // Checks order buttons
             //Changes floor light to current floor
-            hardware_command_floor_indicator_on (currentFloor);
+            hardware_command_floor_indicator_on (currFloor);
             
-            if (isCurrentFloorDemanded(currentFloor, currentDir)) {
+            if (isCurrentFloorDemanded(currFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 currentState = levelOpen;
@@ -123,7 +123,7 @@ void stateMachine() {
             removeAllOrders();
             
             if (!hardware_read_stop_signal()) {
-                currentDir = setDirection(currentFloor, currentDir);
+                currentDir = setDirection(currFloor, currentDir);
                 hardware_command_movement(currentDir);
                            
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
