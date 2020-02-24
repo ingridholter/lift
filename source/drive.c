@@ -34,6 +34,7 @@ int atFloor() {
 void stateMachine() {
     setLiftOrders(); // Checks order buttons
     stopSignal = hardware_read_stop_signal();
+    hardware_command_stop_light(stopSignal);
     /*
     //Makes sure lift stays in valid area
     if ((currentDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currentDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
@@ -44,12 +45,12 @@ void stateMachine() {
         case levelOpen:
             //stop signal
             if (stopSignal) {
-                
+                //hardware_command_stop_light(1); //turn on stop light
                 removeAllOrders(); //remove orders
                 break;
             }
             else {
-                hardware_command_stop_light(0);
+                //hardware_command_stop_light(0);
                 removeOrders(currFloor);
             }
             
@@ -61,7 +62,7 @@ void stateMachine() {
             //-> levelClosed
             if (timerExpired()) {
                 hardware_command_door_open(0);
-                hardware_command_stop_light(0);
+                //hardware_command_stop_light(0);
                 currentState = levelClosed;
             }
             break;
@@ -70,7 +71,6 @@ void stateMachine() {
         case levelClosed:
             //stop signal -> levelOpen
             if (stopSignal) {
-                hardware_command_stop_light(1); //turn on stop light
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
@@ -81,7 +81,7 @@ void stateMachine() {
             }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
-                between = 1;
+                //between = 1;
                 currentDir = newDir;
                 hardware_command_movement(currentDir);
                 currentState = moving;
@@ -93,11 +93,11 @@ void stateMachine() {
             //current floor
             if (atFloor() >= 0 && atFloor() != currFloor) {
                 currFloor = atFloor();
-                between = 0;
+                //between = 0;
             }
             
             //-> stop signal
-            if (hardware_read_stop_signal()) {
+            if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
@@ -115,16 +115,17 @@ void stateMachine() {
             
         case stationaryBetweenFloors:
             //stop light, remove orders
-            hardware_command_stop_light(1);
+            //hardware_command_stop_light(1);
             removeAllOrders();
             //not stop signal -> moving
-            if (!hardware_read_stop_signal()) {
-                hardware_command_stop_light(0);
-                currentDir = setDirection(currFloor, currentDir);
-                hardware_command_movement(currentDir);
-                           
-                if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                    between = 1;
+            if (!stopSignal) {
+                //hardware_command_stop_light(0);
+                newDir = setDirection(currFloor, currentDir);
+                
+                if (newDir != HARDWARE_MOVEMENT_STOP) {
+                    currentDir = newDir;
+                    hardware_command_movement(currentDir);
+                    //between = 1;
                     currentState = moving;
                 }
             }
