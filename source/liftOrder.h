@@ -64,3 +64,6 @@ int orderedBelow(int currentFloor);
 * @brief checks if there is any orders in the liftOrders array.
 */
 int haveOrders();
+
+
+#endif
