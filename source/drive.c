@@ -25,8 +25,22 @@ int driveToDefinedState() {
     return 1;
 }
 
+int atFloor() {
+    for (int floor = 0; floor < 4; floor++) {
+        if (hardware_read_floor_sensor(floor) == 1){
+            //Changes floor light to current floor
+            hardware_command_floor_indicator_on (floor);
+            return floor;
+        }
+    }
+    return -1;
+}
 
 void stateMachine() {
+    if (!hardware_read_stop_signal()) {
+        setLiftOrders(); // Checks order buttons
+    }
+    
     switch (currentState) {
         case levelOpen:
             if (hardware_read_stop_signal()) {
@@ -34,7 +48,7 @@ void stateMachine() {
                 removeAllOrders();
                 break;
             }
-            setLiftOrders(); // Checks order buttons
+            
             removeOrders(currFloor);
             /* Fungerer dette uansett?
             if (isCurrentFloorDemanded(currentFloor, currentDir) {
@@ -68,7 +82,6 @@ void stateMachine() {
                 currentState = levelOpen;
                 break;
             }
-            setLiftOrders(); // Checks order buttons
             currentDir = setDirection(currFloor, currentDir);
             hardware_command_movement(currentDir);
             
@@ -92,16 +105,10 @@ void stateMachine() {
             break;
             
         case moving:
-            //Updating currentFloor
-            for (int floor = 0; floor < 4; floor++) {
-                if (hardware_read_floor_sensor(floor) == 1){
-                    //preFloor = currFloor;
-                    currFloor = floor;
-                }
+            
+            if (atFloor() >= 0) {
+                currFloor = atFloor();
             }
-            setLiftOrders(); // Checks order buttons
-            //Changes floor light to current floor
-            hardware_command_floor_indicator_on (currFloor);
             
             if (isCurrentFloorDemanded(currFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
