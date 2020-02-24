@@ -58,7 +58,14 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     if (liftOrders[currentFloor+4] && (currDir == HARDWARE_MOVEMENT_UP)) {
         return 1;
     }
+   
     if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
+        return 1;
+    }
+    if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAboveUp && liftOrders[currentFloor+6]) {
+        return 1;
+    }
+    if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedAboveDown && liftOrders[currentFloor+4]) {
         return 1;
     }
     return 0;
@@ -73,8 +80,9 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_STOP;
     }
     
-    int above = orderedAbove(currentFloor);
-    int below = orderedBelow(currentFloor);
+    int above = orderedAboveUp(currentFloor) || orderedAboveDown(currentFloor);
+    
+    int below = orderedBelowUp(currentFloor) || orderedBelowUp(currentFloor);
     
     if (above && !below) {
         return HARDWARE_MOVEMENT_UP;
@@ -126,9 +134,27 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
 }
 
 int orderedAboveUp(int currentFloor) {
-    
+    if (currentFloor = 3) {
+        return 0;
+    }
+    for (int i = currentFloor + 4; i < 7; i++) {
+        if (liftOrders[i] == 1) {
+            return 1;
+        }
+    }
 }
 
+int orderedAboveDown(int currentFloor) {
+    if (currentFloor = 3) {
+        return 0;
+    }
+    for (int i = currentFloor + 7; i < 10; i++) {
+        if (liftOrders[i] == 1) {
+            return 1;
+        }
+    }
+}
+/*
 //er heisen krevd over gjeldene etasje
 int orderedAbove(int currentFloor) {
     switch (currentFloor) {
@@ -163,7 +189,30 @@ int orderedAbove(int currentFloor) {
     }
     return 0;
 }
+*/
+int orderedBelowUp(int currentFloor) {
+    if (currentFloor = 0) {
+        return 0;
+    }
+    for (int i = 4; i < 7 - currentFloor; i++) {
+        if (liftOrders[i] == 1) {
+            return 1;
+        }
+    }
+}
 
+int orderedBelowDown(int currentFloor) {
+    if (currentFloor = 0) {
+           return 0;
+       }
+       for (int i = 7; i < 10 - currentFloor; i++) {
+           if (liftOrders[i] == 1) {
+               return 1;
+           }
+       }
+}
+
+/*
 //er heisen krev under gjeldende etasje
 int orderedBelow(int currentFloor) {
     switch (currentFloor) {
@@ -198,6 +247,7 @@ int orderedBelow(int currentFloor) {
     }
     return 0;
 }
+*/
 
 //sjekker om det er ordre i køen
 int haveOrders() {
