@@ -35,9 +35,6 @@ int driveToDefinedState() {
 }
 
 
-//Implementer denne
-manageDoor();
-
 stateMachine() {
     switch (currentState) {
         case levelOpen:
