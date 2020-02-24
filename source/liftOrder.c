@@ -55,6 +55,12 @@ int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     }
     */
+    if (currentFloor == 0) {
+        currDir = HARDWARE_MOVEMENT_UP;
+    }
+    else if (currentFloor == 3) {
+        currDir = HARDWARE_MOVEMENT_DOWN;
+    }
     
     //Demanded by Heispanel
     if (liftOrders[currentFloor]) {
