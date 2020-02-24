@@ -62,6 +62,7 @@ stateMachine() {
             
             if (timerExpired() && !stopSignal) {
                 hardware_command_door_open(0);
+                hardware_command_stop_light(0);
                 currentState = levelClosed;
             }
             
@@ -129,12 +130,22 @@ stateMachine() {
             break;
             
         case stationaryBetweenFloors:
+            hardware_command_stop_light(1);
+            removeAllOrders();
             
+            if (!stopSignal) {
+                currentDir = setDirection(currentFloor, currentDir);
+                hardware_command_movement(currentDir);
+                           
+                if (currentDir != HARDWARE_MOVEMENT_STOP) {
+                    currentState = moving;
+                }
+            }
             /*
-             Slette ordre og lys
-             Ordne stoppknapplys
-             Sjekke stoppknapp
-             setDirection når stoppknapp slippes
+           √  Slette ordre og lys
+           √  Ordne stoppknapplys
+           √  Sjekke stoppknapp
+           √  setDirection når stoppknapp slippes
             */
             break;
             
