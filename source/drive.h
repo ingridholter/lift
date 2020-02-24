@@ -27,7 +27,7 @@ typedef enum{
 
 //Drive variables
 int currFloor;
-//int between;
+int between;
 HardwareMovement currentDir;
 HardwareMovement newDir;
 liftState currentState;
