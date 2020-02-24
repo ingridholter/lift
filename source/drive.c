@@ -75,7 +75,7 @@ void stateMachine() {
             hardware_command_movement(newDir);
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
-                between = 1;
+                //between = 1;
                 currentDir = newDir;
                 currentState = moving;
             }
@@ -85,18 +85,25 @@ void stateMachine() {
             
         case moving:
             //current floor
+            if (atFloor() >= 0) {
+                currFloor = atFloor();
+            }
+            /*
             if (atFloor() >= 0 && atFloor() != currFloor) {
                 currFloor = atFloor();
                 between = 0;
             }
+            */
+            
             //-> stop signal
-            else if (hardware_read_stop_signal()) {
+            if (hardware_read_stop_signal()) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
             }
+            
             //-> levelOpen
-            if (isCurrentFloorDemanded(currFloor, currentDir) && !between) {
+            if (isCurrentFloorDemanded(currFloor, currentDir)) { //&& !between) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 timerReset();
                 hardware_command_door_open(1);
@@ -116,7 +123,7 @@ void stateMachine() {
                 hardware_command_movement(currentDir);
                            
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                    between = 1;
+                    // between = 1;
                     currentState = moving;
                 }
             }
