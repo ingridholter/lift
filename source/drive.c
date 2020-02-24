@@ -7,7 +7,7 @@ int driveToDefinedState() {
         printf("Unable to initialize hardware\n");
         return 0;
     }
-    removeAllOrders();
+    
     while (currentFloor > 3) {
     //Checks if lift is at floor
         for (int floor = 0; floor < 4; floor++) {
@@ -32,7 +32,7 @@ void stateMachine() {
                 removeAllOrders();
                 break;
             }
-            
+            setLiftOrders(); // Checks order buttons
             timerReset();
             removeOrders(currentFloor);
             /* Fungerer dette uansett?
@@ -67,6 +67,7 @@ void stateMachine() {
                 currentState = levelOpen;
                 break;
             }
+            setLiftOrders(); // Checks order buttons
             currentDir = setDirection(currentFloor, currentDir);
             hardware_command_movement(currentDir);
             
@@ -91,6 +92,7 @@ void stateMachine() {
                     currentFloor = floor;
                 }
             }
+            setLiftOrders(); // Checks order buttons
             //Changes floor light to current floor
             hardware_command_floor_indicator_on (currentFloor);
             
