@@ -9,6 +9,7 @@
 
 //#include "hardware.h" Finnes i liftOrder
 #include "liftOrder.h"
+#include "timer.h"
 
 typedef enum{
   levelOpen
