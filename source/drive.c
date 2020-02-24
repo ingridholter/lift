@@ -35,7 +35,6 @@ void stateMachine() {
                 break;
             }
             setLiftOrders(); // Checks order buttons
-            timerReset();
             removeOrders(currFloor);
             /* Fungerer dette uansett?
             if (isCurrentFloorDemanded(currentFloor, currentDir) {
@@ -101,6 +100,7 @@ void stateMachine() {
             if (isCurrentFloorDemanded(currFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
+                timerReset();
                 currentState = levelOpen;
             }
             else if (hardware_read_stop_signal()) {
