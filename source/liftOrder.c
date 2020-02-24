@@ -134,7 +134,7 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
 }
 
 int orderedAboveUp(int currentFloor) {
-    if (currentFloor = 3) {
+    if (currentFloor == 3) {
         return 0;
     }
     for (int i = currentFloor + 4; i < 7; i++) {
@@ -142,10 +142,11 @@ int orderedAboveUp(int currentFloor) {
             return 1;
         }
     }
+    return 0;
 }
 
 int orderedAboveDown(int currentFloor) {
-    if (currentFloor = 3) {
+    if (currentFloor == 3) {
         return 0;
     }
     for (int i = currentFloor + 7; i < 10; i++) {
@@ -153,6 +154,7 @@ int orderedAboveDown(int currentFloor) {
             return 1;
         }
     }
+    return 0;
 }
 /*
 //er heisen krevd over gjeldene etasje
@@ -191,7 +193,7 @@ int orderedAbove(int currentFloor) {
 }
 */
 int orderedBelowUp(int currentFloor) {
-    if (currentFloor = 0) {
+    if (currentFloor == 0) {
         return 0;
     }
     for (int i = 4; i < 7 - currentFloor; i++) {
@@ -199,10 +201,11 @@ int orderedBelowUp(int currentFloor) {
             return 1;
         }
     }
+    return 0;
 }
 
 int orderedBelowDown(int currentFloor) {
-    if (currentFloor = 0) {
+    if (currentFloor == 0) {
            return 0;
        }
        for (int i = 7; i < 10 - currentFloor; i++) {
@@ -210,6 +213,7 @@ int orderedBelowDown(int currentFloor) {
                return 1;
            }
        }
+    return 0;
 }
 
 /*
