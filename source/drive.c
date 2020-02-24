@@ -43,15 +43,14 @@ void stateMachine() {
     switch (currentState) {
         case levelOpen:
             //stop signal
-            if (stopSignal) {
+            while (hardware_read_stop_signal()) {
                 hardware_command_stop_light(1); //turn on stop light
                 removeAllOrders(); //remove orders
-                break;
             }
+            hardware_command_stop_light(0);
             //remove Orders
-            else {
-                removeOrders(currFloor);
-                hardware_command_stop_light(0);
+            removeOrders(currFloor);
+                
             }
             //obstruction
             if (hardware_read_obstruction_signal()) {
