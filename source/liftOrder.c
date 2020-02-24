@@ -47,7 +47,6 @@ void removeAllOrders() {
 
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
-    nextFloor = -1;
     //Makes sure lift stays in valid area
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currentFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currentFloor == 3)) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
