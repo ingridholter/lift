@@ -28,6 +28,7 @@ typedef enum{
 //Drive variables
 int preFloor;
 int currFloor;
+int nextFloor;
 HardwareMovement currentDir;
 liftState currentState;
 //må ha en neste tilstand varibabel
