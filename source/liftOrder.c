@@ -3,7 +3,6 @@
 static int liftOrders[10] = {0};
 
 
-// Eventuelt ikke sjekke 1, NED og 4, OPP
 void setLiftOrders(){
     //does not take orders when stop signal
     if (hardware_read_stop_signal ())
@@ -13,17 +12,17 @@ void setLiftOrders(){
     for (int floor = 0; floor < 4; floor++) {
         //checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
-            liftOrders[floor] = 1;
+            liftOrders[floor*3] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
         //checks orders up
         if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
-            liftOrders[floor+4] = 1;
+            liftOrders[floor*3+1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
         //checks orders down
         if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
-            liftOrders[floor+6] = 1;
+            liftOrders[floor*3-1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
         }
     }
@@ -31,9 +30,9 @@ void setLiftOrders(){
 
 void removeOrders(int currentFloor){
     //Removes handled orders from liftOrders array.
-    liftOrders[currentFloor] = 0;
-    liftOrders[currentFloor+4] = 0;
-    liftOrders[currentFloor+6] = 0;
+    liftOrders[currentFloor*3] = 0;
+    liftOrders[currentFloor*3+1] = 0;
+    liftOrders[currentFloor*3-1] = 0;
     //Turns off lights for handled orders.
     hardware_command_order_light (currentFloor, HARDWARE_ORDER_INSIDE, 0);
     hardware_command_order_light (currentFloor, HARDWARE_ORDER_UP, 0);
@@ -49,68 +48,41 @@ void removeAllOrders() {
 //returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
 int isCurrentFloorDemanded(int currentFloor, HardwareMovement currDir){
     nextFloor = -1;
-    /*
-    
-    
-    //Changes direction when in end floors
-    if (currentFloor == 0) {
-        currDir = HARDWARE_MOVEMENT_UP;
+    //Makes sure lift stays in valid area
+    if ((currDir == HARDWARE_MOVEMENT_DOWN && currentFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currentFloor == 3)) {
+        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     }
-    else if (currentFloor == 3) {
-        currDir = HARDWARE_MOVEMENT_DOWN;
-    }
-    */
+    
     //Demanded by Heispanel
-    if (liftOrders[currentFloor]) {
+    if (liftOrders[currentFloor*3]) {
         return 1;
     }
     //Demanded in current direction, up
-    if (liftOrders[currentFloor+4] && (currDir == HARDWARE_MOVEMENT_UP)) {
+    if (liftOrders[currentFloor*3+1] && (currDir == HARDWARE_MOVEMENT_UP)) {
         return 1;
     }
     //Demanded in current direction, down
-    else if (liftOrders[currentFloor+6] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
+    else if (liftOrders[currentFloor*3-1] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
         return 1;
     }
-    
     //Demanded only in opposite direction
-    if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAboveUp(currentFloor)) {
-        for (int i = 0; i < 4; i++) {
-            if (liftOrders[i+6]) {
-                nextFloor = i;
-            }
-        }
-        if (currentFloor == nextFloor) {
-            return 1;
-        }
+    else if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currentFloor)) {
+        return 1;
     }
     //Demanded only in opposite direction
-    if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelowDown(currentFloor)) {
-        for (int i = 3; i > 0; i--) {
-            if (liftOrders[i+3]) {
-                nextFloor = i;
-            }
-        }
-        if(currentFloor == nextFloor) {
-                return 1;
-        }
+    else if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currentFloor)) {
+        return 1;
     }
-    
     return 0;
 }
 
-
-//setter heisens retning 1:ned og 0:opp
-//går gjennom array og sjekker
 //husk å ta høyde for at den kan bestilles der den er - :(
 HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
     if (!haveOrders()) {
         return HARDWARE_MOVEMENT_STOP;
     }
-    
-    int above = (orderedAboveUp(currentFloor) || orderedAboveDown(currentFloor) || orderedAboveInside(currentFloor));
-    
-    int below = (orderedBelowUp(currentFloor) || orderedBelowDown(currentFloor) || orderedBelowInside(currentFloor));
+    int above = orderedAbove(currentFloor);
+    int below = orderedBelow(currentFloor);
     
     if (above && !below) {
         return HARDWARE_MOVEMENT_UP;
@@ -119,196 +91,28 @@ HardwareMovement setDirection(int currentFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_DOWN;
     }
     return currDir;
-    /*
-    else {
-        switch (currDir) {
-            case HARDWARE_MOVEMENT_UP:
-                printf("case 1");
-                //Lift continues up if ordered above currentFloor on Heispanel
-                for (int i = currentFloor; i < 4; i++) {
-                    if (liftOrders[i]) {
-                        return HARDWARE_MOVEMENT_UP;
-                    }
-                }
-                //Lift changes direction if ordered below currentFloor on Heispanel
-                for (int i = 0; i < currentFloor+1; i++) {
-                    if (liftOrders[i]) {
-                        return HARDWARE_MOVEMENT_DOWN;
-                    }
-                }
-                //If not ordered on Heispanel, lift continues up
-                return HARDWARE_MOVEMENT_UP;
-                break;
-                
-            case HARDWARE_MOVEMENT_DOWN:
-                printf("case 2");
-                //Lift continues down if ordered below currentFloor on Heispanel
-                for (int i = 0; i < currentFloor+1; i++) {
-                    if (liftOrders[i]) {
-                        return HARDWARE_MOVEMENT_DOWN;
-                    }
-                }
-                //Lift changes direction if ordered above currentFloor on Heispanel
-                for (int i = currentFloor; i < 4; i++) {
-                    if (liftOrders[i]) {
-                        return HARDWARE_MOVEMENT_UP;
-                    }
-                }
-                //If not ordered on Heispanel, lift continues down
-                return HARDWARE_MOVEMENT_DOWN;
-                break;
-                
-            default:
-                break;
-        }
-     }
-     */
-    //return HARDWARE_MOVEMENT_STOP;
 }
 
-int orderedAboveUp(int currentFloor) {
-    if (currentFloor == 2 || currentFloor == 3) {
-        return 0;
-    }
-    for (int i = currentFloor + 4; i < 7; i++) {
-        if (liftOrders[i] == 1) {
-            return 1;
-        }
-    }
-    return 0;
-}
 
-int orderedAboveDown(int currentFloor) {
-    if (currentFloor == 3) {
-        return 0;
-    }
-    for (int i = currentFloor + 7; i < 10; i++) {
-        if (liftOrders[i] == 1) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-int orderedAboveInside(int currentFloor) {
-    if (currentFloor == 3) {
-            return 0;
-        }
-    for (int i = currentFloor + 1; i < 4; i++) {
-        if (liftOrders[i] == 1) {
-            return 1;
-        }
-    }
-    return 0;
-}
-                                        
-/*
-//er heisen krevd over gjeldene etasje
+//er heisen krev over gjeldende etasje
 int orderedAbove(int currentFloor) {
-    switch (currentFloor) {
-        case 0:
-            for (int i = 0; i < 10; i++) {
-                if (liftOrders[i] == 1){
-                    return 1;
-                }
-            }
-            break;
-            
-        case 1:
-            for (int i = 2; i < 10; i++) {
-                if ((i != 4 || i != 5 || i != 7) && liftOrders[i] == 1) {
-                    return 1;
-                }
-            }
-            break;
-            
-        case 2:
-            if (liftOrders[3] == 1 || liftOrders[9] == 1) {
-                    return 1;
-                }
-            break;
-            
-        case 3:
-            return 0;
-            break;
-            
-        default:
-            break;
-    }
-    return 0;
-}
-*/
-int orderedBelowUp(int currentFloor) {
-    if (currentFloor == 0) {
-        return 0;
-    }
-    for (int i = 4; i < 4 + currentFloor; i++) {
-        if (liftOrders[i] == 1) {
+    for (int i = currentFloor*3+2; i < 10; i++) {
+        if (liftOrders[i]) {
             return 1;
         }
     }
     return 0;
 }
 
-int orderedBelowDown(int currentFloor) {
-    if (currentFloor == 0 || currentFloor == 1) {
-           return 0;
-       }
-    for (int i = 7; i < currentFloor + 6; i++) {
-        if (liftOrders[i] == 1) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-int orderedBelowInside(int currentFloor) {
-    if (currentFloor == 0) {
-           return 0;
-       }
-    for (int i = 0; i < currentFloor; i++) {
-        if (liftOrders[i] == 1) {
-            return 1;
-        }
-    }
-    return 0;
-}
-/*
 //er heisen krev under gjeldende etasje
 int orderedBelow(int currentFloor) {
-    switch (currentFloor) {
-        case 0:
-            return 0;
-            break;
-            
-        case 1:
-            if (liftOrders[0] == 1 || liftOrders[4] == 1) {
-                    return 1;
-                }
-            break;
-            
-        case 2:
-            for (int i = 0; i < 8; i++) {
-                if ((i != 2 || i%3 != 0) && liftOrders[i] == 1) {
-                    return 1;
-                }
-            }
-            break;
-            
-        case 3:
-            for (int i = 0; i < 10; i++) {
-                if (liftOrders[i] == 1){
-                    return 1;
-                }
-            }
-            break;
-            
-        default:
-            break;
+    for (int i = currentFloor*3-2; i > -1; i--) {
+        if (liftOrders[i]) {
+            return 1;
+        }
     }
     return 0;
 }
-*/
 
 //sjekker om det er ordre i køen
 int haveOrders() {
