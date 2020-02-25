@@ -18,7 +18,7 @@ int driveToDefinedState() {
 }
 
 void stateMachine() {
-    stopSignal = hardware_read_stop_signal()
+    stopSignal = hardware_read_stop_signal();
     hardware_command_stop_light(stopSignal);
     setLiftOrders(); //Checks order buttons
     
