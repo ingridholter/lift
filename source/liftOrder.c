@@ -47,6 +47,10 @@ void removeAllOrders() {
 
 //Returns 1 if lift should stop at floor
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir){
+    if (currFloor == 0 || currFloor == 3) {
+        return 1;
+    }
+    
     /*
     //Makes sure lift stays in valid area
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
@@ -81,6 +85,8 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     if (!haveOrders()) {
         return HARDWARE_MOVEMENT_STOP;
     }
+    // Må kanskje snu retning her når i 0 og 3
+    
     int above = orderedAbove(currFloor);
     int below = orderedBelow(currFloor);
     
