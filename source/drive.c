@@ -9,7 +9,6 @@ int driveToDefinedState() {
     }
     currFloor = -1;
     while (currFloor < 0) {
-        //Checks if lift is at floor
         currFloor = atFloor();
         //Drives down until it is at floor
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
@@ -24,12 +23,11 @@ int driveToDefinedState() {
 int atFloor() {
     for (int floor = 0; floor < 4; floor++) {
         if (hardware_read_floor_sensor(floor) == 1){
-            //Changes floor light to current floor
             hardware_command_floor_indicator_on (floor);
-            return floor;
+            return floor; //Returns current floor
         }
     }
-    return -1;
+    return -1; //Returns invalid floor when between floors
 }
 
 
@@ -42,15 +40,13 @@ void stateMachine() {
         case levelOpen:
             //stop signal
             if (stopSignal) {
-                //hardware_command_stop_light(1); //turn on stop light
-                removeAllOrders(); //remove orders
+                removeAllOrders();
+                timerReset();
                 break;
             }
             else {
-                //hardware_command_stop_light(0);
                 removeOrders(currFloor);
             }
-            
             //obstruction
             if (hardware_read_obstruction_signal()) {
                 timerReset();
@@ -59,11 +55,9 @@ void stateMachine() {
             //-> levelClosed
             if (timerExpired()) {
                 hardware_command_door_open(0);
-                //hardware_command_stop_light(0);
                 currentState = levelClosed;
             }
             break;
-            
             
         case levelClosed:
             //stop signal -> levelOpen
