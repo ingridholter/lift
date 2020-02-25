@@ -83,6 +83,7 @@ void stateMachine() {
         case moving:
             if (atFloor() >= 0) {  //&& atFloor() != currentFloor) {
                 currentFloor = atFloor();
+                printf (currentFloor, " \n");
                 //between = 0;
             }
             //-> stationaryBetweenFloors
@@ -91,13 +92,6 @@ void stateMachine() {
                 currentState = stationaryBetweenFloors;
                 break;
             }
-            if (currentDir == HARDWARE_MOVEMENT_UP && currentFloor == 3) {
-                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                hardware_command_door_open(1);
-                timerReset();
-                currentState = levelOpen;
-            }
-            /*
             //-> levelOpen
             if (isCurrentFloorDemanded(currentFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -105,7 +99,6 @@ void stateMachine() {
                 timerReset();
                 currentState = levelOpen;
             }
-             */
             break;
             
         case stationaryBetweenFloors:
