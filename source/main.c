@@ -9,7 +9,6 @@ int main() {
     int initialized = driveToDefinedState();
     
     while (initialized) {
-        //hei
         stateMachine();
     }
     return 0;
