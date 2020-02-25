@@ -2,7 +2,6 @@
 
 static int liftOrders[10] = {0};
 
-
 void setLiftOrders(){
     //Does not take orders when stop signal
     if (hardware_read_stop_signal ())
@@ -43,7 +42,6 @@ void removeAllOrders() {
     for (int i = 0; i < 10; i++)
         removeOrders(i);
 }
-
 
 //Returns 1 if lift should stop at floor
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir){
@@ -95,7 +93,6 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     }
     return currDir;
 }
-
 
 //er heisen krev over gjeldende etasje
 int orderedAbove(int currFloor) {
