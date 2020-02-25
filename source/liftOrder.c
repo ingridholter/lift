@@ -124,3 +124,12 @@ int haveOrders() {
     return 0;
 }
 
+int orderedAtFloor(int currFloor) {
+    for (int i = currFloor - 1; i < currFloor + 2; i++) {
+        if (liftOrders[i]) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
