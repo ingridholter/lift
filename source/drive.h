@@ -42,7 +42,7 @@ liftState currentState;
 */
 int driveToDefinedState();
 
-int atFloor();
+
 
 /**
  * @brief State Machine, decides the elevator state.
