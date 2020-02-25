@@ -123,7 +123,7 @@ int haveOrders() {
 }
 
 int orderedAtFloor(int currFloor) {
-    for (int i = currFloor - 1; i < currFloor + 2; i++) {
+    for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
         if (liftOrders[i]) {
             return 1;
         }
