@@ -40,12 +40,10 @@ void stateMachine() {
                 timerReset();
                 break;
             }
-            /*
             else if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 break;
             }
-            */
             else {
                 removeOrders(currentFloor);
             }
