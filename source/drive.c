@@ -83,7 +83,7 @@ void stateMachine() {
         case moving:
             if (atFloor() >= 0) {  //&& atFloor() != currentFloor) {
                 currentFloor = atFloor();
-                printf (currentFloor, " \n");
+                
                 //between = 0;
             }
             //-> stationaryBetweenFloors
