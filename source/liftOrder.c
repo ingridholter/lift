@@ -134,10 +134,8 @@ int haveOrders() {
 
 int orderedAtFloor(int currFloor) {
     for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
-        if (-1 < i < 10) {
-            if (liftOrders[i]) {
-                return 1;
-            }
+        if (liftOrders[i] && (-1 < i) && (i < 10)) {
+            return 1;
         }
     }
     return 0;
