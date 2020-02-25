@@ -26,7 +26,7 @@ void stateMachine() {
             if (hardware_read_stop_signal()) {
                 removeAllOrders();
                 timerReset();
-                hardware_command_stop_light(hardware_read_stop_signal());
+                //hardware_command_stop_light(hardware_read_stop_signal());
                 break;
             }
             if (orderedAtFloor(currentFloor)) {
