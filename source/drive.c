@@ -81,7 +81,7 @@ void stateMachine() {
                 break;
             }
             //-> levelOpen
-            if (isCurrentFloorDemanded(currentFloor, currentDir)) {
+            if (isCurrentFloorDemanded(currentFloor, currentDir)&& atFloor()>=0) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 timerReset();
