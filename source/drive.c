@@ -40,7 +40,6 @@ void stateMachine() {
                 timerReset();
                 break;
             }
-            //Fungerer denne??
             else if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 break;
