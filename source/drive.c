@@ -91,7 +91,7 @@ void stateMachine() {
                 currentState = stationaryBetweenFloors;
                 break;
             }
-            if (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3) {
+            if (currentDir == HARDWARE_MOVEMENT_UP && currentFloor == 3) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 timerReset();
