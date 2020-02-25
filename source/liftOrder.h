@@ -7,9 +7,7 @@
 #define LIFTORDER_H__
 
 #include "hardware.h"
-//#include <stdlib.h>
 #include <stdio.h>
-
 
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
@@ -39,7 +37,6 @@ void removeAllOrders();
 * @return 1 if the lift should stop at currFloor, 0 otherwise
 */
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir);
-
 
 /**
 * @brief Decides where the lift should go next and sets the motor direction.
