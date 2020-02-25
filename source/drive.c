@@ -35,7 +35,8 @@ int atFloor() {
 
 void stateMachine() {
     setLiftOrders(); // Checks order buttons
-    
+    stopSignal = hardware_read_stop_signal();
+    hardware_command_stop_light(stopSignal);
     
     switch (currentState) {
         case levelOpen:
