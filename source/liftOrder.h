@@ -66,5 +66,7 @@ int orderedBelow(int currFloor);
 */
 int haveOrders();
 
+int orderedAtFloor(int currFloor);
+
 
 #endif
