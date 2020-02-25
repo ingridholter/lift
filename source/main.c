@@ -3,12 +3,14 @@
  * @brief The main function of the application
  */
 
-//hei
-//#include "hardware.h"
 #include "drive.h"
-//#include <stdio.h>
-//#include <stdlib.h>
 
+/*
+ IKKE NØDVENDIG: ?
+#include "hardware.h"
+#include <stdio.h>
+#include <stdlib.h>
+*/
 
 int main() {
     
