@@ -21,6 +21,4 @@ void timerReset();
 */
 int timerExpired();
 
-
 #endif
-
