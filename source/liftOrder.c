@@ -3,11 +3,6 @@
 static int liftOrders[10] = {0};
 
 void setLiftOrders(){
-    /*
-    //Does not take orders when stop signal
-    if (hardware_read_stop_signal ())
-        return;
-    */
     //Iterates through all the buttons
     for (int floor = 0; floor < 4; floor++) {
         //Checks Heispanel
