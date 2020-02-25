@@ -11,7 +11,6 @@ int main() {
     
     while (initialized) {
         stateMachine();
-        printf (currentFloor, " \n");
     }
     return 0;
 }
