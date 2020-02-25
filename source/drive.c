@@ -7,9 +7,9 @@ int driveToDefinedState() {
         printf("Unable to initialize hardware\n");
         return 0;
     }
-    currFloor = -1;
-    while (currFloor < 0) {
-        currFloor = atFloor();
+    currentFloor = -1;
+    while (currentFloor < 0) {
+        currentFloor = atFloor();
         //Drives down until it is at floor
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
@@ -44,8 +44,13 @@ void stateMachine() {
                 timerReset();
                 break;
             }
+            //Fungerer denne??
+            else if (isCurrentFloorDemanded(currentFloor, currentDir) {
+                timerReset();
+                break;
+            }
             else {
-                removeOrders(currFloor);
+                removeOrders(currentFloor);
             }
             //obstruction
             if (hardware_read_obstruction_signal()) {
@@ -68,7 +73,7 @@ void stateMachine() {
             }
             //direction
             else {
-                newDir = setDirection(currFloor, currentDir);
+                newDir = setDirection(currentFloor, currentDir);
             }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
@@ -82,8 +87,8 @@ void stateMachine() {
             
         case moving:
             //current floor
-            if (atFloor() >= 0 && atFloor() != currFloor) {
-                currFloor = atFloor();
+            if (atFloor() >= 0 && atFloor() != currentFloor) {
+                currentFloor = atFloor();
                 //between = 0;
             }
             
@@ -95,7 +100,7 @@ void stateMachine() {
             }
             
             //-> levelOpen
-            if (isCurrentFloorDemanded(currFloor, currentDir)) {
+            if (isCurrentFloorDemanded(currentFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 timerReset();
                 hardware_command_door_open(1);
@@ -111,7 +116,7 @@ void stateMachine() {
             //not stop signal -> moving
             if (!stopSignal) {
                 //hardware_command_stop_light(0);
-                newDir = setDirection(currFloor, currentDir);
+                newDir = setDirection(currentFloor, currentDir);
                 
                 if (newDir != HARDWARE_MOVEMENT_STOP) {
                     currentDir = newDir;
