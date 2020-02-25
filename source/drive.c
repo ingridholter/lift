@@ -1,6 +1,5 @@
 #include "drive.h"
 
-
 int driveToDefinedState() {
     int error = hardware_init();
     if (error != 0) {
@@ -19,7 +18,6 @@ int driveToDefinedState() {
     return 1;
 }
 
-
 int atFloor() {
     for (int floor = 0; floor < 4; floor++) {
         if (hardware_read_floor_sensor(floor) == 1){
@@ -30,22 +28,20 @@ int atFloor() {
     return -1; //Returns invalid floor when between floors
 }
 
-
 void stateMachine() {
-    setLiftOrders(); // Checks order buttons
+    setLiftOrders(); //Checks order buttons
     stopSignal = hardware_read_stop_signal();
     hardware_command_stop_light(stopSignal);
     
     switch (currentState) {
         case levelOpen:
-            //stop signal
             if (stopSignal) {
                 removeAllOrders();
                 timerReset();
                 break;
             }
             //Fungerer denne??
-            else if (isCurrentFloorDemanded(currentFloor, currentDir) {
+            else if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 break;
             }
@@ -65,13 +61,12 @@ void stateMachine() {
             break;
             
         case levelClosed:
-            //stop signal -> levelOpen
+            //-> levelOpen
             if (stopSignal) {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
             }
-            //direction
             else {
                 newDir = setDirection(currentFloor, currentDir);
             }
@@ -84,21 +79,17 @@ void stateMachine() {
             }
             break;
             
-            
         case moving:
-            //current floor
             if (atFloor() >= 0 && atFloor() != currentFloor) {
                 currentFloor = atFloor();
                 //between = 0;
             }
-            
-            //-> stop signal
+            //-> stationaryBetweenFloors
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
             }
-            
             //-> levelOpen
             if (isCurrentFloorDemanded(currentFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -108,16 +99,13 @@ void stateMachine() {
             }
             break;
             
-            
         case stationaryBetweenFloors:
-            //stop light, remove orders
-            //hardware_command_stop_light(1);
-            removeAllOrders();
-            //not stop signal -> moving
-            if (!stopSignal) {
-                //hardware_command_stop_light(0);
+            if (stopSignal) {
+                removeAllOrders();
+            }
+            else {
                 newDir = setDirection(currentFloor, currentDir);
-                
+                //-> moving
                 if (newDir != HARDWARE_MOVEMENT_STOP) {
                     currentDir = newDir;
                     hardware_command_movement(currentDir);
