@@ -95,7 +95,7 @@ void stateMachine() {
             if (isCurrentFloorDemanded(currentFloor, currentDir)) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 timerReset();
-                hardware_command_door_open(1);
+                //hardware_command_door_open(1);
                 currentState = levelOpen;
             }
             break;
