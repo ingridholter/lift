@@ -11,7 +11,7 @@ int main() {
     while (initialized) {
         stopSignal = hardware_read_stop_signal();
         hardware_command_stop_light(stopSignal);
-        //stateMachine();
+        stateMachine();
     }
     return 0;
 }
