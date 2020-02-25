@@ -13,12 +13,9 @@ int driveToDefinedState() {
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-
     currentState = levelClosed;
     return 1;
 }
-
-
 
 void stateMachine() {
     setLiftOrders(); //Checks order buttons
@@ -30,7 +27,9 @@ void stateMachine() {
             while (hardware_read_stop_signal()) {
                 removeAllOrders();
                 timerReset();
-                //break;
+                if (!hardware_read_stop_signal()) {
+                    break;
+                }
             }
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
