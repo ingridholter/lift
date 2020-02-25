@@ -20,11 +20,10 @@ int driveToDefinedState() {
 void stateMachine() {
     stopSignal = hardware_read_stop_signal();
     hardware_command_stop_light(stopSignal);
-    if(!hardware_read_stop_signal()){
+    if(!stopSignal){
         setLiftOrders(); //Checks order buttons
     }
  
-    
     switch (currentState) {
         case levelOpen:
             if (stopSignal) {
