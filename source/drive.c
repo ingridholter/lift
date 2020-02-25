@@ -19,16 +19,14 @@ int driveToDefinedState() {
 
 void stateMachine() {
     setLiftOrders(); //Checks order buttons
-    stopSignal = hardware_read_stop_signal();
-    hardware_command_stop_light(stopSignal);
+    hardware_command_stop_light(hardware_read_stop_signal());
     
     switch (currentState) {
         case levelOpen:
-            if (stopSignal) {
+            if (hardware_read_stop_signal()) {
                 removeAllOrders();
                 timerReset();
-                stopSignal = hardware_read_stop_signal();
-                hardware_command_stop_light(stopSignal);
+                hardware_command_stop_light(hardware_read_stop_signal());
                 break;
             }
             if (orderedAtFloor(currentFloor)) {
@@ -53,7 +51,7 @@ void stateMachine() {
             
         case levelClosed:
             //-> levelOpen
-            if (stopSignal) {
+            if (hardware_read_stop_signal()) {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
@@ -74,7 +72,7 @@ void stateMachine() {
                 currentFloor = atFloor();
             }
             //-> stationaryBetweenFloors
-            if (stopSignal) {
+            if (hardware_read_stop_signal()) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
@@ -89,7 +87,7 @@ void stateMachine() {
             break;
             
         case stationaryBetweenFloors:
-            if (stopSignal) {
+            if (hardware_read_stop_signal()) {
                 removeAllOrders();
             }
             else {
