@@ -27,7 +27,6 @@ void stateMachine() {
             if (stopSignal) {
                 removeAllOrders();
                 timerReset();
-                stopSignal = 0;
                 break;
             }
             if (orderedAtFloor(currentFloor)) {
