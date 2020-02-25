@@ -43,6 +43,7 @@ void stateMachine() {
             else if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
+                break;
             }
             else {
                 removeOrders(currentFloor);
