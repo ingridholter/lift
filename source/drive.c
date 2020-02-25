@@ -24,13 +24,11 @@ void stateMachine() {
     
     switch (currentState) {
         case levelOpen:
-            while (hardware_read_stop_signal()) {
+            if (stopSignal) {
                 removeAllOrders();
                 timerReset();
-                if (!hardware_read_stop_signal()) {
-                    hardware_command_stop_light(0);
-                    break;
-                }
+                stopSignal = 0;
+                break;
             }
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
