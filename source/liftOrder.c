@@ -4,23 +4,23 @@ static int liftOrders[10] = {0};
 
 
 void setLiftOrders(){
-    //does not take orders when stop signal
+    //Does not take orders when stop signal
     if (hardware_read_stop_signal ())
         return;
     
-    //iterates through all the buttons
+    //Iterates through all the buttons
     for (int floor = 0; floor < 4; floor++) {
-        //checks Heispanel
+        //Checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
             liftOrders[floor*3] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
-        //checks orders up
+        //Checks orders up
         if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
             liftOrders[floor*3+1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
-        //checks orders down
+        //Checks orders down
         if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
             liftOrders[floor*3-1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
@@ -29,11 +29,11 @@ void setLiftOrders(){
 }
 
 void removeOrders(int currFloor){
-    //Removes handled orders from liftOrders array.
+    //Removes handled orders from liftOrders[]
     liftOrders[currFloor*3] = 0;
     liftOrders[currFloor*3+1] = 0;
     liftOrders[currFloor*3-1] = 0;
-    //Turns off lights for handled orders.
+    //Turns off lights for handled orders
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
     hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
     hardware_command_order_light (currFloor, HARDWARE_ORDER_DOWN, 0);
@@ -45,14 +45,12 @@ void removeAllOrders() {
 }
 
 
-//returnerer 1 hvis den skal stoppe i etasje og 0 hvis ikke
+//Returns 1 if lift should stop at floor
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir){
-    /*
     //Makes sure lift stays in valid area
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     }
-    */
     //Demanded by Heispanel
     if (liftOrders[currFloor*3]) {
         return 1;
