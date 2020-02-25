@@ -68,5 +68,6 @@ int haveOrders();
 
 int orderedAtFloor(int currFloor);
 
+int atFloor();
 
 #endif
