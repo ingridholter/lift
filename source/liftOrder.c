@@ -47,10 +47,12 @@ void removeAllOrders() {
 
 //Returns 1 if lift should stop at floor
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir){
+    /*
     //Makes sure lift stays in valid area
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     }
+    */
     //Demanded by Heispanel
     if (liftOrders[currFloor*3]) {
         return 1;
