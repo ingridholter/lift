@@ -93,15 +93,6 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     if (currDir == HARDWARE_MOVEMENT_STOP) {
         return HARDWARE_MOVEMENT_DOWN;
     }
-    /*
-    if (currDir == HARDWARE_MOVEMENT_UP && above) {
-        return HARDWARE_MOVEMENT_UP;
-    }
-    else if (currDir == HARDWARE_MOVEMENT_DOWN && below) {
-        return HARDWARE_MOVEMENT_DOWN;
-    }
-    return HARDWARE_MOVEMENT_STOP;
-     */
     return currDir;
 }
 
