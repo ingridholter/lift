@@ -13,7 +13,7 @@ int driveToDefinedState() {
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //currentDir = HARDWARE_MOVEMENT_DOWN;
+
     currentState = levelClosed;
     return 1;
 }
@@ -27,12 +27,12 @@ void stateMachine() {
     
     switch (currentState) {
         case levelOpen:
-            if (stopSignal) {
+            while (hardware_read_stop_signal()) {
                 removeAllOrders();
                 timerReset();
-                break;
+                //break;
             }
-            else if (orderedAtFloor(currentFloor)) {
+            if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
                 break;
