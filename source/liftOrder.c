@@ -98,6 +98,9 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
 
 //er heisen krev over gjeldende etasje
 int orderedAbove(int currFloor) {
+    if (currFloor == 3) {
+        return 0;
+    }
     for (int i = currFloor*3 + 2; i < 10; i++) {
         if (liftOrders[i]) {
             return 1;
@@ -108,7 +111,10 @@ int orderedAbove(int currFloor) {
 
 //er heisen krev under gjeldende etasje
 int orderedBelow(int currFloor) {
-    for (int i = currFloor*3 - 2; i > -1; i--) {
+    if (currFloor == 0) {
+        return 0;
+    }
+    for (int i = 0; i < currFloor*3 -1; i++) {
         if (liftOrders[i]) {
             return 1;
         }
@@ -128,7 +134,7 @@ int haveOrders() {
 
 int orderedAtFloor(int currFloor) {
     for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
-        if (liftOrders[i]) {
+        if (liftOrders[i] && (-1 < i < 10)) {
             return 1;
         }
     }
