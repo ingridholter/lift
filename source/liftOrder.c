@@ -88,6 +88,7 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     else if (!above && below) {
         return HARDWARE_MOVEMENT_DOWN;
     }
+    //if bare bestilt i currFloor, snu retning
     if (currDir == HARDWARE_MOVEMENT_STOP) {
         return HARDWARE_MOVEMENT_DOWN;
     }
