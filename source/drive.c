@@ -68,18 +68,19 @@ void stateMachine() {
             }
             else {
                 newDir = setDirection(currentFloor, currentDir);
+                hardware_command_movement(newDir)
             }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
                 //between = 1;
                 currentDir = newDir;
-                hardware_command_movement(currentDir);
+                //hardware_command_movement(currentDir);
                 currentState = moving;
             }
             break;
             
         case moving:
-            if (atFloor() >= 0 && atFloor() != currentFloor) {
+            if (atFloor() >= 0) {  //&& atFloor() != currentFloor) {
                 currentFloor = atFloor();
                 //between = 0;
             }
