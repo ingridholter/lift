@@ -81,16 +81,9 @@ void stateMachine() {
                 break;
             }
             //-> levelOpen
-<<<<<<< HEAD
-            if (isCurrentFloorDemanded(currentFloor, currentDir) && atFloor() >= 0) {
+            if (isCurrentFloorDemanded(currentFloor, currentDir) && atFloor() >= 0){
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
-=======
-            if (isCurrentFloorDemanded(currentFloor, currentDir)&& atFloor()>=0) {
-                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                hardware_command_door_open(1);
-                //timerReset();
->>>>>>> b9118d151dee9a27ca6773f558241d59abc15b28
                 currentState = levelOpen;
             }
             break;
