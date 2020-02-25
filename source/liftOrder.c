@@ -136,3 +136,12 @@ int orderedAtFloor(int currFloor) {
     return 0;
 }
 
+int atFloor() {
+    for (int floor = 0; floor < 4; floor++) {
+        if (hardware_read_floor_sensor(floor) == 1){
+            hardware_command_floor_indicator_on (floor);
+            return floor; //Returns current floor
+        }
+    }
+    return -1; //Returns invalid floor when between floors
+}
