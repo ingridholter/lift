@@ -18,15 +18,7 @@ int driveToDefinedState() {
     return 1;
 }
 
-int atFloor() {
-    for (int floor = 0; floor < 4; floor++) {
-        if (hardware_read_floor_sensor(floor) == 1){
-            hardware_command_floor_indicator_on (floor);
-            return floor; //Returns current floor
-        }
-    }
-    return -1; //Returns invalid floor when between floors
-}
+
 
 void stateMachine() {
     setLiftOrders(); //Checks order buttons
