@@ -39,7 +39,8 @@ void setLiftOrders(){
                 if (down)
                     liftOrders[floor3Down];
                 break;
-                
+            default:
+                break;
         /*
         //Checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
