@@ -5,18 +5,21 @@ static int liftOrders[10] = {0};
 void setLiftOrders(){
     //Iterates through all the buttons
     for (int floor = 0; floor < 4; floor++) {
+        
+        
         //Checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
+            
             liftOrders[floor*3] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
         //Checks orders up
-        if (hardware_read_order (floor, HARDWARE_ORDER_UP)) {
+        if (hardware_read_order (floor, HARDWARE_ORDER_UP) && floor != 3) {
             liftOrders[floor*3+1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
         //Checks orders down
-        if (hardware_read_order (floor, HARDWARE_ORDER_DOWN)) {
+        if (hardware_read_order (floor, HARDWARE_ORDER_DOWN) && floor != 0) {
             liftOrders[floor*3-1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
         }
