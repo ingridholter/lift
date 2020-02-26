@@ -128,11 +128,31 @@ int haveOrders() {
 }
 
 int orderedAtFloor(int currFloor) {
+    switch (currFloor) {
+        case 0:
+            if (liftOrders[0] || liftOrders[1]) {
+                return 1;
+            }
+        case 1:
+            if (liftOrders[2] || liftOrders[3] || liftOrders[4]) {
+                return 1;
+            }
+        case 2:
+            if (liftOrders[5] || liftOrders[6] || liftOrders[7]) {
+                return 1;
+            }
+        case 3:
+            if (liftOrders[8] || liftOrders[9]) {
+                return 1;
+            }
+    }
+    /*
     for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
         if (liftOrders[i] && (-1 < i) && (i < 10)) {
             return 1;
         }
     }
+     */
     return 0;
 }
 
