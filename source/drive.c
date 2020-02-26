@@ -23,11 +23,9 @@ void stateMachine() {
     if(!stopSignal){
         setLiftOrders(); //Checks order buttons
     }
- 
+    
     switch (currentState) {
-        
         case levelClosed:
-            
             //-> levelOpen
             if (stopSignal) {
                 hardware_command_door_open(1);
@@ -36,7 +34,6 @@ void stateMachine() {
             }
             else {
                 newDir = setDirection(currentFloor, currentDir);
-            
             }
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
@@ -51,12 +48,14 @@ void stateMachine() {
             if (atFloor() >= 0) {
                 currentFloor = atFloor();
             }
+            /*
             //-> stationaryBetweenFloors
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
             }
+             */
             //-> levelOpen
             if (isCurrentFloorDemanded(currentFloor, currentDir) && atFloor() >= 0){
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -88,6 +87,8 @@ void stateMachine() {
                 break;
             }
             break;
+
+            /*
         case stationaryBetweenFloors:
             if (stopSignal) {
                 removeAllOrders();
@@ -102,7 +103,7 @@ void stateMachine() {
                 }
             }
             break;
-            
+*/
         default:
             break;
     }
