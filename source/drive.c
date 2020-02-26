@@ -77,8 +77,8 @@ void stateMachine() {
              */
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
-                removeOrders(currentFloor);
             }
+            removeOrders(currentFloor);
             /*
              //obstruction
              if (hardware_read_obstruction_signal()) {
