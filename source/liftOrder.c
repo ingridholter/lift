@@ -129,10 +129,14 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     else if (!above && below) {
         return HARDWARE_MOVEMENT_DOWN;
     }
-    //if bare bestilt i currFloor, snu retning
-    
     if (currDir == HARDWARE_MOVEMENT_STOP) {
         return HARDWARE_MOVEMENT_DOWN;
+    }
+    if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_UP) {
+        return HARDWARE_MOVEMENT_DOWN;
+    }
+    else if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_DOWN) {
+        return HARDWARE_MOVEMENT_UP;
     }
     return currDir;
 }
