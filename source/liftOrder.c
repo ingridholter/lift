@@ -69,11 +69,11 @@ void removeOrders(int currFloor){
     liftOrders[currFloor*3] = 0;
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
     
-    if (currFloor != 3) {
+    if (currFloor < 3) {
         liftOrders[currFloor*3+1] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
     }
-    if (currFloor != 0) {
+    if (currFloor > 0) {
         liftOrders[currFloor*3-1] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_DOWN, 0);
     }
