@@ -132,10 +132,10 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_DOWN;
     }
     if (atFloor() < 0) {
-        if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_UP) {
+        if (orderedAtFloor(currFloor) && currDir == HARDWARE_MOVEMENT_UP) {
             return HARDWARE_MOVEMENT_DOWN;
         }
-        else if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_DOWN) {
+        else if (orderedAtFloor(currFloor) && currDir == HARDWARE_MOVEMENT_DOWN) {
             return HARDWARE_MOVEMENT_UP;
         }
     }
