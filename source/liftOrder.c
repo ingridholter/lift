@@ -68,6 +68,7 @@ void removeOrders(int currFloor){
     //Turns off lights for handled orders
     liftOrders[currFloor*3] = 0;
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
+    
     if (currFloor != 3) {
         liftOrders[currFloor*3+1] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
@@ -129,6 +130,7 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
         return HARDWARE_MOVEMENT_DOWN;
     }
     //if bare bestilt i currFloor, snu retning
+    
     if (currDir == HARDWARE_MOVEMENT_STOP) {
         return HARDWARE_MOVEMENT_DOWN;
     }
