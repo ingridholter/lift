@@ -75,17 +75,14 @@ void stateMachine() {
              break;
              }
              */
-            
+            if (currentFloor == 3) {
+                timerReset();
+            }
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
                 break;
             }
-             /*
-            else {
-                removeOrders(currentFloor);
-            }
-            */
             /*
              //obstruction
              if (hardware_read_obstruction_signal()) {
