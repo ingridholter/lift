@@ -51,14 +51,12 @@ void stateMachine() {
             if (atFloor() >= 0) {
                 currentFloor = atFloor();
             }
-            /*
             //-> stationaryBetweenFloors
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
             }
-             */
             //-> levelOpen
             if (isCurrentFloorDemanded(currentFloor, currentDir) && atFloor() >= 0){
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -90,7 +88,6 @@ void stateMachine() {
             }
             break;
 
-            /*
         case stationaryBetweenFloors:
             if (!stopSignal) {
                 newDir = setDirection(currentFloor, currentDir);
@@ -102,7 +99,7 @@ void stateMachine() {
                 }
             }
             break;
-*/
+
         default:
             break;
     }
