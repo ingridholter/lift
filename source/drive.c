@@ -75,10 +75,10 @@ void stateMachine() {
              break;
              }
              */
-            if (orderedAtFloor(currentFloor)) {
+            if (orderedAtFloor(3)) {
                 timerReset();
+                removeOrders(currentFloor);
             }
-            removeOrders(currentFloor);
             /*
              //obstruction
              if (hardware_read_obstruction_signal()) {
