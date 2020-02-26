@@ -118,7 +118,6 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     if (!haveOrders()) {
         return HARDWARE_MOVEMENT_STOP;
     }
-    // Må kanskje snu retning her når i 0 og 3
     
     int above = orderedAbove(currFloor);
     int below = orderedBelow(currFloor);
@@ -132,11 +131,13 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     if (currDir == HARDWARE_MOVEMENT_STOP) {
         return HARDWARE_MOVEMENT_DOWN;
     }
-    if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_UP) {
-        return HARDWARE_MOVEMENT_DOWN;
-    }
-    else if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_DOWN) {
-        return HARDWARE_MOVEMENT_UP;
+    if (!atFloor) {
+        if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_UP) {
+            return HARDWARE_MOVEMENT_DOWN;
+        }
+        else if (orderedAtFloor(currFloor) && HARDWARE_MOVEMENT_DOWN) {
+            return HARDWARE_MOVEMENT_UP;
+        }
     }
     return currDir;
 }
