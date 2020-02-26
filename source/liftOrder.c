@@ -145,7 +145,7 @@ int orderedAtFloor(int currFloor) {
             }
             break;
         case 3:
-            if (liftOrders[floor3Down] || liftOrders[floor2Inside]) {
+            if (liftOrders[floor3Down] || liftOrders[floor3Inside]) {
                 return 1;
             }
             break;
