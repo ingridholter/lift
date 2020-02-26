@@ -65,13 +65,17 @@ void setLiftOrders(){
 
 void removeOrders(int currFloor){
     //Removes handled orders from liftOrders[]
-    liftOrders[currFloor*3] = 0;
-    liftOrders[currFloor*3+1] = 0;
-    liftOrders[currFloor*3-1] = 0;
     //Turns off lights for handled orders
+    liftOrders[currFloor*3] = 0;
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
-    hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
-    hardware_command_order_light (currFloor, HARDWARE_ORDER_DOWN, 0);
+    if (currFloor != 3) {
+        liftOrders[currFloor*3+1] = 0;
+        hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
+    }
+    if (currFloor != 0 {
+        liftOrders[currFloor*3-1] = 0;
+        hardware_command_order_light (currFloor, HARDWARE_ORDER_DOWN, 0);
+    }
 }
 
 void removeAllOrders() {
