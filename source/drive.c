@@ -21,11 +21,9 @@ void stateMachine() {
     stopSignal = hardware_read_stop_signal();
     hardware_command_stop_light(stopSignal);
     if (stopSignal) {
-        //hardware_command_stop_light(1);
         removeAllOrders();
     }
     else {
-        //hardware_command_stop_light(0);
         setLiftOrders(); //Checks order buttons
     }
     
