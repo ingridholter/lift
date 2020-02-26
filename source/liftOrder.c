@@ -149,6 +149,8 @@ int orderedAtFloor(int currFloor) {
                 return 1;
             }
             break;
+        default:
+            break;
     }
     /*
     for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
