@@ -37,7 +37,9 @@ void stateMachine() {
              
             else {
              */
+            if (timerExpired()) {
                 newDir = setDirection(currentFloor, currentDir);
+            }
             //}
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
@@ -75,7 +77,7 @@ void stateMachine() {
              break;
              }
              */
-            if (orderedAtFloor(3)) {
+            if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
             }
