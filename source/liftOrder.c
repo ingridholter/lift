@@ -130,22 +130,22 @@ int haveOrders() {
 int orderedAtFloor(int currFloor) {
     switch (currFloor) {
         case 0:
-            if (liftOrders[0] || liftOrders[1]) {
+            if (liftOrders[floor0Inside] || liftOrders[floor0Up]) {
                 return 1;
             }
             break;
         case 1:
-            if (liftOrders[2] || liftOrders[3] || liftOrders[4]) {
+            if (liftOrders[floor1Down] || liftOrders[floor1Inside] || liftOrders[floor1Up]) {
                 return 1;
             }
             break;
         case 2:
-            if (liftOrders[5] || liftOrders[6] || liftOrders[7]) {
+            if (liftOrders[floor2Down] || liftOrders[floor2Inside] || liftOrders[floor2Up]) {
                 return 1;
             }
             break;
         case 3:
-            if (liftOrders[8] || liftOrders[9]) {
+            if (liftOrders[floor3Down] || liftOrders[floor2Inside]) {
                 return 1;
             }
             break;
