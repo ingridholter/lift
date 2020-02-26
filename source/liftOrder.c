@@ -224,6 +224,11 @@ int atFloor() {
     return -1; //Returns invalid floor when between floors
 }
 
-void updateBetweenFloor(int currDir, int betwFloor){
-    //fix:)
+void updateBetweenFloor(int currDir, int currFloor, int betwFloor){
+    if (currDir == HARDWARE_MOVEMENT_UP &&){
+        betFloor = currFloor+1;
+    }
+    else if (currDir== HARDWARE_MOVEMENT_DOWN){
+        betFloor = currFloor;
+    }    
 }
