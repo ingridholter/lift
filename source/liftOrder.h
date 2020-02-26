@@ -79,4 +79,6 @@ int orderedAtFloor(int currFloor);
 
 int atFloor();
 
+void updateBetweenFloor(int currDir, int currFloor, int betwFloor);
+
 #endif
