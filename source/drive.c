@@ -34,12 +34,10 @@ void stateMachine() {
                 currentState = levelOpen;
                 break;
             }
-             
             else {
              */
-            if (timerExpired()) {
                 newDir = setDirection(currentFloor, currentDir);
-            }
+            
             //}
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
