@@ -66,9 +66,8 @@ void stateMachine() {
              
             else {
              */
-            if {
                 newDir = setDirection(currentFloor, currentDir);
-            }
+            //}
             //-> moving
             if (newDir != HARDWARE_MOVEMENT_STOP) {
                 currentDir = newDir;
