@@ -10,7 +10,7 @@ DRIVER_SOURCE := hardware.c io.c
 
 CC := gcc
 CFLAGS := -O0 -g3 -Wall -Werror -std=c11 -I$(SOURCE_DIR)
-LDFLAGS := -L$(BUILD_DIR) -ldriver -lcomedi
+LDFLAGS := -L$(BUILD_DIR) -ldriver -lcomedi -fsanitize=undefined
 
 .DEFAULT_GOAL := elevator
 
