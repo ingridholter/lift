@@ -78,7 +78,6 @@ void stateMachine() {
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
-                //break;
             }
             /*
              //obstruction
