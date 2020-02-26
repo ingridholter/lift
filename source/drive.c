@@ -25,36 +25,7 @@ void stateMachine() {
     }
  
     switch (currentState) {
-        case levelOpen:
-            /*
-            if (stopSignal) {
-                removeAllOrders();
-                timerReset();
-                break;
-            }
-             */
-            if (orderedAtFloor(currentFloor)) {
-                timerReset();
-                removeOrders(currentFloor);
-                break;
-            }
-            else {
-                removeOrders(currentFloor);
-            }
-            /*
-            //obstruction
-            if (hardware_read_obstruction_signal()) {
-                timerReset();
-                break;
-            }
-             */
-            //-> levelClosed
-            if (timerExpired()) {
-                hardware_command_door_open(0);
-                currentState = levelClosed;
-            }
-            break;
-            
+        
         case levelClosed:
             /*
             //-> levelOpen
@@ -93,6 +64,36 @@ void stateMachine() {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 currentState = levelOpen;
+            }
+            break;
+        
+        case levelOpen:
+            /*
+             if (stopSignal) {
+             removeAllOrders();
+             timerReset();
+             break;
+             }
+             */
+            if (orderedAtFloor(currentFloor)) {
+                timerReset();
+                removeOrders(currentFloor);
+                break;
+            }
+            else {
+                removeOrders(currentFloor);
+            }
+            /*
+             //obstruction
+             if (hardware_read_obstruction_signal()) {
+             timerReset();
+             break;
+             }
+             */
+            //-> levelClosed
+            if (timerExpired()) {
+                hardware_command_door_open(0);
+                currentState = levelClosed;
             }
             break;
             /*
