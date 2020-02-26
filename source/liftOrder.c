@@ -152,6 +152,8 @@ int orderedAtFloor(int currFloor) {
         default:
             break;
     }
+    return 0;
+}
     /*
     for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
         if (liftOrders[i] && (-1 < i) && (i < 10)) {
@@ -159,8 +161,7 @@ int orderedAtFloor(int currFloor) {
         }
     }
      */
-    return 0;
-}
+    
 
 int atFloor() {
     for (int floor = 0; floor < 4; floor++) {
