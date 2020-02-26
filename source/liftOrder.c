@@ -223,3 +223,7 @@ int atFloor() {
     }
     return -1; //Returns invalid floor when between floors
 }
+
+void updateBetweenFloor(int currDir, int betwFloor){
+    //fix:)
+}
