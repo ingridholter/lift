@@ -44,6 +44,7 @@ void stateMachine() {
                 currentDir = newDir;
                 hardware_command_movement(currentDir);
                 currentState = moving;
+                break;
             }
             break;
             
@@ -64,6 +65,7 @@ void stateMachine() {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 currentState = levelOpen;
+                break;
             }
             break;
         
@@ -90,6 +92,7 @@ void stateMachine() {
             if (timerExpired()) {
                 hardware_command_door_open(0);
                 currentState = levelClosed;
+                break;
             }
             break;
             /*
