@@ -18,8 +18,6 @@ typedef enum{
 
 //Drive variables
 int currentFloor;
-//int 1-3 for between floors
-int betweenFloor;
 int stopSignal;
 HardwareMovement currentDir;
 HardwareMovement newDir;
