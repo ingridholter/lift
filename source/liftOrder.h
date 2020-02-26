@@ -9,6 +9,18 @@
 #include "hardware.h"
 #include <stdio.h>
 
+typedef enum{
+    floor0Inside,
+    floor0Up,
+    floor1Down,
+    floor1Inside,
+    floor1Up,
+    floor2Down,
+    floor2Inside,
+    floor2Up,
+    floor3Down,
+    floor3Inside
+}orderType;
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
