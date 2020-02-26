@@ -26,11 +26,13 @@ void stateMachine() {
  
     switch (currentState) {
         case levelOpen:
+            /*
             if (stopSignal) {
                 removeAllOrders();
                 timerReset();
                 break;
             }
+             */
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
@@ -39,11 +41,13 @@ void stateMachine() {
             else {
                 removeOrders(currentFloor);
             }
+            /*
             //obstruction
             if (hardware_read_obstruction_signal()) {
                 timerReset();
                 break;
             }
+             */
             //-> levelClosed
             if (timerExpired()) {
                 hardware_command_door_open(0);
@@ -52,13 +56,17 @@ void stateMachine() {
             break;
             
         case levelClosed:
+            /*
             //-> levelOpen
             if (stopSignal) {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
                 break;
             }
+             
             else {
+             */
+            if {
                 newDir = setDirection(currentFloor, currentDir);
             }
             //-> moving
@@ -73,12 +81,14 @@ void stateMachine() {
             if (atFloor() >= 0) {
                 currentFloor = atFloor();
             }
+            /*
             //-> stationaryBetweenFloors
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
             }
+             */
             //-> levelOpen
             if (isCurrentFloorDemanded(currentFloor, currentDir) && atFloor() >= 0){
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -86,7 +96,7 @@ void stateMachine() {
                 currentState = levelOpen;
             }
             break;
-            
+            /*
         case stationaryBetweenFloors:
             if (stopSignal) {
                 removeAllOrders();
@@ -101,6 +111,7 @@ void stateMachine() {
                 }
             }
             break;
+             */
             
         default:
             break;
