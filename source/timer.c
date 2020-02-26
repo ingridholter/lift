@@ -15,5 +15,5 @@ void timerReset(){
 
 int timerExpired(){
 	clock_t clockNow = clock();
-	return ((clockNow -clockVar) >= timeLimit * CLOCKS_PER_SEC);
+	return ((clockNow - clockVar) >= timeLimit * CLOCKS_PER_SEC);
 }
