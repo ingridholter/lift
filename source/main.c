@@ -10,6 +10,7 @@
 
 
 int driveToDefinedState() {
+    int currentFloor;
     int error = hardware_init();
     if (error != 0) {
         printf("Unable to initialize hardware\n");
@@ -22,7 +23,7 @@ int driveToDefinedState() {
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    currentState = levelClosed;
+    //currentState = levelClosed;
     return 1;
 }
 
