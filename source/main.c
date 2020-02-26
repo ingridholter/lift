@@ -8,30 +8,14 @@
 #include "liftOrder.h"
 #include "timer.h"
 
-
-int driveToDefinedState() {
-    int currentFloor;
-    int error = hardware_init();
-    if (error != 0) {
-        printf("Unable to initialize hardware\n");
-        return 0;
-    }
-    currentFloor = -1;
-    while (currentFloor < 0) {
-        currentFloor = atFloor();
-        //Drives down until it is at floor
-        hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-    }
-    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //currentState = levelClosed;
-    return 1;
-}
-
 int main() {
+    printf ("Heisen fungerer som den skal!");
+    /*
     int initialized = driveToDefinedState();
     
     while (initialized) {
-        //stateMachine();
+        stateMachine();
     }
+     */
     return 0;
 }
