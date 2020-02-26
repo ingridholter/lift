@@ -78,6 +78,7 @@ void stateMachine() {
              }
              */
             if (orderedAtFloor(currentFloor)) {
+                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 timerReset();
                 removeOrders(currentFloor);
             }
