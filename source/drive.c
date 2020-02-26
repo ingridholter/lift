@@ -78,7 +78,7 @@ void stateMachine() {
             if (currentFloor == 3) {
                 timerReset();
                 removeOrders(currentFloor);
-                currentFloor == 4;
+                currentFloor = 4;
             }
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
