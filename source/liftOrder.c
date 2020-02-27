@@ -2,6 +2,8 @@
 //Prøv å flytte dette til headerfil
 const int liftOrdersSize = 10;
 static int liftOrders[liftOrdersSize] = {0};
+const int lowerFloor = 0;
+const int upperFloor = 3;
 
 int ordersDown(int floor) {
     return floor * 3 - 1;
@@ -15,16 +17,16 @@ int ordersUp(int floor){
 
 //brukes i drive, 1 gang
 void setOrders() {
-     for (int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
+     for (int floor = lowerFloor; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
             liftOrders[ordersInside(floor)] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
-        if (hardware_read_order (floor, HARDWARE_ORDER_UP) && floor < 3) {
+        if (hardware_read_order (floor, HARDWARE_ORDER_UP) && floor < upperFloor) {
             liftOrders[ordersUp(floor)] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
-        if (hardware_read_order (floor, HARDWARE_ORDER_DOWN) && floor > 0) {
+        if (hardware_read_order (floor, HARDWARE_ORDER_DOWN) && floor > lowerFloor) {
             liftOrders[ordersDown(floor)] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
         }
@@ -36,11 +38,11 @@ void clearOrders(int currFloor){
     liftOrders[ordersInside(currFloor)] = 0;
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
     
-    if (currFloor < 3) {
+    if (currFloor < upperFloor) {
         liftOrders[ordersDown(currFloor)] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
     }
-    if (currFloor > 0) {
+    if (currFloor > lowerFloor) {
         liftOrders[ordersUp(currFloor)] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_DOWN, 0);
     }
@@ -48,13 +50,13 @@ void clearOrders(int currFloor){
 
 //brukes i drive, 1 gang
 void clearAllOrders() {
-    for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++)
+    for (int i = lowerFloor; i < HARDWARE_NUMBER_OF_FLOORS; i++)
         clearOrders(i);
 }
 
 //brukes i liftOrder
 int orderedAbove(int currFloor) {
-    if (currFloor == 3) {
+    if (currFloor == upperFloor) {
         return 0;
     }
     //for (int i = currFloor * 3 + 2; i < 10; i++) {
@@ -68,7 +70,7 @@ int orderedAbove(int currFloor) {
 
 //brukes i liftOrder
 int orderedBelow(int currFloor) {
-    if (currFloor == 0) {
+    if (currFloor == lowerFloor) {
         return 0;
     }
     //for (int i = 0; i < currFloor*3 -1; i++) {
@@ -120,7 +122,7 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwF
 
 //Brukes i drive, 1 gang
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
-    if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
+    if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == lowerFloor) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == upperFloor)) {
         return 1;
     }
     if (liftOrders[ordersInside(currFloor)]) {
@@ -169,7 +171,7 @@ int isFloorOrdered(int currFloor) {
             break;
     }
     */
-    if ((liftOrders[ordersDown(currFloor)] && currFloor > 0) || liftOrders[ordersInside(currFloor)] || (liftOrders[ordersUp(currFloor)] && currFloor < 3)) {
+    if ((liftOrders[ordersDown(currFloor)] && currFloor > lowerFloor) || liftOrders[ordersInside(currFloor)] || (liftOrders[ordersUp(currFloor)] && currFloor < upperFloor)) {
         return 1;
     }
         
@@ -178,7 +180,7 @@ int isFloorOrdered(int currFloor) {
 
 //brukes i drive og initialize
 int getFloorNumber() {
-    for (int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
+    for (int floor = lowerFloor; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
         if (hardware_read_floor_sensor(floor) == 1) {
             hardware_command_floor_indicator_on (floor);
             return floor;
