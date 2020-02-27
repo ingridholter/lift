@@ -1,5 +1,5 @@
 #include "liftOrder.h"
-
+//Prøv å flytte denne til headerfil
 static int liftOrders[10] = {0};
 
 void setLiftOrders(){
