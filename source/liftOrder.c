@@ -187,7 +187,7 @@ int getFloorNumber() {
     return -1;
 }
 
-//brukes i drive, 2 ganger
+//brukes i drive, 1 gang
 int updateBetweenFloor(HardwareMovement currDir, int currFloor) {
     if (currDir == HARDWARE_MOVEMENT_UP) {
         return currFloor + 1;
