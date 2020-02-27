@@ -21,11 +21,11 @@ typedef enum{
   */
 int currentFloor;
 /**
- * @brief A 1-3 integrer value for the distances between floor, 1 is between floor 0 and 1. 
+ * @brief A 1-3 integer value for the areas between floors. 
   */
 int betweenFloor;
 /**
- * @brief A 0 or 1 integrer value. 1 if stopSignal is high, 0 if not.
+ * @brief A 0 or 1 integer value. 1 if stopSignal is high, 0 if not.
   */
 int stopSignal;
 /**
