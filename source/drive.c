@@ -42,7 +42,7 @@ void stateMachine() {
             if (newDir != HARDWARE_MOVEMENT_STOP) {
                 currentDir = newDir;
                 hardware_command_movement(currentDir);
-                updateBetweenFloor(currentDir,currentDir,betweenFloor);
+                updateBetweenFloor(currentDir,currentFloor,betweenFloor);
                 currentState = moving;
                 break;
             }
@@ -67,7 +67,7 @@ void stateMachine() {
             }
             else {
                 //skal være her??
-                 updateBetweenFloor(int currDir, int currFloor, int betwFloor);
+                 updateBetweenFloor(currDir, currFloor, betwFloor);
             }
             break;
         
