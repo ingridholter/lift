@@ -224,11 +224,11 @@ int atFloor() {
     return -1; //Returns invalid floor when between floors
 }
 //trenger å ta inn betweenFloor siden den er i en annen fil?
-void updateBetweenFloor(int currDir, int currFloor, int betwFloor){
+int updateBetweenFloor(int currDir, int currFloor){
     if (currDir == HARDWARE_MOVEMENT_UP){
-        betwFloor = currFloor+1;
+        return currFloor+1;
     }
     else if (currDir== HARDWARE_MOVEMENT_DOWN){
-        betwFloor = currFloor;
+        return currFloor;
     }    
 }
