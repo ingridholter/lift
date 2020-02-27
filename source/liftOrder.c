@@ -52,57 +52,6 @@ void clearAllOrders() {
         clearOrders(i);
 }
 
-//Brukes i drive, 1 gang
-int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
-    if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
-        return 1;
-    }
-    if (liftOrders[ordersInside(currFloor)]) {
-        return 1;
-    }
-    else if (liftOrders[ordersUp(currFloor)] && (currDir == HARDWARE_MOVEMENT_UP)) {
-        return 1;
-    }
-    else if (liftOrders[ordersDown(currFloor)] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
-        return 1;
-    }
-    else if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currFloor)) {
-        return 1;
-    }
-    else if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currFloor)) {
-        return 1;
-    }
-    return 0;
-}
-
-//brukes i drive, 2 ganger
-HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor) {
-    int above;
-    int below;
-    
-    if (!checkIfOrders()) {
-        return HARDWARE_MOVEMENT_STOP;
-    }
-    if (betwFloor) {
-        above = orderedAbove(betwFloor - 1);
-        below = orderedBelow(betwFloor);
-    }
-    else {
-        above = orderedAbove(currFloor);
-        below = orderedBelow(currFloor);
-    }
-    if (above && !below) {
-        return HARDWARE_MOVEMENT_UP;
-    }
-    else if (!above && below) {
-        return HARDWARE_MOVEMENT_DOWN;
-    }
-    if (currDir == HARDWARE_MOVEMENT_STOP) {
-        return HARDWARE_MOVEMENT_DOWN;
-    }
-    return currDir;
-}
-
 //brukes i liftOrder
 int orderedAbove(int currFloor) {
     if (currFloor == 3) {
@@ -137,6 +86,57 @@ int checkIfOrders() {
         if (liftOrders[i] == 1){
             return 1;
         }
+    }
+    return 0;
+}
+
+//brukes i drive, 2 ganger
+HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor) {
+    int above;
+    int below;
+    
+    if (!checkIfOrders()) {
+        return HARDWARE_MOVEMENT_STOP;
+    }
+    if (betwFloor) {
+        above = orderedAbove(betwFloor - 1);
+        below = orderedBelow(betwFloor);
+    }
+    else {
+        above = orderedAbove(currFloor);
+        below = orderedBelow(currFloor);
+    }
+    if (above && !below) {
+        return HARDWARE_MOVEMENT_UP;
+    }
+    else if (!above && below) {
+        return HARDWARE_MOVEMENT_DOWN;
+    }
+    if (currDir == HARDWARE_MOVEMENT_STOP) {
+        return HARDWARE_MOVEMENT_DOWN;
+    }
+    return currDir;
+}
+
+//Brukes i drive, 1 gang
+int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
+    if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
+        return 1;
+    }
+    if (liftOrders[ordersInside(currFloor)]) {
+        return 1;
+    }
+    else if (liftOrders[ordersUp(currFloor)] && (currDir == HARDWARE_MOVEMENT_UP)) {
+        return 1;
+    }
+    else if (liftOrders[ordersDown(currFloor)] && (currDir == HARDWARE_MOVEMENT_DOWN)) {
+        return 1;
+    }
+    else if ((currDir == HARDWARE_MOVEMENT_UP) && !orderedAbove(currFloor)) {
+        return 1;
+    }
+    else if ((currDir == HARDWARE_MOVEMENT_DOWN) && !orderedBelow(currFloor)) {
+        return 1;
     }
     return 0;
 }
