@@ -8,7 +8,7 @@
 
 #include "hardware.h"
 #include <stdio.h>
-
+/*
 typedef enum{
     floor0Inside,
     floor0Up,
@@ -21,14 +21,18 @@ typedef enum{
     floor3Down,
     floor3Inside
 }orderType;
+ */
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
 
+int ordersDown(int floor);
+int ordersInside(int floor);
+int ordersUp(int floor);
 /**
 * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
 */
-void setLiftOrders();
+void setOrders();
 
 /**
 * @brief removes handled orders from liftOrders array. Turnes of lights accordingly
