@@ -42,7 +42,7 @@ void stateMachine() {
                 //Fjern denne dersom koden fungerer uten:
                 //currentDir = newDir;
                 hardware_command_movement(currentDir);
-                betweenFloor = updateBetweenFloor(currentDir, currentFloor);
+                //betweenFloor = updateBetweenFloor(currentDir, currentFloor);
                 currentState = moving;
             }
             break;
@@ -77,7 +77,6 @@ void stateMachine() {
                 timerReset();
                 clearOrders(currentFloor);
             }
-             //obstruction
             if (hardware_read_obstruction_signal()) {
                 timerReset();
                 break;
