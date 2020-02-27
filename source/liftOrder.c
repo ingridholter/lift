@@ -4,59 +4,15 @@ static int liftOrders[10] = {0};
 
 //brukes i drive, 1 gang
 void setLiftOrders() {
-    //Iterates through all the buttons
-    /*
-    for (int floor = 0; floor < 4; floor++) {
-        int inside = hardware_read_order (floor, HARDWARE_ORDER_INSIDE);
-        int up = hardware_read_order (floor, HARDWARE_ORDER_UP);
-        int down = hardware_read_order (floor, HARDWARE_ORDER_DOWN);
-        switch (floor) {
-            case 0:
-                if (inside)
-                    liftOrders[floor0Inside];
-                if (up)
-                    liftOrders[floor0Up];
-                break;
-            case 1:
-                if (inside)
-                    liftOrders[floor1Inside];
-                if (up)
-                    liftOrders[floor1Up];
-                if (down)
-                    liftOrders[floor1Down];
-                break;
-            case 2:
-                if (inside)
-                    liftOrders[floor2Inside];
-                if (up)
-                    liftOrders[floor2Up];
-                if (down)
-                    liftOrders[floor2Down];
-                break;
-            case 3:
-                if (inside)
-                    liftOrders[floor3Inside];
-                if (up)
-                    liftOrders[floor3Up];
-                if (down)
-                    liftOrders[floor3Down];
-                break;
-            default:
-                break;
-     }
-        */
      for (int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
-        //Checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
             liftOrders[floor*3] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_INSIDE, 1);
         }
-        //Checks orders up
         if (hardware_read_order (floor, HARDWARE_ORDER_UP) && floor != 3) {
             liftOrders[floor*3+1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_UP, 1);
         }
-        //Checks orders down
         if (hardware_read_order (floor, HARDWARE_ORDER_DOWN) && floor != 0) {
             liftOrders[floor*3-1] = 1;
             hardware_command_order_light (floor, HARDWARE_ORDER_DOWN, 1);
