@@ -188,7 +188,7 @@ int getFloorNumber() {
 }
 
 //brukes i drive, 2 ganger
-int updateBetweenFloor(int currDir, int currFloor) {
+int updateBetweenFloor(HardwareMovement currDir, int currFloor) {
     if (currDir == HARDWARE_MOVEMENT_UP) {
         return currFloor + 1;
     }
