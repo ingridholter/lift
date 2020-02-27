@@ -37,11 +37,11 @@ void clearOrders(int currFloor) {
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
     
     if (currFloor < upperFloor) {
-        liftOrders[ordersDown(currFloor)] = 0;
+        liftOrders[ordersUp(currFloor)] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_UP, 0);
     }
     if (currFloor > lowerFloor) {
-        liftOrders[ordersUp(currFloor)] = 0;
+        liftOrders[ordersDown(currFloor)] = 0;
         hardware_command_order_light (currFloor, HARDWARE_ORDER_DOWN, 0);
     }
 }
@@ -117,7 +117,7 @@ int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == lowerFloor) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == upperFloor)) {
         return 1;
     }
-    if (liftOrders[ordersInside(currFloor)]) {
+    else if (liftOrders[ordersInside(currFloor)]) {
         return 1;
     }
     else if (liftOrders[ordersUp(currFloor)] && (currDir == HARDWARE_MOVEMENT_UP)) {
