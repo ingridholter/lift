@@ -25,10 +25,18 @@ typedef enum{
 /**
  * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
-
 int ordersDown(int floor);
+
+/**
+* @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders.
+*/
 int ordersInside(int floor);
+
+/**
+* @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders.
+*/
 int ordersUp(int floor);
+
 /**
 * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
 */
@@ -83,6 +91,6 @@ int isFloorOrdered(int currFloor);
 
 int getFloorNumber();
 
-int updateBetweenFloor(int currDir, int currFloor);
+int updateBetweenFloor(HardwareMovement currDir, int currFloor);
 
 #endif
