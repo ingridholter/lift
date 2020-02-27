@@ -94,7 +94,8 @@ void stateMachine() {
                 currentDir = setDirection(currentFloor, currentDir);
                 //-> moving
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                    currentDir = newDir;
+                    //Fjern denne dersom koden fungerer uten:
+                    //currentDir = newDir;
                     hardware_command_movement(currentDir);
                     currentState = moving;
                 }
