@@ -8,7 +8,7 @@ int driveToDefinedState() {
     }
     currentFloor = -1;
     while (currentFloor < 0) {
-        currentFloor = atFloor();
+        currentFloor = getFloorNumber();
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -48,8 +48,8 @@ void stateMachine() {
             break;
             
         case moving:
-            if (atFloor() >= 0) {
-                currentFloor = atFloor();
+            if (getFloorNumber() >= 0) {
+                currentFloor = getFloorNumber();
             }
             else {
                 betweenFloor = updateBetweenFloor(currentDir, currentFloor);
@@ -61,7 +61,7 @@ void stateMachine() {
                 break;
             }
             //-> levelOpen
-            if (isCurrentFloorDemanded(currentFloor, currentDir) && atFloor() >= 0){
+            if (isCurrentFloorDemanded(currentFloor, currentDir) && getFloorNumber() >= 0) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 currentState = levelOpen;
