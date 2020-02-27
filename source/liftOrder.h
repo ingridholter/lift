@@ -21,19 +21,24 @@ typedef enum{
     floor3Down,
     floor3Inside
 }orderType;
+
+//Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
 /**
- * @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
+ * @brief Gives the correct value of the down orders in the liftOrders array. 
+ * @param[in] floor. 0-3 integer value of where the lift has been ordered. 
  */
 int ordersDown(int floor);
 
 /**
-* @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders.
+* @brief Gives the correct value of the inside orders in the liftOrders array. 
+* @param[in] floor. 0-3 integer value of where the lift has been ordered. 
 */
 int ordersInside(int floor);
 
 /**
-* @brief Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders.
+* @brief Gives the correct value of the up orders in the liftOrders array. 
+* @param[in] floor. 0-3 integer value of where the lift has been ordered. 
 */
 int ordersUp(int floor);
 
@@ -66,7 +71,7 @@ int orderedAbove(int currFloor);
 int orderedBelow(int currFloor);
 
 /**
-* @brief checks if there is any orders in the liftOrders array.
+* @brief Checks if there is any orders in the liftOrders array.
 */
 int checkIfOrders();
 
@@ -74,23 +79,38 @@ int checkIfOrders();
 * @brief Decides where the lift should go next and sets the motor direction.
 * @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
 * @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement.
-* @return HardwareMovement enum type.
+* @param[in] betwFloor A value for the areas between floors. Must be an integer in range 1-3.
+* @return HardwareMovement enum type, the new direction for the lift.
 */
 HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor);
 
 /**
-* @brief Stops the lift when it arrives at a floor where it is demanded
-*in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
+* @brief Stops the lift when it arrives at a floor where it is demanded in the same direction that it is driving as well as at the floors where someone wants to get out of the lift.
 * @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
 * @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
 * @return 1 if the lift should stop at currFloor, 0 otherwise
 */
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir);
 
+/**
+* @brief Checks if lift is ordered at floor.
+* @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
+* @return 1 if the lift is ordered at floor, 0 if not.
+*/
 int isFloorOrdered(int currFloor);
 
+/**
+* @brief Gives the value of the lifts floor. 
+* @return 0-3 integer of the floor the lift is currently at. 
+*/
 int getFloorNumber();
 
+/**
+* @brief Updates the betweenfloor variable. 
+* @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
+* @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
+* @return 1-3 integer value. Gives which floor the lift is directly under.  
+*/
 int updateBetweenFloor(HardwareMovement currDir, int currFloor);
 
 #endif
