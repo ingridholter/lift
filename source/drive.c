@@ -20,7 +20,7 @@ void stateMachine() {
     stopSignal = hardware_read_stop_signal();
     hardware_command_stop_light(stopSignal);
     if (stopSignal) {
-        removeAllOrders();
+        clearAllOrders();
     }
     else {
         setLiftOrders(); //Checks order buttons
@@ -73,9 +73,9 @@ void stateMachine() {
                 timerReset();
                 break;
             }
-            if (orderedAtFloor(currentFloor)) {
+            if (isFloorOrdered(currentFloor)) {
                 timerReset();
-                removeOrders(currentFloor);
+                clearOrders(currentFloor);
             }
              //obstruction
             if (hardware_read_obstruction_signal()) {
