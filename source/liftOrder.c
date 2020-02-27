@@ -204,23 +204,15 @@ int orderedAtFloor(int currFloor) {
     }
     return 0;
 }
-    /*
-    for (int i = currFloor*3 - 1; i < currFloor*3 + 2; i++) {
-        if (liftOrders[i] && (-1 < i) && (i < 10)) {
-            return 1;
-        }
-    }
-     */
-    
 
-int atFloor() {
-    for (int floor = 0; floor < 4; floor++) {
-        if (hardware_read_floor_sensor(floor) == 1){
+int getFloorNumber() {
+    for (int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
+        if (hardware_read_floor_sensor(floor) == 1) {
             hardware_command_floor_indicator_on (floor);
-            return floor; //Returns current floor
+            return floor;
         }
     }
-    return -1; //Returns invalid floor when between floors
+    return -1;
 }
 
 int updateBetweenFloor(int currDir, int currFloor) {
