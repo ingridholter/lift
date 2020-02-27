@@ -35,7 +35,7 @@ void stateMachine() {
                 break;
             }
             else {
-                currentDir = setDirection(currentFloor, currentDir, betweenFloor);
+                currentDir = setDirection(currentFloor, currentDir, 0);
             }
             //-> moving
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
