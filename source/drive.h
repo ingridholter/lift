@@ -16,23 +16,37 @@ typedef enum{
   stationaryBetweenFloors 
 }liftState;
 
-//Drive variables
+/**
+ * @brief A 0-3 integer value for the current floor the lift is at. 
+  */
 int currentFloor;
-//int 1-3 for between floors
+/**
+ * @brief A 1-3 integer value for the areas between floors. 
+  */
 int betweenFloor;
+/**
+ * @brief A 0 or 1 integer value. 1 if stopSignal is high, 0 if not.
+  */
 int stopSignal;
+/**
+ * @brief A HardwareMovement type. The current direction of the lift. 
+  */
 HardwareMovement currentDir;
 //Fjern denne dersom koden fungerer uten:
 //HardwareMovement newDir;
+/**
+ * @brief Holds the current state of the lift
+  */
 liftState currentState;
 
 /**
 * @brief Initializes lift.
+* @return 0 if not able to initialize. 1 if inizialized. 
 */
 int driveToDefinedState();
 
 /**
- * @brief State Machine, decides the elevator state.
+ * @brief State Machine, decides the lift state.
  *
  */
 void stateMachine();
