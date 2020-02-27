@@ -54,23 +54,6 @@ void clearOrders(int currFloor);
 void clearAllOrders();
 
 /**
-* @brief Stops the lift when it arrives at a floor where it is demanded
-*in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
-* @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
-* @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
-* @return 1 if the lift should stop at currFloor, 0 otherwise
-*/
-int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir);
-
-/**
-* @brief Decides where the lift should go next and sets the motor direction.
-* @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
-* @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement.
-* @return HardwareMovement enum type.
-*/
-HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor);
-
-/**
 * @brief  Checks if lift is ordered above currFloor
 * @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
 */
@@ -86,6 +69,23 @@ int orderedBelow(int currFloor);
 * @brief checks if there is any orders in the liftOrders array.
 */
 int checkIfOrders();
+
+/**
+* @brief Decides where the lift should go next and sets the motor direction.
+* @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
+* @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement.
+* @return HardwareMovement enum type.
+*/
+HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor);
+
+/**
+* @brief Stops the lift when it arrives at a floor where it is demanded
+*in the same direction that it is driving as well as at the floors where someone wants to get out of the elevator.
+* @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
+* @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
+* @return 1 if the lift should stop at currFloor, 0 otherwise
+*/
+int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir);
 
 int isFloorOrdered(int currFloor);
 
