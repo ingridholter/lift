@@ -22,7 +22,8 @@ int currentFloor;
 int betweenFloor;
 int stopSignal;
 HardwareMovement currentDir;
-HardwareMovement newDir;
+//Fjern denne dersom koden fungerer uten:
+//HardwareMovement newDir;
 liftState currentState;
 
 /**
