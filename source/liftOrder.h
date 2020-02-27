@@ -34,12 +34,12 @@ void setLiftOrders();
 * @brief removes handled orders from liftOrders array. Turnes of lights accordingly
 * @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
 */
-void removeOrders(int currFloor);
+void clearOrders(int currFloor);
 
 /**
 * @brief removes all orders in liftOrder array. Turnes off all order lights
 */
-void removeAllOrders();
+void clearAllOrders();
 
 /**
 * @brief Stops the lift when it arrives at a floor where it is demanded
@@ -73,9 +73,9 @@ int orderedBelow(int currFloor);
 /**
 * @brief checks if there is any orders in the liftOrders array.
 */
-int haveOrders();
+int checkIfOrders();
 
-int orderedAtFloor(int currFloor);
+int isFloorOrdered(int currFloor);
 
 int getFloorNumber();
 
