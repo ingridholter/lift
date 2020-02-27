@@ -3,7 +3,7 @@
 static int liftOrders[10] = {0};
 
 //brukes i drive, 1 gang
-void setLiftOrders(){
+void setLiftOrders() {
     //Iterates through all the buttons
     /*
     for (int floor = 0; floor < 4; floor++) {
@@ -45,7 +45,7 @@ void setLiftOrders(){
                 break;
      }
         */
-     for (int floor = 0; floor < 4; floor++) {
+     for (int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
         //Checks Heispanel
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
             liftOrders[floor*3] = 1;
