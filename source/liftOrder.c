@@ -2,6 +2,7 @@
 //Prøv å flytte denne til headerfil
 static int liftOrders[10] = {0};
 
+//brukes i drive, 1 gang
 void setLiftOrders(){
     //Iterates through all the buttons
     /*
@@ -62,8 +63,9 @@ void setLiftOrders(){
         }
     }
 }
-
-void removeOrders(int currFloor){
+//brukes i liftOrder, 1 gang
+//brukes i drive, 1 gang
+void clearOrders(int currFloor){
     //Removes handled orders from liftOrders[]
     //Turns off lights for handled orders
     liftOrders[currFloor*3] = 0;
@@ -79,12 +81,13 @@ void removeOrders(int currFloor){
     }
 }
 
-void removeAllOrders() {
-    for (int i = 0; i < 4; i++)
-        removeOrders(i);
+//brukes i drive, 1 gang
+void clearAllOrders() {
+    for (int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++)
+        clearOrders(i);
 }
 
-//Returns 1 if lift should stop at floor
+//Brukes i drive, 1 gang
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
     //Makes sure lift stays in valid area
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
@@ -113,12 +116,12 @@ int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
     return 0;
 }
 
-//husk å ta høyde for at den kan bestilles der den er - :(
+//brukes i drive, 2 ganger
 HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor) {
     int above;
     int below;
     
-    if (!haveOrders()) {
+    if (!checkIfOrders()) {
         return HARDWARE_MOVEMENT_STOP;
     }
     if (betwFloor) {
@@ -141,7 +144,7 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwF
     return currDir;
 }
 
-//er heisen krev over gjeldende etasje
+//brukes i liftOrder
 int orderedAbove(int currFloor) {
     if (currFloor == 3) {
         return 0;
@@ -154,7 +157,7 @@ int orderedAbove(int currFloor) {
     return 0;
 }
 
-//er heisen krev under gjeldende etasje
+//brukes i liftOrder
 int orderedBelow(int currFloor) {
     if (currFloor == 0) {
         return 0;
@@ -167,8 +170,8 @@ int orderedBelow(int currFloor) {
     return 0;
 }
 
-//sjekker om det er ordre i køen
-int haveOrders() {
+//Brukes kun i liftOrder, 1 gang
+int checkIfOrders() {
     for (int i = 0; i < 10; i++) {
         if (liftOrders[i] == 1){
             return 1;
@@ -177,7 +180,8 @@ int haveOrders() {
     return 0;
 }
 
-int orderedAtFloor(int currFloor) {
+//brukes kun i drive, 1 gang
+int isFloorOrdered(int currFloor) {
     switch (currFloor) {
         case 0:
             if (liftOrders[floor0Inside] || liftOrders[floor0Up]) {
@@ -205,6 +209,7 @@ int orderedAtFloor(int currFloor) {
     return 0;
 }
 
+//brukes i drive og initialize
 int getFloorNumber() {
     for (int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
         if (hardware_read_floor_sensor(floor) == 1) {
@@ -215,6 +220,7 @@ int getFloorNumber() {
     return -1;
 }
 
+//brukes i drive, 2 ganger
 int updateBetweenFloor(int currDir, int currFloor) {
     if (currDir == HARDWARE_MOVEMENT_UP) {
         return currFloor + 1;
