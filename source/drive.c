@@ -35,21 +35,24 @@ void stateMachine() {
                 break;
             }
             else {
-                newDir = setDirection(currentFloor, currentDir);
+                currentDir = setDirection(currentFloor, currentDir);
             }
             //-> moving
-            if (newDir != HARDWARE_MOVEMENT_STOP) {
-                currentDir = newDir;
+            if (currentDir != HARDWARE_MOVEMENT_STOP) {
+                //Fjern denne dersom koden fungerer uten:
+                //currentDir = newDir;
                 hardware_command_movement(currentDir);
-                updateBetweenFloor(currentDir,currentFloor,betweenFloor);
+                betweenFloor = updateBetweenFloor(currentDir, currentFloor);
                 currentState = moving;
-                break;
             }
             break;
             
         case moving:
             if (atFloor() >= 0) {
                 currentFloor = atFloor();
+            }
+            else {
+                betweenFloor = updateBetweenFloor(currDir, currFloor);
             }
             //-> stationaryBetweenFloors
             if (stopSignal) {
@@ -62,11 +65,6 @@ void stateMachine() {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
                 currentState = levelOpen;
-                break;
-            }
-            else {
-                //skal være her??
-                 updateBetweenFloor(currDir, currFloor, betwFloor);
             }
             break;
         
