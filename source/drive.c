@@ -35,7 +35,7 @@ void stateMachine() {
                 break;
             }
             else {
-                currentDir = setDirection(currentFloor, currentDir);
+                currentDir = setDirection(currentFloor, currentDir, betweenFloor);
             }
             //-> moving
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
@@ -91,7 +91,7 @@ void stateMachine() {
 
         case stationaryBetweenFloors:
             if (!stopSignal) {
-                currentDir = setDirection(currentFloor, currentDir);
+                currentDir = setDirection(currentFloor, currentDir, betweenFloor);
                 //-> moving
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
                     //Fjern denne dersom koden fungerer uten:
