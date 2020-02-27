@@ -56,7 +56,7 @@ int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir);
 * @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement.
 * @return HardwareMovement enum type.
 */
-HardwareMovement setDirection(int currFloor, HardwareMovement currDir);
+HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor);
 
 /**
 * @brief  Checks if lift is ordered above currFloor
