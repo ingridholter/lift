@@ -21,8 +21,6 @@ typedef enum{
     floor3Down,
     floor3Inside
 }orderType;
-
-//Array of where the lift has been ordered, 0-3: inside orders, 4-6 up orders, 7-9 down orders. 
  */
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
