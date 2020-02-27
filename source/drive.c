@@ -23,12 +23,11 @@ void stateMachine() {
         clearAllOrders();
     }
     else {
-        setOrders(); //Checks order buttons
+        setOrders();
     }
     
     switch (currentState) {
         case levelClosed:
-            //-> levelOpen
             if (stopSignal) {
                 hardware_command_door_open(1);
                 currentState = levelOpen;
@@ -37,9 +36,7 @@ void stateMachine() {
             else {
                 currentDir = setDirection(currentFloor, currentDir, 0);
             }
-            //-> moving
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                //Fjern denne dersom koden fungerer uten:
                 //currentDir = newDir;
                 hardware_command_movement(currentDir);
                 //betweenFloor = updateBetweenFloor(currentDir, currentFloor);
@@ -54,13 +51,11 @@ void stateMachine() {
             else {
                 betweenFloor = updateBetweenFloor(currentDir, currentFloor);
             }
-            //-> stationaryBetweenFloors
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
                 break;
             }
-            //-> levelOpen
             if (isCurrentFloorDemanded(currentFloor, currentDir) && getFloorNumber() >= 0) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
@@ -81,7 +76,6 @@ void stateMachine() {
                 timerReset();
                 break;
             }
-            //-> levelClosed
             if (timerExpired()) {
                 hardware_command_door_open(0);
                 currentState = levelClosed;
@@ -91,9 +85,7 @@ void stateMachine() {
         case stationaryBetweenFloors:
             if (!stopSignal) {
                 currentDir = setDirection(currentFloor, currentDir, betweenFloor);
-                //-> moving
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                    //Fjern denne dersom koden fungerer uten:
                     //currentDir = newDir;
                     hardware_command_movement(currentDir);
                     currentState = moving;
