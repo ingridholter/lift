@@ -15,7 +15,6 @@ int ordersUp(int floor){
     return floor * 3 + 1;
 }
 
-//brukes i drive, 1 gang
 void setOrders() {
      for (int floor = lowerFloor; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
         if (hardware_read_order (floor, HARDWARE_ORDER_INSIDE)) {
@@ -32,8 +31,7 @@ void setOrders() {
         }
     }
 }
-//brukes i liftOrder, 1 gang
-//brukes i drive, 1 gang
+
 void clearOrders(int currFloor){
     liftOrders[ordersInside(currFloor)] = 0;
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
@@ -48,13 +46,11 @@ void clearOrders(int currFloor){
     }
 }
 
-//brukes i drive, 1 gang
 void clearAllOrders() {
     for (int i = lowerFloor; i < HARDWARE_NUMBER_OF_FLOORS; i++)
         clearOrders(i);
 }
 
-//brukes i liftOrder
 int orderedAbove(int currFloor) {
     if (currFloor == upperFloor) {
         return 0;
@@ -68,7 +64,6 @@ int orderedAbove(int currFloor) {
     return 0;
 }
 
-//brukes i liftOrder
 int orderedBelow(int currFloor) {
     if (currFloor == lowerFloor) {
         return 0;
@@ -82,7 +77,6 @@ int orderedBelow(int currFloor) {
     return 0;
 }
 
-//Brukes kun i liftOrder, 1 gang
 int checkIfOrders() {
     for (int i = 0; i < liftOrdersSize; i++) {
         if (liftOrders[i] == 1){
@@ -92,7 +86,6 @@ int checkIfOrders() {
     return 0;
 }
 
-//brukes i drive, 2 ganger
 HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor) {
     int above;
     int below;
@@ -120,7 +113,6 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwF
     return currDir;
 }
 
-//Brukes i drive, 1 gang
 int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == lowerFloor) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == upperFloor)) {
         return 1;
@@ -143,7 +135,6 @@ int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
     return 0;
 }
 
-//brukes kun i drive, 1 gang
 int isFloorOrdered(int currFloor) {
     /*
     switch (currFloor) {
@@ -178,7 +169,6 @@ int isFloorOrdered(int currFloor) {
     return 0;
 }
 
-//brukes i drive og initialize
 int getFloorNumber() {
     for (int floor = lowerFloor; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
         if (hardware_read_floor_sensor(floor) == 1) {
@@ -189,7 +179,6 @@ int getFloorNumber() {
     return -1;
 }
 
-//brukes i drive, 1 gang
 int updateBetweenFloor(HardwareMovement currDir, int currFloor) {
     if (currDir == HARDWARE_MOVEMENT_UP) {
         return currFloor + 1;
