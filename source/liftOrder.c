@@ -225,7 +225,7 @@ int atFloor() {
 }
 //trenger å ta inn betweenFloor siden den er i en annen fil?
 void updateBetweenFloor(int currDir, int currFloor, int betwFloor){
-    if (currDir == HARDWARE_MOVEMENT_UP &&){
+    if (currDir == HARDWARE_MOVEMENT_UP){
         betwFloor = currFloor+1;
     }
     else if (currDir== HARDWARE_MOVEMENT_DOWN){
