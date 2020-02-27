@@ -8,10 +8,10 @@ const int upperFloor = 3;
 int ordersDown(int floor) {
     return floor * 3 - 1;
 }
-int ordersInside(int floor){
+int ordersInside(int floor) {
     return floor * 3;
 }
-int ordersUp(int floor){
+int ordersUp(int floor) {
     return floor * 3 + 1;
 }
 
@@ -32,7 +32,7 @@ void setOrders() {
     }
 }
 
-void clearOrders(int currFloor){
+void clearOrders(int currFloor) {
     liftOrders[ordersInside(currFloor)] = 0;
     hardware_command_order_light (currFloor, HARDWARE_ORDER_INSIDE, 0);
     
@@ -79,7 +79,7 @@ int orderedBelow(int currFloor) {
 
 int checkIfOrders() {
     for (int i = 0; i < liftOrdersSize; i++) {
-        if (liftOrders[i] == 1){
+        if (liftOrders[i] == 1) {
             return 1;
         }
     }
