@@ -52,7 +52,7 @@ void stateMachine() {
                 currentFloor = atFloor();
             }
             else {
-                betweenFloor = updateBetweenFloor(currDir, currFloor);
+                betweenFloor = updateBetweenFloor(currentDir, currentFloor);
             }
             //-> stationaryBetweenFloors
             if (stopSignal) {
@@ -69,32 +69,31 @@ void stateMachine() {
             break;
         
         case levelOpen:
-             if (stopSignal) {
-                 timerReset();
-                 break;
-             }
+            if (stopSignal) {
+                timerReset();
+                break;
+            }
             if (orderedAtFloor(currentFloor)) {
                 timerReset();
                 removeOrders(currentFloor);
             }
              //obstruction
-             if (hardware_read_obstruction_signal()) {
-                 timerReset();
-                 break;
-             }
+            if (hardware_read_obstruction_signal()) {
+                timerReset();
+                break;
+            }
             //-> levelClosed
             if (timerExpired()) {
                 hardware_command_door_open(0);
                 currentState = levelClosed;
-                break;
             }
             break;
 
         case stationaryBetweenFloors:
             if (!stopSignal) {
-                newDir = setDirection(currentFloor, currentDir);
+                currentDir = setDirection(currentFloor, currentDir);
                 //-> moving
-                if (newDir != HARDWARE_MOVEMENT_STOP) {
+                if (currentDir != HARDWARE_MOVEMENT_STOP) {
                     currentDir = newDir;
                     hardware_command_movement(currentDir);
                     currentState = moving;
