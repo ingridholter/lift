@@ -77,7 +77,7 @@ int haveOrders();
 
 int orderedAtFloor(int currFloor);
 
-int atFloor();
+int getFloorNumber();
 
 int updateBetweenFloor(int currDir, int currFloor);
 
