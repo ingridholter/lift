@@ -23,7 +23,7 @@ void stateMachine() {
         clearAllOrders();
     }
     else {
-        setLiftOrders(); //Checks order buttons
+        setOrders(); //Checks order buttons
     }
     
     switch (currentState) {
