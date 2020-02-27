@@ -85,7 +85,7 @@ void removeAllOrders() {
 }
 
 //Returns 1 if lift should stop at floor
-int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir){
+int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
     //Makes sure lift stays in valid area
     if ((currDir == HARDWARE_MOVEMENT_DOWN && currFloor == 0) || (currDir == HARDWARE_MOVEMENT_UP && currFloor == 3)) {
         return 1;
@@ -114,14 +114,21 @@ int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir){
 }
 
 //husk å ta høyde for at den kan bestilles der den er - :(
-HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
+HardwareMovement setDirection(int currFloor, HardwareMovement currDir, int betwFloor) {
+    int above;
+    int below;
+    
     if (!haveOrders()) {
         return HARDWARE_MOVEMENT_STOP;
     }
-    
-    int above = orderedAbove(currFloor);
-    int below = orderedBelow(currFloor);
-    
+    if (betwFloor) {
+        above = orderedAbove(betwFloor - 1);
+        below = orderedBelow(betwFloor);
+    }
+    else {
+        above = orderedAbove(currFloor);
+        below = orderedBelow(currFloor);
+    }
     if (above && !below) {
         return HARDWARE_MOVEMENT_UP;
     }
@@ -130,14 +137,6 @@ HardwareMovement setDirection(int currFloor, HardwareMovement currDir) {
     }
     if (currDir == HARDWARE_MOVEMENT_STOP) {
         return HARDWARE_MOVEMENT_DOWN;
-    }
-    if (atFloor() < 0) {
-        if (orderedAtFloor(currFloor) && currDir == HARDWARE_MOVEMENT_UP) {
-            return HARDWARE_MOVEMENT_DOWN;
-        }
-        else if (orderedAtFloor(currFloor) && currDir == HARDWARE_MOVEMENT_DOWN) {
-            return HARDWARE_MOVEMENT_UP;
-        }
     }
     return currDir;
 }
