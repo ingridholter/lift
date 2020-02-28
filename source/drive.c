@@ -9,7 +9,6 @@ int driveToDefinedState() {
     currentFloor = -1;
     while (currentFloor < 0) {
         currentFloor = getFloorNumber();
-        previousFloor = currentFloor;
         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
