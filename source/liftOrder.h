@@ -10,6 +10,26 @@
 #include <stdio.h>
 
 /**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
+int liftOrdersSize = 10;
+
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
+int liftOrders[10] = {0};
+
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
+int lowerFloor = 0;
+
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
+int upperFloor = 3;
+
+/**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
  * @param[in] floor 0-3 integer value of where the lift has been ordered.
  */
