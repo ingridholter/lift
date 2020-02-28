@@ -29,6 +29,11 @@ typedef enum{
 int currentFloor;
 
 /**
+ * @brief A 0-3 integer value for the previous floor the lift is at.
+  */
+int previousFloor;
+
+/**
  * @brief A 1-3 integer value for the areas between floors. 
   */
 int betweenFloor;
@@ -47,11 +52,6 @@ HardwareMovement currentDir;
  * @brief Holds the current state of the lift
   */
 liftState currentState;
-
-/**
- * @brief Holds the current state of the lift
-  */
-liftState prevState;
 
 /**
 * @brief Initializes lift.
