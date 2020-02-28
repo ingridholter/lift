@@ -38,7 +38,6 @@ void stateMachine() {
             }
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
                 hardware_command_movement(currentDir);
-                //betweenFloor = updateBetweenFloor(currentDir, currentFloor);
                 currentState = moving;
             }
             break;
@@ -46,7 +45,7 @@ void stateMachine() {
         case moving:
             if (getFloorNumber() >= 0) {
                 currentFloor = getFloorNumber();
-                nextFloor = updateNextFloor(currentDir)
+                nextFloor = updateNextFloor(currentFloor, currentDir)
                 betweenFloor = updateBetweenFloor(nextFloor, currentFloor);
             }
             if (stopSignal) {
