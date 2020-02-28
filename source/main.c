@@ -5,6 +5,9 @@
 
 #include "drive.h"
 
+/**
+ * @brief main
+ */
 int main() {
     int initialized = driveToDefinedState();
     
