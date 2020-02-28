@@ -109,6 +109,6 @@ int getFloorNumber();
 * @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
 * @return 1-3 integer value. Gives which floor the lift is directly under.  
 */
-int updateBetweenFloor(HardwareMovement currDir, int currFloor);
+int updateBetweenFloor(int prevFloor, int currFloor);
 
 #endif
