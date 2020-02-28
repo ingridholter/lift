@@ -9,10 +9,7 @@
 #include "hardware.h"
 #include <stdio.h>
 
-/**
- * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
- */
-int liftOrders[10] = {0};
+
 
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
