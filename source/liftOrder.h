@@ -10,26 +10,6 @@
 #include <stdio.h>
 
 /**
- * @brief Sets a new timestamp
-*/
-const int liftOrdersSize;
-
-/**
- * @brief Sets a new timestamp
-*/
-static int liftOrders[liftOrdersSize];
-
-/**
- * @brief Sets a new timestamp
-*/
-const int lowerFloor;
-
-/**
- * @brief Sets a new timestamp
-*/
-const int upperFloor;
-
-/**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
  * @param[in] floor. 0-3 integer value of where the lift has been ordered. 
  */
