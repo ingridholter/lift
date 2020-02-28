@@ -9,11 +9,6 @@
 #include <time.h>
 
 /**
- * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
- */
-#define timeLimit 3
-
-/**
  * @brief Sets a new timestamp
  */
 void timerReset();
