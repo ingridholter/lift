@@ -5,11 +5,10 @@
 
 #include "timer.h"
 
+/*
 const int timeLimit = 3;
-
-
 static clock_t clockVar;
-
+*/
 void timerReset(){
 	clockVar = clock();
 }
