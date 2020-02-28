@@ -179,8 +179,8 @@ int getFloorNumber() {
     return -1;
 }
 
-int updateBetweenFloor(HardwareMovement currDir, int currFloor) {
-    if (currDir == HARDWARE_MOVEMENT_UP) {
+int updateBetweenFloor(int prevFloor, int currFloor) {
+    if (prevFloor < currFloor) {
         return currFloor + 1;
     }
     else {
