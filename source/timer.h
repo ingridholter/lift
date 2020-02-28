@@ -8,7 +8,15 @@
 
 #include <time.h>
 
+/**
+ * @brief Sets a new timestamp
+*/
+const int timeLimit;
 
+/**
+ * @brief Sets a new timestamp
+*/
+static clock_t clockVar;
 
 /**
  * @brief Sets a new timestamp
