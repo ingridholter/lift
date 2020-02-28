@@ -12,22 +12,22 @@
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-const int liftOrdersSize = 10;
+#define liftOrdersSize 10
 
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-static int liftOrders[liftOrdersSize] = {0};
+int liftOrders[liftOrdersSize] = {0};
 
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-const int lowerFloor = 0;
+#define lowerFloor 0
 
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-const int upperFloor = 3;
+#define upperFloor 3
 
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
