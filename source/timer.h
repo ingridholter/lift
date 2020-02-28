@@ -14,9 +14,9 @@
 void timerReset();
 
 /**
- * @brief Checks if more than 3 seconds have passed since timerReset().
+ * @brief Checks if more than 3 seconds have passed since @c timerReset.
  * @return 1 if the time limit has passed, 0 otherwise.
-  */
+ */
 int timerExpired();
 
 #endif
