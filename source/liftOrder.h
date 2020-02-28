@@ -17,17 +17,17 @@ const int liftOrdersSize = 10;
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-int liftOrders[10] = {0};
+static int liftOrders[liftOrdersSize] = {0};
 
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-int lowerFloor = 0;
+const int lowerFloor = 0;
 
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-int upperFloor = 3;
+const int upperFloor = 3;
 
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
