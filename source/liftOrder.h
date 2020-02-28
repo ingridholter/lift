@@ -1,6 +1,8 @@
 /**
  * @file
  * @brief Handles all orders of the lift.
+ * Updates the position of the lift.
+ * Finds out where to drive next and where to stop.
  */
 
 #ifndef LIFTORDER_H__
