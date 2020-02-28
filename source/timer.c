@@ -5,17 +5,7 @@
 
 #include "timer.h"
 
-
-/**
- * @brief Sets a new timestamp
-*/
 const int timeLimit = 3;
-
-/**
- * @brief Sets a new timestamp
-*/
-static clock_t clockVar;
-
 
 void timerReset(){
 	clockVar = clock();
