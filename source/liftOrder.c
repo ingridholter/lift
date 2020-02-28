@@ -179,12 +179,12 @@ int getFloorNumber() {
     return -1;
 }
 
-int updateNextFloor(int currDir) {
+int updateNextFloor(int currFloor, HardwareMovement currDir) {
     if (currDir == HARDWARE_MOVEMENT_UP) {
-        return currentFloor + 1;
+        return currFloor + 1;
     }
     else {
-        return currentFloor - 1;
+        return currFloor - 1;
     }
 }
 
