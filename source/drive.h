@@ -9,9 +9,6 @@
 #include "liftOrder.h"
 #include "timer.h"
 
-//Fjern denne dersom koden fungerer uten:
-//HardwareMovement newDir;
-
 /**
 * @brief Order type used in @c hardware_read_order
 * and in @c hardware_command_order_light.
