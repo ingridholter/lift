@@ -9,7 +9,7 @@
 #include "hardware.h"
 #include <stdio.h>
 const int liftOrdersSize = 10;
-static int liftOrders[10] = {0};
+static int liftOrders[liftOrdersSize] = {0};
 const int lowerFloor = 0;
 const int upperFloor = 3;
 /**
