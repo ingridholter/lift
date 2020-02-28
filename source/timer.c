@@ -1,5 +1,7 @@
 #include "timer.h"
 
+clock_t clockVar;
+
 void timerReset(){
 	clockVar = clock();
 }
