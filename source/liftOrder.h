@@ -104,6 +104,13 @@ int isFloorOrdered(int currFloor);
 int getFloorNumber();
 
 /**
+* @brief Updates the nextFloor variable.
+* @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
+* @return 1-3 integer value. Gives the next floor the lift will reach, given the current direction.
+*/
+int updateNextFloor(int currDir)
+
+/**
 * @brief Updates the betweenfloor variable. 
 * @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
 * @param[in] currFloor The floor the lift is currently on. Must be an integer in range 0-3.
