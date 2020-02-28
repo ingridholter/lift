@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Drives the lift first by initializing and then by using different states.
+ * @brief Drives the lift first by initializing and then by using different states in the @c stateMachine().
  */
 #ifndef _DRIVE__
 #define _DRIVE__
@@ -9,7 +9,7 @@
 #include "timer.h"
 
 /**
- * @brief Lift state used to switch between states in @c stateMachine.
+ * @brief Lift states used to switch between states in @c stateMachine().
  */
 typedef enum{
   levelOpen,
