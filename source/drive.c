@@ -45,7 +45,7 @@ void stateMachine() {
         case moving:
             if (getFloorNumber() >= 0) {
                 currentFloor = getFloorNumber();
-                nextFloor = updateNextFloor(currentFloor, currentDir)
+                nextFloor = updateNextFloor(currentFloor, currentDir);
                 betweenFloor = updateBetweenFloor(nextFloor, currentFloor);
             }
             if (stopSignal) {
