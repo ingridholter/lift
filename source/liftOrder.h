@@ -9,8 +9,6 @@
 #include "hardware.h"
 #include <stdio.h>
 
-
-
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
  * @param[in] floor 0-3 integer value of where the lift has been ordered.
