@@ -44,8 +44,10 @@ void stateMachine() {
             break;
             
         case moving:
-            if (getFloorNumber() >= 0 && previousFloor != currentFloor) {
-                previousFloor = currentFloor;
+            if (getFloorNumber() >= 0) {
+                if (previousFloor != currentFloor) {
+                    previousFloor = currentFloor;
+                }
                 currentFloor = getFloorNumber();
             }
             else {
