@@ -17,7 +17,7 @@ int liftOrdersSize = 10;
 /**
 * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
 */
-int liftOrders[10] = {0};
+int liftOrders[liftOrdersSize] = {0};
 
 /**
 * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
