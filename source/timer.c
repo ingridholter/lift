@@ -5,7 +5,7 @@
 
 #include "timer.h"
 
-const int timeLimit = 3;
+timeLimit = 3;
 
 void timerReset(){
 	clockVar = clock();
