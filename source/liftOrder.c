@@ -1,9 +1,9 @@
 #include "liftOrder.h"
 
 int liftOrders[10] = {0};
-int liftOrdersSize = 10;
-int lowerFloor = 0;
-int upperFloor = 3;
+const int liftOrdersSize = 10;
+const int lowerFloor = 0;
+const int upperFloor = 3;
 
 int ordersDown(int floor) {
     return floor * 3 - 1;
