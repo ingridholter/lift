@@ -13,8 +13,6 @@
 */
 void timerReset();
 
-//Checks if more than timeLimit seconds since last ?timestamp?
-
 /**
 * @brief Checks if more than timeLimit seconds have passed since last time timer was reset
 * @return 1 if the time limit has passed, 0 otherwise.
