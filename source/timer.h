@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief The timer module. The library @c time.h allows this module to set a timer and check if it has expeired.
+ * @brief Uses the library @c time.h to set a timer and check if it has expeired.
  */
 
 #ifndef _TIMER__
@@ -15,7 +15,8 @@ void timerReset();
 
 /**
  * @brief Checks if more than 3 seconds have passed since @c timerReset.
- * @return 1 if the time limit has passed, 0 otherwise.
+ *
+ * @return 1 if the time limit has passed; 0 otherwise.
  */
 int timerExpired();
 
