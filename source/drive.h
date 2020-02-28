@@ -49,6 +49,11 @@ HardwareMovement currentDir;
 liftState currentState;
 
 /**
+ * @brief Holds the current state of the lift
+  */
+liftState prevState;
+
+/**
 * @brief Initializes lift.
 * @return 0 if not able to initialize. 1 if inizialized. 
 */
