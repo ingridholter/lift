@@ -1,12 +1,12 @@
 #include "liftOrder.h"
 
-liftOrdersSize = 10;
+const int liftOrdersSize = 10;
 
-liftOrders[liftOrdersSize] = {0};
+static int liftOrders[liftOrdersSize] = {0};
 
-lowerFloor = 0;
+const int lowerFloor = 0;
 
-upperFloor = 3;
+const int upperFloor = 3;
 
 
 int ordersDown(int floor) {
