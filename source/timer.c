@@ -1,6 +1,6 @@
 #include "timer.h"
 
-const int timeLimit = 3;
+int timeLimit = 3;
 clock_t clockVar;
 
 void timerReset(){
