@@ -29,9 +29,9 @@ typedef enum{
 int currentFloor;
 
 /**
- * @brief A 0-3 integer value for the previous floor the lift is at.
+ * @brief A 0-3 integer value for the next floor the lift is at.
   */
-int previousFloor;
+int nextFloor;
 
 /**
  * @brief A 1-3 integer value for the areas between floors. 
