@@ -8,28 +8,12 @@
 
 #include "hardware.h"
 #include <stdio.h>
-/*
-/**
- * @brief int
- */
 
 const int liftOrdersSize = 10;
-/*
-/**
- * @brief int
- */
 
 static int liftOrders[liftOrdersSize] = {0};
-/*
-/**
- * @brief int
- */
 
 const int lowerFloor = 0;
-/*
-/**
- * @brief int
- */
 
 const int upperFloor = 3;
 
