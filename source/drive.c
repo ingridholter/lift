@@ -50,7 +50,7 @@ void stateMachine() {
             if (getFloorNumber() >= 0) {
                 currentFloor = getFloorNumber();
             }
-            else {
+            else if (prevState != stationaryBetweenFloors) {
                 betweenFloor = updateBetweenFloor(currentDir, currentFloor);
             }
             if (stopSignal) {
