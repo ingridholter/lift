@@ -1,7 +1,7 @@
 #include "liftOrder.h"
 
-int liftOrders[10] = {0};
-const int liftOrdersSize = 10;
+#define liftOrdersSize 10
+int liftOrders[liftOrdersSize] = {0};
 const int lowerFloor = 0;
 const int upperFloor = 3;
 
