@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Sets the lift's direction and motorpower in order to get desired behavior.
+ * @brief The drive module. The stateMachine() sets the lift's direction and motorpower in order to get desired behavior.
  *
  */
 #ifndef _DRIVE__
@@ -57,7 +57,7 @@ liftState currentState;
 int driveToDefinedState();
 
 /**
- * @brief State Machine, decides the lift state.
+ * @brief State Machine, decides the lift state. sets the lift's direction and motorpower in order to get desired behavior.
  *
  */
 void stateMachine();
