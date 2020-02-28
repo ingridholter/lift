@@ -1,3 +1,9 @@
+/**
+* @file
+* @brief Implementation of the liftOrder module
+*/
+
+
 #include "liftOrder.h"
 
 /**
