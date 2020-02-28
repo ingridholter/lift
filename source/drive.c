@@ -46,19 +46,9 @@ void stateMachine() {
         case moving:
             if (getFloorNumber() >= 0) {
                 currentFloor = getFloorNumber();
-                if (currentDir == HARDWARE_MOVEMENT_UP) {
-                    nextFloor = currentFloor + 1;
-                }
-                else if (currentDir == HARDWARE_MOVEMENT_DOWN) {
-                    nextFloor = currentFloor -1;
-                }
+                nextFloor = updateNextFloor(currentDir)
                 betweenFloor = updateBetweenFloor(nextFloor, currentFloor);
             }
-            /*
-            else {
-                betweenFloor = updateBetweenFloor(previousFloor, currentFloor);
-            }
-             */
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 currentState = stationaryBetweenFloors;
