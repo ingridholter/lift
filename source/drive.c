@@ -1,5 +1,12 @@
 #include "drive.h"
 
+int currentFloor;
+int nextFloor;
+int betweenFloor;
+int stopSignal;
+HardwareMovement currentDir;
+liftState currentState;
+
 int driveToDefinedState() {
     int error = hardware_init();
     if (error != 0) {
