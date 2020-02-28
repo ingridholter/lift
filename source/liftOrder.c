@@ -56,7 +56,7 @@ int orderedAbove(int currFloor) {
         return 0;
     }
     //for (int i = currFloor * 3 + 2; i < 10; i++) {
-    for (int i = ordersDown(currFloor + 1); i < liftOrdersSize; i++) {
+    for (int i = ordersUp(currFloor) + 1; i < liftOrdersSize; i++) {
         if (liftOrders[i]) {
             return 1;
         }
@@ -69,7 +69,7 @@ int orderedBelow(int currFloor) {
         return 0;
     }
     //for (int i = 0; i < currFloor*3 -1; i++) {
-    for (int i = 0; i < ordersUp(currFloor - 1); i++) {
+    for (int i = 0; i < ordersDown(currFloor); i++) {
         if (liftOrders[i]) {
             return 1;
         }
