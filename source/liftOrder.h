@@ -10,23 +10,23 @@
 #include <stdio.h>
 
 /**
-* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
-*/
+ * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+ */
 int liftOrdersSize = 10;
 
 /**
-* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
-*/
+ * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+ */
 int liftOrders[liftOrdersSize] = {0};
 
 /**
-* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
-*/
+ * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+ */
 int lowerFloor = 0;
 
 /**
-* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
-*/
+ * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+ */
 int upperFloor = 3;
 
 /**
