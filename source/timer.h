@@ -8,6 +8,9 @@
 
 #include <time.h>
 
+const int timeLimit = 3;
+static clock_t clockVar;
+
 /**
 * @brief Sets a new timestamp
 */
