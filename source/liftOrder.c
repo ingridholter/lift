@@ -1,5 +1,26 @@
 #include "liftOrder.h"
 
+/**
+ * @brief Sets a new timestamp
+*/
+const int liftOrdersSize = 10;
+
+/**
+ * @brief Sets a new timestamp
+*/
+static int liftOrders[liftOrdersSize] = {0};
+
+/**
+ * @brief Sets a new timestamp
+*/
+const int lowerFloor = 0;
+
+/**
+ * @brief Sets a new timestamp
+*/
+const int upperFloor = 3;
+
+
 int ordersDown(int floor) {
     return floor * 3 - 1;
 }
