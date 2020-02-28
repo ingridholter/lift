@@ -1,6 +1,6 @@
 #include "liftOrder.h"
 
-
+int liftOrders[10] = {0};
 int liftOrdersSize = 10;
 int lowerFloor = 0;
 int upperFloor = 3;
