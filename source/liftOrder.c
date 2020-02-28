@@ -179,8 +179,8 @@ int getFloorNumber() {
     return -1;
 }
 
-int updateBetweenFloor(int prevFloor, int currFloor) {
-    if (prevFloor < currFloor) {
+int updateBetweenFloor(int nFloor, int currFloor) {
+    if (nFloor > currFloor) {
         return currFloor + 1;
     }
     else {
