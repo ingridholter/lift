@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief The timer module. A library containing functions regarding the timer.
+ * @brief The timer module. The library time.h allows this module to set a timer and check if it has expeired.
  */
 
 #ifndef _TIMER__
