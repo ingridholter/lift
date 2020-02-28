@@ -30,7 +30,6 @@ void stateMachine() {
         case levelClosed:
             if (stopSignal) {
                 hardware_command_door_open(1);
-                prevState = currentState;
                 currentState = levelOpen;
                 break;
             }
@@ -38,31 +37,28 @@ void stateMachine() {
                 currentDir = setDirection(currentFloor, currentDir, 0);
             }
             if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                //currentDir = newDir;
                 hardware_command_movement(currentDir);
                 //betweenFloor = updateBetweenFloor(currentDir, currentFloor);
-                prevState = currentState;
                 currentState = moving;
             }
             break;
             
         case moving:
-            if (getFloorNumber() >= 0) {
+            if (getFloorNumber() >= 0 && previousFloor != currentFloor) {
+                previousFloor = currentFloor;
                 currentFloor = getFloorNumber();
             }
-            else if (prevState != stationaryBetweenFloors) {
-                betweenFloor = updateBetweenFloor(currentDir, currentFloor);
+            else {
+                betweenFloor = updateBetweenFloor(previousFloor, currentFloor);
             }
             if (stopSignal) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                prevState = currentState;
                 currentState = stationaryBetweenFloors;
                 break;
             }
             if (isCurrentFloorDemanded(currentFloor, currentDir) && getFloorNumber() >= 0) {
                 hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                 hardware_command_door_open(1);
-                prevState = currentState;
                 currentState = levelOpen;
             }
             else
@@ -83,7 +79,6 @@ void stateMachine() {
             }
             if (timerExpired()) {
                 hardware_command_door_open(0);
-                prevState = currentState;
                 currentState = levelClosed;
             }
             break;
@@ -92,9 +87,7 @@ void stateMachine() {
             if (!stopSignal) {
                 currentDir = setDirection(currentFloor, currentDir, betweenFloor);
                 if (currentDir != HARDWARE_MOVEMENT_STOP) {
-                    //currentDir = newDir;
                     hardware_command_movement(currentDir);
-                    prevState = currentState;
                     currentState = moving;
                 }
             }
