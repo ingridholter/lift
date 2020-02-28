@@ -11,12 +11,7 @@
 /**
  * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
  */
-const int timeLimit = 3;
-
-/**
- * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
- */
-static clock_t clockVar;
+#define timeLimit 3
 
 /**
  * @brief Sets a new timestamp
