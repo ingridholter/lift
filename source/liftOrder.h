@@ -8,10 +8,26 @@
 
 #include "hardware.h"
 #include <stdio.h>
+/**
+* @brief int
+*/
 const int liftOrdersSize = 10;
+
+/**
+* @brief int
+*/
 static int liftOrders[liftOrdersSize] = {0};
+
+/**
+* @brief int
+*/
 const int lowerFloor = 0;
+
+/**
+* @brief int
+*/
 const int upperFloor = 3;
+
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
  * @param[in] floor. 0-3 integer value of where the lift has been ordered. 
