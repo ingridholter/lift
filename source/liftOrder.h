@@ -108,7 +108,7 @@ int getFloorNumber();
 * @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
 * @return 1-3 integer value. Gives the next floor the lift will reach, given the current direction.
 */
-int updateNextFloor(int currDir)
+int updateNextFloor(int currFloor, HardwareMovement currDir)
 
 /**
 * @brief Updates the betweenfloor variable. 
