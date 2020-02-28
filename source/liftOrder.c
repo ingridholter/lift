@@ -1,11 +1,23 @@
 #include "liftOrder.h"
 
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
 const int liftOrdersSize = 10;
 
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
 static int liftOrders[10] = {0};
 
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
 const int lowerFloor = 0;
 
+/**
+* @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+*/
 const int upperFloor = 3;
 
 
