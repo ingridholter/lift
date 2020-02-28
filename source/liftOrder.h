@@ -11,19 +11,19 @@
 
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
- * @param[in] floor. 0-3 integer value of where the lift has been ordered. 
+ * @param[in] floor 0-3 integer value of where the lift has been ordered.
  */
 int ordersDown(int floor);
 
 /**
  * @brief Gives the correct value of the inside orders in the liftOrders array.
- * @param[in] floor. 0-3 integer value of where the lift has been ordered.
+ * @param[in] floor 0-3 integer value of where the lift has been ordered.
  */
 int ordersInside(int floor);
 
 /**
  * @brief Gives the correct value of the up orders in the liftOrders array.
- * @param[in] floor. 0-3 integer value of where the lift has been ordered.
+ * @param[in] floor 0-3 integer value of where the lift has been ordered.
  */
 int ordersUp(int floor);
 
