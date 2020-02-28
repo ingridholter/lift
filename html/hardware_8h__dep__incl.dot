@@ -1,0 +1,16 @@
+digraph "source/hardware.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="source/hardware.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="source/liftOrder.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$liftOrder_8h.html",tooltip="A library containing the LiftOrder module. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="source/drive.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$drive_8h.html",tooltip="Sets the lift&#39;s direction and motorpower in order to get desired behavior. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="source/drive.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$drive_8c_source.html"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="source/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html",tooltip="The main function of the application. "];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="source/liftOrder.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$liftOrder_8c_source.html"];
+}
