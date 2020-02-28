@@ -1,9 +1,11 @@
 #include "liftOrder.h"
+/*
 //Prøv å flytte dette til headerfil
 const int liftOrdersSize = 10;
 static int liftOrders[10] = {0};
 const int lowerFloor = 0;
 const int upperFloor = 3;
+*/
 
 int ordersDown(int floor) {
     return floor * 3 - 1;
@@ -55,7 +57,6 @@ int orderedAbove(int currFloor) {
     if (currFloor == upperFloor) {
         return 0;
     }
-    //for (int i = currFloor * 3 + 2; i < 10; i++) {
     for (int i = ordersUp(currFloor) + 1; i < liftOrdersSize; i++) {
         if (liftOrders[i]) {
             return 1;
@@ -68,7 +69,6 @@ int orderedBelow(int currFloor) {
     if (currFloor == lowerFloor) {
         return 0;
     }
-    //for (int i = 0; i < currFloor*3 -1; i++) {
     for (int i = 0; i < ordersDown(currFloor); i++) {
         if (liftOrders[i]) {
             return 1;
@@ -136,36 +136,9 @@ int isCurrentFloorDemanded(int currFloor, HardwareMovement currDir) {
 }
 
 int isFloorOrdered(int currFloor) {
-    /*
-    switch (currFloor) {
-        case 0:
-            if (liftOrders[floor0Inside] || liftOrders[floor0Up]) {
-                return 1;
-            }
-            break;
-        case 1:
-            if (liftOrders[floor1Down] || liftOrders[floor1Inside] || liftOrders[floor1Up]) {
-                return 1;
-            }
-            break;
-        case 2:
-            if (liftOrders[floor2Down] || liftOrders[floor2Inside] || liftOrders[floor2Up]) {
-                return 1;
-            }
-            break;
-        case 3:
-            if (liftOrders[floor3Down] || liftOrders[floor3Inside]) {
-                return 1;
-            }
-            break;
-        default:
-            break;
-    }
-    */
     if ((liftOrders[ordersDown(currFloor)] && currFloor > lowerFloor) || liftOrders[ordersInside(currFloor)] || (liftOrders[ordersUp(currFloor)] && currFloor < upperFloor)) {
         return 1;
     }
-        
     return 0;
 }
 
@@ -187,7 +160,6 @@ int updateNextFloor(int currFloor, HardwareMovement currDir) {
         return currFloor - 1;
     }
 }
-
 
 int updateBetweenFloor(int nFloor, int currFloor) {
     if (nFloor > currFloor) {
