@@ -6,9 +6,6 @@
 
 #include "liftOrder.h"
 
-
-
-
 int ordersDown(int floor) {
     return floor * 3 - 1;
 }
