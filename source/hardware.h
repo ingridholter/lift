@@ -9,6 +9,9 @@
  */
 #ifndef HARDWARE_H
 #define HARDWARE_H
+/**
+* @brief Number of floors.
+*/
 #define HARDWARE_NUMBER_OF_FLOORS 4
 
 /**
