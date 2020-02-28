@@ -9,6 +9,16 @@
 #include <time.h>
 
 /**
+ * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+ */
+const int timeLimit = 3;
+
+/**
+ * @brief Checks if the lift is ordered and sets the liftOrders array. Lights the order lights accordingly
+ */
+static clock_t clockVar;
+
+/**
  * @brief Sets a new timestamp
  */
 void timerReset();
