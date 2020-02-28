@@ -8,20 +8,7 @@
 
 #include "hardware.h"
 #include <stdio.h>
-/*
-typedef enum{
-    floor0Inside,
-    floor0Up,
-    floor1Down,
-    floor1Inside,
-    floor1Up,
-    floor2Down,
-    floor2Inside,
-    floor2Up,
-    floor3Down,
-    floor3Inside
-}orderType;
- */
+
 /**
  * @brief Gives the correct value of the down orders in the liftOrders array. 
  * @param[in] floor. 0-3 integer value of where the lift has been ordered. 
@@ -108,7 +95,7 @@ int getFloorNumber();
 * @param[in] currDir The direction of the lift. Must be of enum type HardwareMovement
 * @return 1-3 integer value. Gives the next floor the lift will reach, given the current direction.
 */
-int updateNextFloor(int currFloor, HardwareMovement currDir)
+int updateNextFloor(int currFloor, HardwareMovement currDir);
 
 /**
 * @brief Updates the betweenfloor variable. 
